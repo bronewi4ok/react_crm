@@ -1,7 +1,7 @@
 {
   "singleQuote": true,
   "jsxSingleQuote": false,
-  "printWidth": 140,
+  "printWidth": 80,
   "proseWrap": "preserve",
   "objectWrap": "collapse",
   "singleAttributePerLine": false,
@@ -19,27 +19,13 @@
 
   "overrides": [
     {
-      "files": "*.jsx",
-      "options": {
-        "printWidth": 80,
-        "semi": false,
-        "singleAttributePerLine": true
-      }
+      "files": ["*.tsx", "*.ts"],
+      "options": { "semi": false, "singleAttributePerLine": true }
     },
-    {
-      "files": ["*.js"],
-      "options": {
-        "printWidth": 80,
-        "semi": false,
-        "singleAttributePerLine": false
-      }
-    },
+
     {
       "files": ["*.html"],
-      "options": {
-        "printWidth": 140,
-        "singleAttributePerLine": false
-      }
+      "options": { "printWidth": 150, "singleAttributePerLine": false }
     }
   ]
 }
