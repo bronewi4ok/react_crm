@@ -1,5 +1,5 @@
 import { frontRoutes, getRoutePath } from '@/app/router'
-import { Icon } from '@/shared/ui/Icon'
+import { Icon } from '@/shared/ui/icon'
 import { Link } from 'react-router-dom'
 
 export function SidebarLogo() {

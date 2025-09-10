@@ -1,4 +1,4 @@
-import { Loading } from '@/shared/ui/Loading/Loading'
+import { Loading } from '@/shared/ui/loading/Loading'
 import type { NonIndexRouteObject } from 'react-router-dom'
 import { frontRoutes } from './frontRoutes'
 

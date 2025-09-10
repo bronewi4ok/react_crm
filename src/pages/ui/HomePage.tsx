@@ -1,4 +1,4 @@
-import { Button } from '@/shared/ui/Button';
+import { Button } from '@/shared/ui/button'
 
 function HomePage() {
   return (
@@ -6,6 +6,6 @@ function HomePage() {
       <h1>Dashboard</h1>
       <Button>Ntrnc</Button>
     </div>
-  );
+  )
 }
 export default HomePage

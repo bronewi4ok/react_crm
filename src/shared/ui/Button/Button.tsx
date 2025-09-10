@@ -23,7 +23,7 @@ export const Button = ({
       )}
       disabled={disabled}
       {...rest}>
-			{children}
+      {children}
     </button>
   )
 }
