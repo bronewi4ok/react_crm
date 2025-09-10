@@ -1,3 +1,4 @@
+import type { PageTypes } from '@/pages/model/pages.types'
 import type { Role } from './roles'
 
 export type RouteMeta = {
@@ -5,10 +6,11 @@ export type RouteMeta = {
   isInMenu: boolean
   requireAuth: boolean
   roles?: Role[]
+  icon?: string
 }
 
-export type RouteConfig = {
+export type frontRouteTypes = {
   path: string | ((...args: string[]) => string)
   meta: RouteMeta
-  component: () => Promise<{ default: React.ComponentType<unknown> }>
+  component: () => Promise<{ default: PageTypes }>
 }
