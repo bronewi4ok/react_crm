@@ -7,6 +7,7 @@ const ProjectsPage = () => {
     isLoading,
     isError,
     isFetching,
+    isSuccess,
   } = useGetProjectsQuery()
 
   return (
@@ -18,6 +19,7 @@ const ProjectsPage = () => {
           isLoading={isLoading}
           isError={isError}
           isFetching={isFetching}
+          isSuccess={isSuccess}
         />
       </div>
     </div>

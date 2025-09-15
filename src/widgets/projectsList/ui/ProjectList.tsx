@@ -1,13 +1,16 @@
 import { ProjectCard } from '@/entities/project'
+import { Button } from '@/shared/ui/button'
+import { EmptyState } from '@/shared/ui/emptyState'
 import { MainList, MainListItem } from '@/shared/ui/mainList'
 import type { ProjectListProps } from '../model/types'
-import { ProjectsEmptyState } from './ProjectsEmptyState'
+import noProjectsImg from './no_projects.svg'
 
 export function ProjectList({
   projects,
   isLoading,
   isError,
   isFetching,
+  isSuccess,
 }: ProjectListProps) {
   if (isError) {
     return (
@@ -19,6 +22,17 @@ export function ProjectList({
     return <div className="p-4 text-sm text-support-700">Loading…</div>
   }
 
+  if (isSuccess && projects.length === 0) {
+    return (
+      <EmptyState
+        image={noProjectsImg}
+        title="No projects found?"
+        description="Try to assign more tasks to your employees or create a new project and setup it from scratch">
+        <Button>Add project</Button>
+      </EmptyState>
+    )
+  }
+
   return (
     <MainList>
       {isFetching && (
@@ -27,16 +41,11 @@ export function ProjectList({
         </MainListItem>
       )}
 
-      {projects.length === 0 ?
-        <MainListItem>
-          <ProjectsEmptyState />
+      {projects.map((project) => (
+        <MainListItem key={project.id}>
+          <ProjectCard project={project} />
         </MainListItem>
-      : projects.map((project) => (
-          <MainListItem key={project.id}>
-            <ProjectCard project={project} />
-          </MainListItem>
-        ))
-      }
+      ))}
     </MainList>
   )
 }
