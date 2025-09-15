@@ -1,4 +1,4 @@
-import type { PageTypes } from '@/pages/model/pages.types'
+import type { PageTypes } from '@/pages/model/types'
 import type { Role } from './roles'
 
 export type RouteMeta = {

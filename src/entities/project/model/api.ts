@@ -1,0 +1,58 @@
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { type Project } from './types'
+
+export const projectApi = createApi({
+  reducerPath: 'projectApi',
+  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:4000/api' }),
+  tagTypes: ['Project', 'Projects'],
+
+  endpoints: (builder) => ({
+    getProjects: builder.query<Project[], void>({
+      query: () => 'projects',
+      providesTags: (result) =>
+        result?.length ?
+          [
+            ...result.map(({ id }) => ({ type: 'Project' as const, id })),
+            { type: 'Projects' as const, id: 'LIST' },
+          ]
+        : [{ type: 'Projects' as const, id: 'LIST' }],
+    }),
+
+    getProjectById: builder.query<Project, string>({
+      query: (id) => `projects/${id}`,
+      providesTags: (_res, _err, id) => [{ type: 'Project', id }],
+    }),
+
+    createProject: builder.mutation<Project, Partial<Project>>({
+      query: (data) => ({ url: 'projects', method: 'POST', body: data }),
+      invalidatesTags: [{ type: 'Projects', id: 'LIST' }],
+    }),
+
+    updateProject: builder.mutation<Project, { id: string } & Partial<Project>>(
+      {
+        query: ({ id, ...data }) => ({
+          url: `projects/${id}`,
+          method: 'PUT',
+          body: data,
+        }),
+        invalidatesTags: (_res, _err, arg) => [
+          { type: 'Project', id: arg.id },
+          { type: 'Projects', id: 'LIST' },
+        ],
+      },
+    ),
+
+    deleteProject: builder.mutation<void, string>({
+      query: (id) => ({ url: `projects/${id}`, method: 'DELETE' }),
+      invalidatesTags: [{ type: 'Projects', id: 'LIST' }],
+    }),
+  }),
+})
+
+export const {
+  useGetProjectsQuery,
+  useGetProjectByIdQuery,
+  useCreateProjectMutation,
+  useUpdateProjectMutation,
+  useDeleteProjectMutation,
+} = projectApi

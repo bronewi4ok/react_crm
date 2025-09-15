@@ -1,4 +1,4 @@
- function ContactsPage() {
+function ContactsPage() {
   return (
     <div>
       <h1>ContactsPage</h1>

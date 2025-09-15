@@ -1,14 +1,9 @@
 import clsx from 'clsx'
-import type { MainListItemProps } from './MainList.types'
+import type { MainListItemProps } from './types'
 
-export function MainListItem({
-  children,
-  className,
-  ...rest
-}: MainListItemProps) {
+export function MainListItem({ children, className }: MainListItemProps) {
   return (
     <li
-      {...rest}
       className={clsx(
         'rounded-xl bg-light border border-border-300',
         className,

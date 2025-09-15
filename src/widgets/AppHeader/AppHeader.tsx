@@ -1,6 +1,6 @@
 import { Button } from '@/shared/ui/button'
 import { Icon } from '@/shared/ui/icon'
-import type { AppHeaderProps } from './AppHeader.types'
+import type { AppHeaderProps } from './types'
 
 export const AppHeader = ({ title, children }: AppHeaderProps) => {
   return (

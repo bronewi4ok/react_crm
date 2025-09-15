@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { type IconType, IconSize } from './Icon.types'
+import { type IconType, IconSize } from './types'
 
 export const Icon = ({ name, size = 'xs', className }: IconType) => {
 
