@@ -5,4 +5,5 @@ export type ProjectListProps = {
   isLoading: boolean
   isError: boolean
   isFetching?: boolean
+  isSuccess?: boolean
 }
