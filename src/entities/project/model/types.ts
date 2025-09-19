@@ -18,3 +18,11 @@ export type ProjectCardProps = {
   className?: string
   onClick?: () => void
 }
+
+export type ProjectsListProps = {
+  projects: Project[]
+  isLoading: boolean
+  isError: boolean
+  isFetching?: boolean
+  isSuccess?: boolean
+}

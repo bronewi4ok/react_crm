@@ -1,17 +1,15 @@
-import { ProjectCard } from '@/entities/project'
+import { ProjectCard, type ProjectsListProps } from '@/entities/project'
 import { Button } from '@/shared/ui/button'
 import { EmptyState } from '@/shared/ui/emptyState'
-import { MainList, MainListItem } from '@/shared/ui/mainList'
-import type { ProjectListProps } from '../model/types'
+import { MainList } from '@/shared/ui/mainList'
 import noProjectsImg from './no_projects.svg'
 
-export function ProjectList({
+export function ProjectsList({
   projects,
   isLoading,
   isError,
-  isFetching,
   isSuccess,
-}: ProjectListProps) {
+}: ProjectsListProps) {
   if (isError) {
     return (
       <div className="p-4 text-sm text-danger-700">Failed to load projects</div>
@@ -34,18 +32,14 @@ export function ProjectList({
   }
 
   return (
-    <MainList>
-      {isFetching && (
-        <MainListItem>
+    <MainList
+      items={projects}
+      getKey={(p) => p.id}
+      renderItem={(item) =>
+        typeof item === 'string' ?
           <div className="p-3 text-xs text-support-700">Updating…</div>
-        </MainListItem>
-      )}
-
-      {projects.map((project) => (
-        <MainListItem key={project.id}>
-          <ProjectCard project={project} />
-        </MainListItem>
-      ))}
-    </MainList>
+        : <ProjectCard project={item} />
+      }
+    />
   )
 }
