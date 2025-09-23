@@ -1,7 +1,9 @@
+import { routes } from '@/app/router'
 import { ProjectCard, type ProjectsListProps } from '@/entities/project'
 import { Button } from '@/shared/ui/button'
 import { EmptyState } from '@/shared/ui/emptyState'
 import { MainList } from '@/shared/ui/mainList'
+import { generatePath, useNavigate } from 'react-router-dom'
 import noProjectsImg from './no_projects.svg'
 
 export function ProjectsList({
@@ -10,6 +12,8 @@ export function ProjectsList({
   isError,
   isSuccess,
 }: ProjectsListProps) {
+  const navigate = useNavigate()
+
   if (isError) {
     return (
       <div className="p-4 text-sm text-danger-700">Failed to load projects</div>
@@ -38,7 +42,14 @@ export function ProjectsList({
       renderItem={(item) =>
         typeof item === 'string' ?
           <div className="p-3 text-xs text-support-700">Updating…</div>
-        : <ProjectCard project={item} />
+        : <ProjectCard
+            project={item}
+            onClick={() =>
+              navigate(
+                generatePath(routes.projectDetails.path, { id: item.id }),
+              )
+            }
+          />
       }
     />
   )

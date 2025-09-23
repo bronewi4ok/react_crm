@@ -1,13 +1,13 @@
-import { MainLayout } from '@/app/layouts'
 import GlobalErrorPage from '@/pages/ui/GlobalErrorPage'
 import { createBrowserRouter } from 'react-router-dom'
-import { appRouterRoutes } from '../model/appRouterRoutes'
+import { MainLayout } from './MainLayout'
+import { routerChildren } from './routerChildern'
 
 export const router = createBrowserRouter([
   {
     path: '/',
     Component: MainLayout,
     errorElement: <GlobalErrorPage />,
-    children: appRouterRoutes,
+    children: routerChildren,
   },
 ])

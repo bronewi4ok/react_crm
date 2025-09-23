@@ -1,10 +1,17 @@
 import { Button } from '@/shared/ui/button'
 import { Icon } from '@/shared/ui/icon'
+import clsx from 'clsx'
 import { type ProjectCardProps } from '../model/types'
 
-export function ProjectCard({ project }: ProjectCardProps) {
+export function ProjectCard({ project, className, onClick }: ProjectCardProps) {
   return (
-    <article className="rounded-xl border border-gray-200 bg-white px-4 py-3 md:px-5 md:py-4 shadow-sm hover:shadow transition-colors">
+    <article
+      onClick={onClick}
+      className={clsx(
+        'rounded-xl border border-gray-200 bg-white px-4 py-3 md:px-5 md:py-4 shadow-sm hover:shadow transition-colors',
+        onClick && 'cursor-pointer',
+        className,
+      )}>
       <div className="flex items-center gap-4">
         <div className="hidden sm:flex size-10 items-center justify-center rounded-xl bg-gray-100 text-gray-500">
           <span className="text-sm">●</span>

@@ -1,8 +1,11 @@
+import { useCurrentPageMeta } from '@/app/router/model/utils'
 import { Button } from '@/shared/ui/button'
 import { Icon } from '@/shared/ui/icon'
 import type { AppHeaderProps } from './types'
 
-export const AppHeader = ({ title, children }: AppHeaderProps) => {
+export const Header = ({ children }: AppHeaderProps) => {
+  const meta = useCurrentPageMeta()
+
   return (
     <header className="flex items-center px-7 py-6 min-h-21 bg-back-500">
       <Button
@@ -17,7 +20,7 @@ export const AppHeader = ({ title, children }: AppHeaderProps) => {
       </Button>
 
       <h1 className="text-xl font-bold text-dark tracking-tight select-none">
-        {title}
+        {meta?.title ?? 'App'}
       </h1>
 
       <div className="ml-auto flex items-center gap-4">
