@@ -1,11 +1,11 @@
-import type { EmptyStateProps } from './types'
+import type { EmptyFallbackTypes } from './types'
 
-export function EmptyState({
+export function EmptyFallback({
   image,
   title,
   description,
   children,
-}: EmptyStateProps) {
+}: EmptyFallbackTypes) {
   return (
     <div className="w-xl max-w-full mx-auto p-4 flex flex-col items-center">
       {image && (

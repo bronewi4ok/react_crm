@@ -1,39 +1,10 @@
 import { routes } from '@/app/router'
-import { ProjectCard, type ProjectsListProps } from '@/entities/project'
-import { Button } from '@/shared/ui/button'
-import { EmptyState } from '@/shared/ui/emptyState'
+import { ProjectCard, type Project } from '@/entities/project'
 import { MainList } from '@/shared/ui/mainList'
 import { generatePath, useNavigate } from 'react-router-dom'
-import noProjectsImg from './no_projects.svg'
 
-export function ProjectsList({
-  projects,
-  isLoading,
-  isError,
-  isSuccess,
-}: ProjectsListProps) {
+export function ProjectsList({ projects }: { projects: Project[] }) {
   const navigate = useNavigate()
-
-  if (isError) {
-    return (
-      <div className="p-4 text-sm text-danger-700">Failed to load projects</div>
-    )
-  }
-
-  if (isLoading) {
-    return <div className="p-4 text-sm text-support-700">Loading…</div>
-  }
-
-  if (isSuccess && projects.length === 0) {
-    return (
-      <EmptyState
-        image={noProjectsImg}
-        title="No projects found?"
-        description="Try to assign more tasks to your employees or create a new project and setup it from scratch">
-        <Button>Add project</Button>
-      </EmptyState>
-    )
-  }
 
   return (
     <MainList

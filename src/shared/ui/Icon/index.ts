@@ -1,1 +1,1 @@
-export { Icon } from './Icon.tsx'
+export { Icon } from './ui/Icon.tsx'

@@ -1,6 +1,12 @@
 import { router } from '@/app/router'
+import { Loading } from '@/shared/ui/loading'
+import { Suspense } from 'react'
 import { RouterProvider } from 'react-router-dom'
 
 export function App() {
-  return <RouterProvider router={router} />
+  return (
+    <Suspense fallback={<Loading />}>
+      <RouterProvider router={router} />
+    </Suspense>
+  )
 }

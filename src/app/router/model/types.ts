@@ -1,5 +1,5 @@
 import type { PageTypes } from '@/pages/model/types'
-import type { ROLES } from './configs'
+import type { ROLES } from './constants'
 
 export type RoleTypes = (typeof ROLES)[keyof typeof ROLES]
 
@@ -11,10 +11,7 @@ export type RouteMetaTypes = {
   icon?: string
 }
 
-export type RouteHandleTypes = { meta: RouteMetaTypes }
-
 export type RouteTypes = {
-  // navPath?: (...args: string[]) => string
   path: string
   meta: RouteMetaTypes
   component: () => Promise<{ default: PageTypes }>

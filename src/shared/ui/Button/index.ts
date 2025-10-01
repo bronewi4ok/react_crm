@@ -1,1 +1,2 @@
-export { Button } from './Button';
+export * from './model/types'
+export { Button } from './ui/Button'

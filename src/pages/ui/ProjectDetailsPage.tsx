@@ -1,4 +1,5 @@
 import { useGetProjectByIdQuery } from '@/entities/project'
+import { useFormatDate } from '@/shared/hooks/useFormatDate'
 import { useParams } from 'react-router-dom'
 
 function ProjectDetailsPage() {
@@ -8,6 +9,8 @@ function ProjectDetailsPage() {
     isLoading,
     isError,
   } = useGetProjectByIdQuery(id ?? '', { skip: !id })
+
+  const dueDate = useFormatDate(project?.plannedEndDate, { format: 'medium' })
 
   if (!id) {
     return <div className="p-4 text-sm text-danger-700">No project id</div>
@@ -39,7 +42,7 @@ function ProjectDetailsPage() {
         </div>
         <div>
           <div className="text-xs text-gray-500">Due date</div>
-          <div className="font-medium">{project.plannedEndDate ?? '—'}</div>
+          <div className="font-medium">{dueDate}</div>
         </div>
       </div>
     </div>

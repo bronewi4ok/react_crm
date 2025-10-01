@@ -1,27 +1,26 @@
-import { useAppDispatch, useAppSelector } from '@/app/store'
-import { SortBar, SortBarItem } from '@/shared/ui/sortBar'
-import { selectProjectsSort } from '../model/selectors'
-import { toggleProjectsSort } from '../model/slices'
-import { sortOptions, type SortKey } from '../model/types'
+import { SortBar } from '@/shared/ui/sortBar'
+import { projectsSortConfigs } from '../model/configs'
+import { useProjectsQueryParams } from '../model/hooks'
+import type { ProjectSortOrderTypes, ProjectsSortTypes } from '../model/types'
 
 export function ProjectsSortBar() {
-  const dispatch = useAppDispatch()
-  const sortState = useAppSelector(selectProjectsSort)
+  const { sortParams, setSortParams } = useProjectsQueryParams()
 
-  const handleClick = (key: SortKey) => {
-    dispatch(toggleProjectsSort(key))
+  const handleSort = (
+    field: ProjectsSortTypes,
+    order: ProjectSortOrderTypes,
+  ) => {
+    setSortParams({ sort: field, order, page: 1 })
   }
 
   return (
-    <SortBar>
-      {sortOptions.map((option) => (
-        <SortBarItem
-          key={option.key}
-          option={option}
-          onClick={() => handleClick(option.key)}
-          isAcitve={sortState[option.key] !== ''}
-        />
-      ))}
-    </SortBar>
+    <SortBar<ProjectsSortTypes>
+      options={projectsSortConfigs}
+      value={{
+        field: sortParams.sort || null,
+        order: sortParams.order || null,
+      }}
+      onSort={handleSort}
+    />
   )
 }

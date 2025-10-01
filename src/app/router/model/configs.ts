@@ -1,15 +1,9 @@
+import { PATHS } from './constants'
 import { type RouteTypes } from './types'
-
-export const ROLES = Object.freeze({
-  ADMIN: 'admin',
-  MANAGER: 'manager',
-  USER: 'user',
-  GUEST: 'guest',
-} as const)
 
 export const routes = {
   home: {
-    path: '/',
+    path: PATHS.HOME,
     component: () => import('@/pages/ui/HomePage'),
     meta: {
       title: 'Dashboard',
@@ -20,7 +14,7 @@ export const routes = {
   },
 
   projects: {
-    path: '/projects',
+    path: PATHS.PROJECTS,
     meta: {
       title: 'Projects',
       isInMenu: true,
@@ -32,7 +26,7 @@ export const routes = {
   },
 
   projectDetails: {
-    path: `/projects/:id`,
+    path: PATHS.PROJECT_DETAILS,
     meta: {
       title: 'Project Details',
       isInMenu: false,
@@ -44,7 +38,7 @@ export const routes = {
   },
 
   tasks: {
-    path: '/tasks',
+    path: PATHS.TASKS,
     meta: {
       title: 'Tasks',
       isInMenu: true,
@@ -56,7 +50,7 @@ export const routes = {
   },
 
   contacts: {
-    path: '/contacts',
+    path: PATHS.CONTACTS,
     meta: {
       title: 'Contacts',
       isInMenu: true,
@@ -68,7 +62,7 @@ export const routes = {
   },
 
   products: {
-    path: '/products',
+    path: PATHS.PRODUCTS,
     meta: {
       title: 'Products',
       isInMenu: true,
@@ -80,7 +74,7 @@ export const routes = {
   },
 
   invoices: {
-    path: '/invoices',
+    path: PATHS.INVOICES,
     meta: {
       title: 'Invoices',
       isInMenu: true,
@@ -97,7 +91,3 @@ export const routes = {
     component: () => import('@/pages/ui/Page404'),
   },
 } as const satisfies Record<string, RouteTypes>
-
-export type PageKey = keyof typeof routes
-
-// path: (id: string) => `/projects/${id}`,

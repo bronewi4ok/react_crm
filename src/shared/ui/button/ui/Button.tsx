@@ -1,8 +1,6 @@
 import { clsx } from 'clsx'
-import { sizeStyles, variantStyles, type ButtonProps } from './types'
-
-const baseStyles =
-  'inline-flex items-center gap-2 justify-center font-bold cursor-pointer transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed'
+import { baseStyles, sizeStyles, variantStyles } from '../model/configs'
+import type { ButtonTypes } from '../model/types'
 
 export const Button = ({
   children,
@@ -11,7 +9,7 @@ export const Button = ({
   disabled = false,
   className,
   ...rest
-}: ButtonProps) => {
+}: ButtonTypes) => {
   return (
     <button
       type="button"

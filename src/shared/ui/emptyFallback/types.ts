@@ -1,6 +1,6 @@
 import React from 'react'
 
-export type EmptyStateProps = {
+export type EmptyFallbackTypes = {
   image: string
   title: string
   description?: string

@@ -1,4 +1,5 @@
-import type { ButtonHTMLAttributes, ReactNode } from 'react'
+export const baseStyles =
+  'inline-flex items-center gap-2 justify-center font-bold cursor-pointer transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed'
 
 export const variantStyles = {
   primary:
@@ -19,12 +20,3 @@ export const sizeStyles = {
   md: 'p-3 text-base rounded-lg',
   lg: 'p-4 text-lg rounded-xl',
 } as const
-
-export type ButtonVariant = keyof typeof variantStyles
-export type ButtonSize = keyof typeof sizeStyles
-
-export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  children?: ReactNode
-  variant?: ButtonVariant
-  size?: ButtonSize
-}

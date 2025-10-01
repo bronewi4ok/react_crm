@@ -1,9 +1,12 @@
+import { useFormatDate } from '@/shared/hooks/useFormatDate'
 import { Button } from '@/shared/ui/button'
 import { Icon } from '@/shared/ui/icon'
 import clsx from 'clsx'
 import { type ProjectCardProps } from '../model/types'
 
 export function ProjectCard({ project, className, onClick }: ProjectCardProps) {
+  const dueDate = useFormatDate(project.plannedEndDate, { format: 'short' })
+
   return (
     <article
       onClick={onClick}
@@ -36,7 +39,7 @@ export function ProjectCard({ project, className, onClick }: ProjectCardProps) {
           </div>
 
           <div className="text-right">
-            <div className="font-medium">{project.plannedEndDate}</div>
+            <div className="font-medium">{dueDate}</div>
             <div className="text-xs text-gray-500">Due date</div>
           </div>
         </div>
