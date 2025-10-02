@@ -1,6 +1,6 @@
 import { useCurrentPageTitle } from '@/app/router/model/helpers'
 import { AppHeader } from '@/widgets/AppHeader'
-import MainMenu from '@/widgets/Sidebar/ui/MainMenu'
+import { MainMenu } from '@/widgets/sidebar/ui/MainMenu'
 import { Outlet } from 'react-router-dom'
 
 export function MainLayout() {

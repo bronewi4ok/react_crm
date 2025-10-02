@@ -1,4 +1,4 @@
-import MainMenu from './MainMenu'
+import { MainMenu } from './MainMenu'
 
 export function Sidebar() {
   return (
