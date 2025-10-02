@@ -1,11 +1,8 @@
-import type { HTMLAttributes, LiHTMLAttributes, ReactNode } from 'react'
+import type { Key, ReactNode } from 'react'
 
-export type MainListProps = {
-  children: ReactNode
+export type MainListProps<T> = {
+  items: T[]
+  renderItem: (item: T, index: number) => ReactNode
+  getKey: (item: T, index: number) => Key
   className?: string
-} & HTMLAttributes<HTMLUListElement>
-
-export type MainListItemProps = {
-  children: ReactNode
-  className?: string
-} & LiHTMLAttributes<HTMLLIElement>
+}

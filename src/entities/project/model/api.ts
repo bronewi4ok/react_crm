@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { type Project } from './types'
+import type { Project, ProjectsListResponse, ProjectsQueryArgs } from './types'
 
 export const projectApi = createApi({
   reducerPath: 'projectApi',
@@ -7,12 +7,12 @@ export const projectApi = createApi({
   tagTypes: ['Project', 'Projects'],
 
   endpoints: (builder) => ({
-    getProjects: builder.query<Project[], void>({
-      query: () => 'projects',
+    getProjects: builder.query<ProjectsListResponse, ProjectsQueryArgs | void>({
+      query: (args) => ({ url: 'projects', params: args ?? {} }),
       providesTags: (result) =>
-        result?.length ?
+        result?.data?.length ?
           [
-            ...result.map(({ id }) => ({ type: 'Project' as const, id })),
+            ...result.data.map(({ id }) => ({ type: 'Project' as const, id })),
             { type: 'Projects' as const, id: 'LIST' },
           ]
         : [{ type: 'Projects' as const, id: 'LIST' }],

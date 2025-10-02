@@ -1,27 +1,10 @@
-import { useGetProjectsQuery } from '@/entities/project'
-import { ProjectList } from '@/widgets/projectsList'
+import { ProjectsWidget } from '@/widgets/ProjectsWidget'
 
 const ProjectsPage = () => {
-  const {
-    data: projects = [],
-    isLoading,
-    isError,
-    isFetching,
-    isSuccess,
-  } = useGetProjectsQuery()
-
   return (
-    <div>
-      <h1>Projects</h1>
-      <div className="p-6">
-        <ProjectList
-          projects={projects}
-          isLoading={isLoading}
-          isError={isError}
-          isFetching={isFetching}
-          isSuccess={isSuccess}
-        />
-      </div>
+    <div className=" bg-light rounded-2xl">
+      <h1 className="text-dark text-2xl px-6.5 py-5">Projects</h1>
+      <ProjectsWidget />
     </div>
   )
 }
