@@ -1,8 +1,5 @@
 @import 'tailwindcss';
-
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
-
-/* (legacy commented theme block removed for clarity) */
 
 @theme {
   --font-display: 'Lato', system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -67,6 +64,18 @@
   --color-danger-800: #762d35;
   --color-danger-900: #4e1e23;
 
+  /* Warning - жовтий/бурштиновий для світлої теми */
+  --color-warning-50: #fffbeb;
+  --color-warning-100: #fef3c7;
+  --color-warning-200: #fde68a;
+  --color-warning-300: #fcd34d;
+  --color-warning-400: #fbbf24;
+  --color-warning-500: #f59e0b;
+  --color-warning-600: #d97706;
+  --color-warning-700: #b45309;
+  --color-warning-800: #92400e;
+  --color-warning-900: #78350f;
+
   /* Border */
   --color-border-50: #f9f9fb;
   --color-border-100: #f5f5f8;
@@ -107,23 +116,196 @@
   --color-light: #ffffff;
 }
 
-/* [data-theme="dark"] {
-  --color-primary-500: #475eaa;
-  --color-background: #1c1d21;
-  --color-text: #ffffff;
-} */
+/* Atom One Dark Theme - правильні контрасти */
+[data-theme='dark'] {
+  /* Primary - блакитні акценти (як в Atom One Dark) */
+  --color-primary-50: #e3f2fd;
+  --color-primary-100: #bbdefb;
+  --color-primary-200: #90caf9;
+  --color-primary-300: #64b5f6;
+  --color-primary-400: #42a5f5;
+  --color-primary-500: #61dafb; /* React blue */
+  --color-primary-600: #1e88e5;
+  --color-primary-700: #1976d2;
+  --color-primary-800: #1565c0;
+  --color-primary-900: #0d47a1;
 
-@layer base {
-  body {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
+  /* Secondary - світло-сірі для тексту на темному фоні */
+  --color-secondary-50: #f5f5f5;
+  --color-secondary-100: #eeeeee;
+  --color-secondary-200: #e0e0e0;
+  --color-secondary-300: #bdbdbd;
+  --color-secondary-400: #9e9e9e;
+  --color-secondary-500: #abb2bf; /* Atom One Dark text color */
+  --color-secondary-600: #757575;
+  --color-secondary-700: #616161;
+  --color-secondary-800: #424242;
+  --color-secondary-900: #212121;
+
+  /* Attention - жовтий/помаранчевий (як в Atom) */
+  --color-attention-50: #fff8e1;
+  --color-attention-100: #ffecb3;
+  --color-attention-200: #ffe082;
+  --color-attention-300: #ffd54f;
+  --color-attention-400: #ffca28;
+  --color-attention-500: #e5c07b; /* Atom One Dark yellow */
+  --color-attention-600: #ffb300;
+  --color-attention-700: #ffa000;
+  --color-attention-800: #ff8f00;
+  --color-attention-900: #ff6f00;
+
+  /* Success - зелений (як в Atom) */
+  --color-success-50: #e8f5e8;
+  --color-success-100: #c8e6c9;
+  --color-success-200: #a5d6a7;
+  --color-success-300: #81c784;
+  --color-success-400: #66bb6a;
+  --color-success-500: #98c379; /* Atom One Dark green */
+  --color-success-600: #43a047;
+  --color-success-700: #388e3c;
+  --color-success-800: #2e7d32;
+  --color-success-900: #1b5e20;
+
+  /* Error - червоний (як в Atom) */
+  --color-danger-50: #ffebee;
+  --color-danger-100: #ffcdd2;
+  --color-danger-200: #ef9a9a;
+  --color-danger-300: #e57373;
+  --color-danger-400: #ef5350;
+  --color-danger-500: #e06c75; /* Atom One Dark red */
+  --color-danger-600: #e53935;
+  --color-danger-700: #d32f2f;
+  --color-danger-800: #c62828;
+  --color-danger-900: #b71c1c;
+
+  /* Warning - жовтий/бурштиновий (як в Atom) */
+  --color-warning-50: #fffde7;
+  --color-warning-100: #fff9c4;
+  --color-warning-200: #fff59d;
+  --color-warning-300: #fff176;
+  --color-warning-400: #ffee58;
+  --color-warning-500: #d19a66; /* Atom One Dark orange */
+  --color-warning-600: #fbc02d;
+  --color-warning-700: #f9a825;
+  --color-warning-800: #f57f17;
+  --color-warning-900: #ff6f00;
+
+  /* Border - темно-сірі бордери */
+  --color-border-50: #4b5563;
+  --color-border-100: #434852;
+  --color-border-200: #3c414a;
+  --color-border-300: #353a42;
+  --color-border-400: #2f333a;
+  --color-border-500: #282c34; /* Atom One Dark border */
+  --color-border-600: #21252b;
+  --color-border-700: #1e2227;
+  --color-border-800: #1a1e23;
+  --color-border-900: #161a1f;
+
+  /* Background - темні фони (як в Atom One Dark) */
+  --color-back-50: #4b5563;
+  --color-back-100: #3c414a;
+  --color-back-200: #353a42;
+  --color-back-300: #2f333a;
+  --color-back-400: #292d35;
+  --color-back-500: #21252b; /* Atom One Dark background */
+  --color-back-600: #1e2227;
+  --color-back-700: #1a1e23;
+  --color-back-800: #161a1f;
+  --color-back-900: #0f1419;
+
+  /* Support - допоміжні сірі кольори */
+  --color-support-50: #f9fafb;
+  --color-support-100: #f3f4f6;
+  --color-support-200: #e5e7eb;
+  --color-support-300: #d1d5db;
+  --color-support-400: #9ca3af;
+  --color-support-500: #6b7280;
+  --color-support-600: #4b5563;
+  --color-support-700: #528bff; /* Atom One Dark comment color */
+  --color-support-800: #1f2937;
+  --color-support-900: #111827;
+
+  /* Головні кольори тексту */
+  --color-dark: #abb2bf; /* Світлий текст для темної теми */
+  --color-light: #21252b; /* Темний фон для темної теми */
 }
 
 :root {
-  color-scheme: light dark;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Базові переходи для HTML елемента (фон сторінки) */
+html {
+  transition: background-color 300ms ease-in-out;
+}
+
+/* Переходи для компонентів з кольорами теми */
+body,
+[class*='bg-light'],
+[class*='bg-back'],
+[class*='bg-border'],
+[class*='text-dark'],
+[class*='text-secondary'],
+[class*='text-primary'],
+[class*='text-danger'],
+[class*='text-success'],
+[class*='text-warning'],
+[class*='border-border'],
+[class*='border-primary'],
+[class*='fill-secondary'],
+[class*='fill-primary'] {
+  transition:
+    background-color 300ms ease-in-out,
+    border-color 300ms ease-in-out,
+    color 300ms ease-in-out,
+    fill 300ms ease-in-out;
+}
+
+/* Швидші переходи для інтерактивних елементів */
+button,
+[role='button'],
+a:hover,
+.cursor-pointer {
+  transition:
+    background-color 200ms ease-in-out,
+    border-color 200ms ease-in-out,
+    color 200ms ease-in-out,
+    transform 150ms ease-in-out,
+    box-shadow 200ms ease-in-out;
+}
+
+/* Оптимізація для елементів з частими змінами */
+[data-theme] {
+  will-change: background-color, color;
+}
+
+/* Переключувач теми потребує плавної анімації */
+.theme-toggler {
+  will-change: background-color;
+  transition: background-color 300ms ease-in-out;
+} /* Виключаємо transition під час швидких змін або ініціалізації */
+.no-transition,
+.no-transition * {
+  transition: none !important;
+}
+
+/* Utility клас для тимчасового відключення переходів */
+.disable-transitions {
+  transition: none !important;
+}
+
+/* Враховуємо prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  html,
+  body,
+  [class*='bg-'],
+  [class*='text-'],
+  [class*='border-'],
+  button {
+    transition: none !important;
+  }
 }

@@ -2,6 +2,7 @@ import { useCurrentPageMeta } from '@/app/router/model/utils'
 import { Button } from '@/shared/ui/button'
 import { Icon } from '@/shared/ui/icon'
 import type { AppHeaderProps } from './types'
+import { ThemeToggler } from '@/features/themeToggler/ui/ThemeToggler'
 
 export const Header = ({ children }: AppHeaderProps) => {
   const meta = useCurrentPageMeta()
@@ -24,6 +25,7 @@ export const Header = ({ children }: AppHeaderProps) => {
       </h1>
 
       <div className="ml-auto flex items-center gap-4">
+        <ThemeToggler/>
         <Button
           variant="support"
           aria-label="open search">

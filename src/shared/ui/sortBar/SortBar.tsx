@@ -32,7 +32,9 @@ export function SortBar<T extends string>({
           onClick={() => handleSortClick(option.key)}
           className={clsx(
             'flex items-center gap-6.5 cursor-pointer',
-            value.field === option.key ? 'text-red-500' : 'text-secondary-500',
+            value.field === option.key ?
+              'text-danger-500'
+            : 'text-secondary-500',
             option.column,
           )}>
           {option?.icon && (

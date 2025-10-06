@@ -33,15 +33,15 @@ function ProjectDetailsPage() {
       )}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
         <div>
-          <div className="text-xs text-gray-500">Tasks</div>
+          <div className="text-xs text-secondary-500">Tasks</div>
           <div className="font-medium">{project.tasks.length}</div>
         </div>
         <div>
-          <div className="text-xs text-gray-500">Budget</div>
+          <div className="text-xs text-secondary-500">Budget</div>
           <div className="font-medium">{project.budget ?? '—'}</div>
         </div>
         <div>
-          <div className="text-xs text-gray-500">Due date</div>
+          <div className="text-xs text-secondary-500">Due date</div>
           <div className="font-medium">{dueDate}</div>
         </div>
       </div>

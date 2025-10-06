@@ -30,7 +30,7 @@ export function Pagination({
   return (
     <div className={`flex items-center justify-center gap-2 p-4 ${className}`}>
       {/* {showStatus && isFetching && (
-        <span className="text-sm text-gray-500 mr-2">Оновлення...</span>
+        <span className="text-sm text-secondary-500 mr-2">Оновлення...</span>
       )} */}
 
       <Button
