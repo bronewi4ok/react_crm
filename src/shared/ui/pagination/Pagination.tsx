@@ -8,13 +8,12 @@ export function Pagination({
   className,
   isLoading = false,
   isFetching = false,
-  // showStatus = true,
 }: PaginationTypes) {
   if (isLoading) return null
   if (totalPages <= 1) return null
 
   const pages = []
-  const showPages = 5
+  const showPages = 3
 
   let startPage = Math.max(1, currentPage - Math.floor(showPages / 2))
   const endPage = Math.min(totalPages, startPage + showPages - 1)
@@ -29,10 +28,6 @@ export function Pagination({
 
   return (
     <div className={`flex items-center justify-center gap-2 p-4 ${className}`}>
-      {/* {showStatus && isFetching && (
-        <span className="text-sm text-secondary-500 mr-2">Оновлення...</span>
-      )} */}
-
       <Button
         variant="support"
         size="sm"
@@ -47,7 +42,9 @@ export function Pagination({
             variant="support"
             size="sm"
             onClick={() => onPageChange(1)}
-            disabled={isFetching}></Button>
+            disabled={isFetching}>
+            1
+          </Button>
           {startPage > 2 && <span className="px-2">...</span>}
         </>
       )}
