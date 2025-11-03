@@ -1,5 +1,5 @@
 import type { PageTypes } from '@/pages/model/types'
-import type { ROLES } from './constants'
+import type { ROLES } from '@/shared/config/constants'
 
 export type RoleTypes = (typeof ROLES)[keyof typeof ROLES]
 

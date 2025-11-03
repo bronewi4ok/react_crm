@@ -1,11 +1,7 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { baseApi } from '@/shared/api/baseApi'
 import type { Project, ProjectsListResponse, ProjectsQueryArgs } from './types'
 
-export const projectApi = createApi({
-  reducerPath: 'projectApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:4000/api' }),
-  tagTypes: ['Project', 'Projects'],
-
+export const projectApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getProjects: builder.query<ProjectsListResponse, ProjectsQueryArgs | void>({
       query: (args) => ({ url: 'projects', params: args ?? {} }),
