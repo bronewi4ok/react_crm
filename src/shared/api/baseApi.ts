@@ -1,7 +1,8 @@
 import { logout, setCredentials } from '@/features/auth/api/authSlice'
-import { apiRoutes, authRoutes } from '@/shared/config/router/'
+
 import type { accessTokenType, AuthResponse, RootState } from '@/shared/types'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { apiRoutes } from '../config/router'
 
 const baseQuery = fetchBaseQuery({
   baseUrl: apiRoutes.baseUrl,
@@ -32,14 +33,14 @@ const baseQueryWithReauth = async (
     if (refreshResult.data) {
       api.dispatch(setCredentials(refreshResult.data as AuthResponse))
       result = await baseQuery(args, api, extraOptions)
-      } else {
-        api.dispatch(logout())
-        window.location.href = authRoutes.login.navPath
-      }
-    // } else {
-    //   api.dispatch(logout())
-    //   return { error: { status: 401, data: 'Unauthorized' } }
-    // }
+      // } else {
+      //   api.dispatch(logout())
+      //   window.location.href = authRoutes.login.navPath
+      // }
+    } else {
+      api.dispatch(logout())
+      return { error: { status: 401, data: 'Unauthorized' } }
+    }
   }
 
   return result
