@@ -31,7 +31,7 @@ build
 .env.production.local
 .vite/
 *.tsbuildinfo
-
+client_secrete_*
 
 # OS
 .DS_Store
