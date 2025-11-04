@@ -1,8 +1,8 @@
 import { GoogleLogin } from '@react-oauth/google'
-import { useHandleGoogleLogin } from '../model/googleAuth'
+import { useHandleGoogleAuth } from '../model/googleAuth'
 
-export const GoogleLoginButton = () => {
-  const handleGoogleLogin = useHandleGoogleLogin()
+export const GoogleAuthButton = () => {
+  const handleGoogleLogin = useHandleGoogleAuth()
 
   return (
     <GoogleLogin
