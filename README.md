@@ -1,69 +1,99 @@
-# React + TypeScript + Vite
+# Beta CRM Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Frontend для CRM системи з авторизацією та управлінням проектами.
 
-Currently, two official plugins are available:
+## Особливості
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- ✅ Авторизація користувачів (Login/Signup)
+- ✅ Захищені маршрути
+- ✅ Управління проектами
+- ✅ React + TypeScript
+- ✅ Redux Toolkit Query
+- ✅ React Router
 
-## Expanding the ESLint configuration
+## Встановлення
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+1. Встановіть залежності:
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. Налаштуйте змінні середовища:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+cp env.example .env
 ```
+
+Відредагуйте `.env` файл:
+
+```
+VITE_API_URL=http://localhost:4000/api
+```
+
+3. Запустіть додаток:
+
+```bash
+npm run dev
+```
+
+## Функціонал
+
+### Авторизація
+
+- **Вхід** (`/login`) - для існуючих користувачів
+- **Реєстрація** (`/signup`) - для нових користувачів
+- Автоматичне оновлення токенів
+- Захищені маршрути
+
+### Проекти
+
+- Перегляд списку проектів
+- Деталі проекту
+- Створення/редагування/видалення
+
+## Структура проекту
+
+```
+src/
+├── app/              # Основний додаток
+│   ├── router/       # Роутинг
+│   └── store/        # Redux store
+├── entities/         # Бізнес-сутності
+│   ├── user/         # Користувач
+│   └── project/      # Проект
+├── features/         # Функціонал
+│   ├── auth/         # Авторизація
+│   └── ...
+├── pages/            # Сторінки
+├── shared/           # Спільні компоненти
+│   ├── api/          # API клієнт
+│   ├── config/       # Конфігурація
+│   └── ui/           # UI компоненти
+└── widgets/          # Складні компоненти
+```
+
+## Маршрути
+
+- `/` - Головна сторінка (Dashboard)
+- `/login` - Вхід
+- `/signup` - Реєстрація
+- `/projects` - Список проектів
+- `/projects/:id` - Деталі проекту
+- `/tasks` - Завдання
+- `/contacts` - Контакти
+- `/products` - Продукти
+- `/invoices` - Рахунки
+
+## Технології
+
+- **React 19** - UI бібліотека
+- **TypeScript** - Типізація
+- **Redux Toolkit** - Управління станом
+- **React Router** - Роутинг
+- **Tailwind CSS** - Стилізація
+- **Vite** - Збірка
+
+## Змінні середовища
+
+- `VITE_API_URL` - URL бекенд API (за замовчуванням http://localhost:4000/api)

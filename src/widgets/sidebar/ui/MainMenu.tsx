@@ -1,8 +1,9 @@
-import { menuRoutes } from '@/app/router'
+import { menuRoutes } from '@/shared/config/router/'
 import { MenuLink } from './MenuLink'
 import { SidebarLogo } from './SidebarLogo'
 
 export function MainMenu() {
+  
   return (
     <div>
       <SidebarLogo />

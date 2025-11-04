@@ -1,5 +1,5 @@
-import { routes } from '@/app/router'
 import { ProjectCard, type Project } from '@/entities/project'
+import { mainRoutes } from '@/shared/config/router'
 import { MainList } from '@/shared/ui/mainList'
 import { generatePath, useNavigate } from 'react-router-dom'
 
@@ -17,7 +17,7 @@ export function ProjectsList({ projects }: { projects: Project[] }) {
             project={item}
             onClick={() =>
               navigate(
-                generatePath(routes.projectDetails.path, { id: item.id }),
+                generatePath(mainRoutes.projectDetails.navPath, { id: item.id }),
               )
             }
           />

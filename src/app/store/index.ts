@@ -1,3 +1,3 @@
+export * from '../../shared/types/store'
+export * from '../../shared/hooks/store'
 export { store } from './store'
-export * from './hooks'
-export * from './types'

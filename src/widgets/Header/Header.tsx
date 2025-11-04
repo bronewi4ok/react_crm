@@ -1,11 +1,11 @@
-import { useCurrentPageMeta } from '@/app/router/model/utils'
+import { ThemeToggler } from '@/features/themeToggler/ui/ThemeToggler'
+import { usePageMeta } from '@/pages/model/utils'
 import { Button } from '@/shared/ui/button'
 import { Icon } from '@/shared/ui/icon'
 import type { AppHeaderProps } from './types'
-import { ThemeToggler } from '@/features/themeToggler/ui/ThemeToggler'
 
 export const Header = ({ children }: AppHeaderProps) => {
-  const meta = useCurrentPageMeta()
+  const meta = usePageMeta()
 
   return (
     <header className="flex items-center px-7 py-6 min-h-21 bg-back-500">
@@ -25,7 +25,7 @@ export const Header = ({ children }: AppHeaderProps) => {
       </h1>
 
       <div className="ml-auto flex items-center gap-4">
-        <ThemeToggler/>
+        <ThemeToggler />
         <Button
           variant="support"
           aria-label="open search">
