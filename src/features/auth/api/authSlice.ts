@@ -40,6 +40,7 @@ const authSlice = createSlice({
       .addMatcher(
         isAnyOf(
           authApi.endpoints.login.matchPending,
+          authApi.endpoints.googleLogin.matchPending,
           authApi.endpoints.refresh.matchPending,
           authApi.endpoints.signup.matchPending,
         ),
@@ -51,6 +52,7 @@ const authSlice = createSlice({
       .addMatcher(
         isAnyOf(
           authApi.endpoints.login.matchFulfilled,
+          authApi.endpoints.googleLogin.matchFulfilled,
           authApi.endpoints.refresh.matchFulfilled,
           authApi.endpoints.signup.matchFulfilled,
         ),
@@ -70,6 +72,7 @@ const authSlice = createSlice({
       .addMatcher(
         isAnyOf(
           authApi.endpoints.login.matchRejected,
+          authApi.endpoints.googleLogin.matchRejected,
           authApi.endpoints.refresh.matchRejected,
           authApi.endpoints.logout.matchRejected,
           authApi.endpoints.signup.matchRejected,

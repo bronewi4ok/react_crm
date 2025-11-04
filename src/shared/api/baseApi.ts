@@ -1,6 +1,7 @@
 import { logout, setCredentials } from '@/features/auth/api/authSlice'
-import { apiRoutes, authRoutes } from '@/shared/config/router/'
+import { apiRoutes } from '@/shared/config/router'
 import type { accessTokenType, AuthResponse, RootState } from '@/shared/types'
+import { refreshMutex } from '@/shared/utils/refreshMutex'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 const baseQuery = fetchBaseQuery({
@@ -23,23 +24,32 @@ const baseQueryWithReauth = async (
   let result = await baseQuery(args, api, extraOptions)
 
   if (result.error?.status === 401) {
-    const refreshResult = await baseQuery(
-      { url: apiRoutes.auth.refresh, method: 'POST' },
-      api,
-      extraOptions,
-    )
-
-    if (refreshResult.data) {
-      api.dispatch(setCredentials(refreshResult.data as AuthResponse))
+    if (refreshMutex.isLocked()) {
+      // Wait for other refresh to complete
+      await refreshMutex.waitForUnlock()
+      // After unlock, retry the original request with potentially new token
       result = await baseQuery(args, api, extraOptions)
-      } else {
-        api.dispatch(logout())
-        window.location.href = authRoutes.login.navPath
+    } else {
+      // Acquire mutex and perform refresh
+      const release = await refreshMutex.acquire()
+      try {
+        const refreshResult = await baseQuery(
+          { url: apiRoutes.auth.refresh, method: 'POST' },
+          api,
+          extraOptions,
+        )
+        if (refreshResult.data) {
+          api.dispatch(setCredentials(refreshResult.data as AuthResponse))
+          // Retry original request with new token
+          result = await baseQuery(args, api, extraOptions)
+        } else {
+          api.dispatch(logout())
+          return { error: { status: 401, data: 'Unauthorized' } }
+        }
+      } finally {
+        release()
       }
-    // } else {
-    //   api.dispatch(logout())
-    //   return { error: { status: 401, data: 'Unauthorized' } }
-    // }
+    }
   }
 
   return result

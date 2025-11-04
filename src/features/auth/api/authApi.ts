@@ -24,6 +24,14 @@ export const authApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ['User'],
     }),
+    googleLogin: build.mutation<AuthResponse, { token: string }>({
+      query: ({ token }) => ({
+        url: apiRoutes.auth.googleLogin,
+        method: 'POST',
+        body: { token },
+      }),
+      invalidatesTags: ['User'],
+    }),
     logout: build.mutation<{ success: boolean }, void>({
       query: () => ({ url: apiRoutes.auth.logout, method: 'POST' }),
       invalidatesTags: ['User', 'Project', 'Projects'],
@@ -39,4 +47,5 @@ export const {
   useLogoutMutation,
   useRefreshMutation,
   useSignupMutation,
+  useGoogleLoginMutation,
 } = authApi

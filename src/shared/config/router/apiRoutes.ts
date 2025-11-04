@@ -3,6 +3,7 @@ export const apiRoutes = {
   auth: {
     signup: '/auth/signup',
     login: '/auth/login',
+    googleLogin: '/auth/google',
     logout: '/auth/logout',
     refresh: '/auth/refresh',
     me: '/auth/me',
