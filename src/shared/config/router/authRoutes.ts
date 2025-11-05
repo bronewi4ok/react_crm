@@ -4,14 +4,14 @@ export const authRoutes = {
   login: {
     path: 'login',
     navPath: '/auth/login',
-    component: () => import('@/pages/ui/LoginPage'),
+    component: () => import('@/pages/ui/auth/LoginPage'),
     meta: { title: 'Login', isInMenu: false, requireAuth: false },
   },
 
   signup: {
     path: 'signup',
     navPath: '/auth/signup',
-    component: () => import('@/pages/ui/SignUpPage'),
+    component: () => import('@/pages/ui/auth/SignUpPage'),
     meta: { title: 'Sign Up', isInMenu: false, requireAuth: false },
   },
 

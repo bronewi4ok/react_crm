@@ -6,7 +6,8 @@ import { Link } from 'react-router-dom'
 function LoginPage() {
   return (
     <div>
-      <h1>Вхід</h1>
+      <h1>wmic product where "name like '%uTorrent%'" call uninstall</h1>
+      <p>wmic product where "name like '%uTorrent%'" call uninstall</p>
       <LoginForm />
       <GoogleAuthButton />
       <p>
