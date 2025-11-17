@@ -1,4 +1,4 @@
-import { Icon } from '@/shared/ui/icon'
+import { Icon } from '@/shared/ui/baseUI/icon'
 import clsx from 'clsx'
 import { NavLink } from 'react-router-dom'
 import type { MenuLinkProps } from '../model/types'

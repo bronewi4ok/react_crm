@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { Icon } from '../icon'
+import { Icon } from '../baseUI/icon'
 import type { SortBarTypes, SortOrderTypes } from './types'
 
 export function SortBar<T extends string>({

@@ -1,4 +1,4 @@
-import { Button } from '@/shared/ui/button'
+import { Button } from '@/shared/ui/baseUI/button'
 import type { ErrorFallbackTypes } from './types'
 
 export function ErrorFallback({

@@ -3,8 +3,8 @@ import { selectAuthUser } from '@/features/auth'
 import { LogoutButton } from '@/features/auth/logout/ui/LogoutButton'
 import { ThemeToggler } from '@/features/themeToggler/ui/ThemeToggler'
 import { usePageMeta } from '@/pages/model/utils'
-import { Button } from '@/shared/ui/button'
-import { Icon } from '@/shared/ui/icon'
+import { Button } from '@/shared/ui/baseUI/button'
+import { Icon } from '@/shared/ui/baseUI/icon'
 import type { AppHeaderProps } from './types'
 
 export const Header = ({ children }: AppHeaderProps) => {

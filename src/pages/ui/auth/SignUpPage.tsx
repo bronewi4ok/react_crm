@@ -1,18 +1,18 @@
-import { SignUpForm } from '@/features/auth/signup'
+import { SignupForm } from '@/features/auth/signup'
 import { GoogleAuthButton } from '@/features/authGoogle'
-import { authRoutes } from '@/shared/config/router'
-import { Link } from 'react-router-dom'
+import signupImage from '@/shared/assets/images/login.svg'
+import { AuthForm } from '@/shared/ui/formUI/authForm'
 
 function SignUpPage() {
   return (
-    <div>
+    <AuthForm
+      title="Welcome to our CRM. Sign Up to getting started."
+      subtitle="Enter your details to proceed further"
+      image={signupImage}>
       <h1>Реєстрація</h1>
-      <SignUpForm />
+      <SignupForm />
       <GoogleAuthButton />
-      <p>
-        Вже маєте акаунт? <Link to={authRoutes.login.navPath}>Увійти</Link>
-      </p>
-    </div>
+    </AuthForm>
   )
 }
 export default SignUpPage

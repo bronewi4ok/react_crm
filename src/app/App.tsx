@@ -1,5 +1,5 @@
 import { router } from '@/app/router'
-import { Loading } from '@/shared/ui/loading'
+import { Loading } from '@/shared/ui/baseUI/loading'
 import { Suspense } from 'react'
 import { RouterProvider } from 'react-router-dom'
 
