@@ -1,5 +1,5 @@
 import GlobalErrorPage from '@/pages/ui/GlobalErrorPage'
-import { Loading } from '@/shared/ui/loading'
+import { Loading } from '@/shared/ui/baseUI/loading'
 import { AuthLayout, MainLayout } from '@/widgets/layouts'
 import { createBrowserRouter } from 'react-router-dom'
 import { authRoutesChildren, mainRoutesChildren } from './routerChildren'

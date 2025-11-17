@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from '@/app/store'
-import Toggler from '@/shared/ui/toggler/Toggler'
+import Toggler from '@/shared/ui/baseUI/toggler/Toggler'
 import { toggleTheme } from '../model/slice'
 
 export function ThemeToggler() {

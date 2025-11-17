@@ -1,5 +1,5 @@
 import { mainRoutes } from '@/shared/config/router'
-import { Icon } from '@/shared/ui/icon'
+import { Icon } from '@/shared/ui/baseUI/icon'
 import { Link } from 'react-router-dom'
 
 export function SidebarLogo() {

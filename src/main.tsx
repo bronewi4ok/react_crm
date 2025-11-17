@@ -8,7 +8,7 @@ import 'virtual:svg-icons-register'
 import { AppInit } from './app/init/AppInit'
 import { router } from './app/router'
 import { store } from './app/store/store'
-import { Loading } from './shared/ui/loading'
+import { Loading } from './shared/ui/baseUI/loading'
 
 createRoot(document.getElementById('root')!).render(
   <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>

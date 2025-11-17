@@ -2,7 +2,47 @@
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 @theme {
+  /* TYPOGRAPHY */
   --font-display: 'Lato', system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+  --text-h1: 32px;
+  --leading-h1: 1.2;
+  --weight-h1: 700;
+
+  --text-h2: 26px;
+  --leading-h2: 1.3;
+  --weight-h2: 700;
+
+  --text-h3: 20px;
+  --leading-h3: 1.3;
+  --weight-h3: 700;
+
+  --text-h4: 18px;
+  --leading-h4: 1.4;
+  --weight-h4: 700;
+
+  --text-h5: 16px;
+  --leading-h5: 1.4;
+  --weight-h5: 700;
+
+  --text-h6: 14px;
+  --leading-h6: 1.4;
+  --weight-h6: 700;
+
+  --text-p1: 14px;
+  --leading-p1: 1.5;
+
+  --text-p2: 12px;
+  --leading-p2: 1.5;
+
+  --text-p3: 10px;
+  --leading-p3: 1.5;
+
+  /* COLORS */
+
+  /* Base */
+  --color-dark: #1c1d21;
+  --color-light: #ffffff;
 
   /* Primary */
   --color-primary-50: #f2f5ff;
@@ -27,6 +67,18 @@
   --color-secondary-700: #676784;
   --color-secondary-800: #4c4c61;
   --color-secondary-900: #343445;
+
+  /* Support */
+  --color-support-50: #fcfcfd;
+  --color-support-100: #f9fafb;
+  --color-support-200: #f6f7f9;
+  --color-support-300: #f3f4f7;
+  --color-support-400: #f1f1f5;
+  --color-support-500: #f0f0f3;
+  --color-support-600: #e6e7ec;
+  --color-support-700: #dadce3;
+  --color-support-800: #cdd0d9;
+  --color-support-900: #babec8;
 
   /* Attention */
   --color-attention-50: #fff9f0;
@@ -64,7 +116,7 @@
   --color-danger-800: #762d35;
   --color-danger-900: #4e1e23;
 
-  /* Warning - жовтий/бурштиновий для світлої теми */
+  /* Warning */
   --color-warning-50: #fffbeb;
   --color-warning-100: #fef3c7;
   --color-warning-200: #fde68a;
@@ -100,135 +152,186 @@
   --color-back-800: #d2d6df;
   --color-back-900: #bec3cf;
 
-  /* Support */
-  --color-support-50: #fcfcfd;
-  --color-support-100: #f9fafb;
-  --color-support-200: #f6f7f9;
-  --color-support-300: #f3f4f7;
-  --color-support-400: #f1f1f5;
-  --color-support-500: #f0f0f3;
-  --color-support-600: #e6e7ec;
-  --color-support-700: #dadce3;
-  --color-support-800: #cdd0d9;
-  --color-support-900: #babec8;
-
   --color-dark: #1c1d21;
   --color-light: #ffffff;
 }
 
-/* Atom One Dark Theme - правильні контрасти */
 [data-theme='dark'] {
-  /* Primary - блакитні акценти (як в Atom One Dark) */
-  --color-primary-50: #e3f2fd;
-  --color-primary-100: #bbdefb;
-  --color-primary-200: #90caf9;
-  --color-primary-300: #64b5f6;
-  --color-primary-400: #42a5f5;
-  --color-primary-500: #61dafb; /* React blue */
-  --color-primary-600: #1e88e5;
-  --color-primary-700: #1976d2;
-  --color-primary-800: #1565c0;
-  --color-primary-900: #0d47a1;
+  /* Base dark */
+  --color-dark: #ffffff;
+  --color-light: #1c1d21;
 
-  /* Secondary - світло-сірі для тексту на темному фоні */
-  --color-secondary-50: #f5f5f5;
-  --color-secondary-100: #eeeeee;
-  --color-secondary-200: #e0e0e0;
-  --color-secondary-300: #bdbdbd;
-  --color-secondary-400: #9e9e9e;
-  --color-secondary-500: #abb2bf; /* Atom One Dark text color */
-  --color-secondary-600: #757575;
-  --color-secondary-700: #616161;
-  --color-secondary-800: #424242;
-  --color-secondary-900: #212121;
+  /* Primary dark */
+  --color-primary-50: #f2f5ff;
+  --color-primary-100: #dfe7fe;
+  --color-primary-200: #bccbfc;
+  --color-primary-300: #97adfa;
+  --color-primary-400: #7893f7;
+  --color-primary-500: #5e81f4;
+  --color-primary-600: #475eaa;
+  --color-primary-700: #3a4e85;
+  --color-primary-800: #2a3963;
+  --color-primary-900: #1e2845;
 
-  /* Attention - жовтий/помаранчевий (як в Atom) */
-  --color-attention-50: #fff8e1;
-  --color-attention-100: #ffecb3;
-  --color-attention-200: #ffe082;
-  --color-attention-300: #ffd54f;
-  --color-attention-400: #ffca28;
-  --color-attention-500: #e5c07b; /* Atom One Dark yellow */
-  --color-attention-600: #ffb300;
-  --color-attention-700: #ffa000;
-  --color-attention-800: #ff8f00;
-  --color-attention-900: #ff6f00;
+  /* Secondary dark */
+  /* --color-secondary-50: #e6d8ff;
+  --color-secondary-100: #cbb7ff;
+  --color-secondary-200: #b498ff;
+  --color-secondary-300: #9a7aff;
+  --color-secondary-400: #8963ff;
+  --color-secondary-500: #c678dd;
+  --color-secondary-600: #a85fc3;
+  --color-secondary-700: #8d4da3;
+  --color-secondary-800: #713e84;
+  --color-secondary-900: #563066; */
+  --color-secondary-50: #f4f5fc;
+  --color-secondary-100: #e6e7f7;
+  --color-secondary-200: #d1d3f0;
+  --color-secondary-300: #b5b7e5;
+  --color-secondary-400: #a0a1dc;
+  --color-secondary-500: #9698d6;
+  --color-secondary-600: #8181a5;
+  --color-secondary-700: #676784;
+  --color-secondary-800: #4c4c61;
+  --color-secondary-900: #343445;
 
-  /* Success - зелений (як в Atom) */
-  --color-success-50: #e8f5e8;
-  --color-success-100: #c8e6c9;
-  --color-success-200: #a5d6a7;
-  --color-success-300: #81c784;
-  --color-success-400: #66bb6a;
-  --color-success-500: #98c379; /* Atom One Dark green */
-  --color-success-600: #43a047;
-  --color-success-700: #388e3c;
-  --color-success-800: #2e7d32;
-  --color-success-900: #1b5e20;
+  /* Support dark */
+  --color-support-50: #d7d9de;
+  --color-support-100: #c3c6cd;
+  --color-support-200: #aeb3bc;
+  --color-support-300: #9ba0ac;
+  --color-support-400: #878d9b;
+  --color-support-500: #3e4451;
+  --color-support-600: #353a46;
+  --color-support-700: #2c313c;
+  --color-support-800: #252933;
+  --color-support-900: #1f222b;
 
-  /* Error - червоний (як в Atom) */
-  --color-danger-50: #ffebee;
-  --color-danger-100: #ffcdd2;
-  --color-danger-200: #ef9a9a;
-  --color-danger-300: #e57373;
-  --color-danger-400: #ef5350;
-  --color-danger-500: #e06c75; /* Atom One Dark red */
-  --color-danger-600: #e53935;
-  --color-danger-700: #d32f2f;
-  --color-danger-800: #c62828;
-  --color-danger-900: #b71c1c;
+  /* Attention dark */
+  --color-attention-50: #ffdfc2;
+  --color-attention-100: #ffc79c;
+  --color-attention-200: #ffae75;
+  --color-attention-300: #ff974f;
+  --color-attention-400: #ff8832;
+  --color-attention-500: #d19a66;
+  --color-attention-600: #b67f4d;
+  --color-attention-700: #99673f;
+  --color-attention-800: #7d5131;
+  --color-attention-900: #633e25;
 
-  /* Warning - жовтий/бурштиновий (як в Atom) */
-  --color-warning-50: #fffde7;
-  --color-warning-100: #fff9c4;
-  --color-warning-200: #fff59d;
-  --color-warning-300: #fff176;
-  --color-warning-400: #ffee58;
-  --color-warning-500: #d19a66; /* Atom One Dark orange */
-  --color-warning-600: #fbc02d;
-  --color-warning-700: #f9a825;
-  --color-warning-800: #f57f17;
-  --color-warning-900: #ff6f00;
+  /* Success dark */
+  --color-success-50: #c8ffe1;
+  --color-success-100: #a4f7cd;
+  --color-success-200: #80f0b8;
+  --color-success-300: #5ce8a3;
+  --color-success-400: #44de91;
+  --color-success-500: #98c379;
+  --color-success-600: #7fad64;
+  --color-success-700: #689953;
+  --color-success-800: #517743;
+  --color-success-900: #3c5833;
 
-  /* Border - темно-сірі бордери */
-  --color-border-50: #4b5563;
-  --color-border-100: #434852;
-  --color-border-200: #3c414a;
-  --color-border-300: #353a42;
-  --color-border-400: #2f333a;
-  --color-border-500: #282c34; /* Atom One Dark border */
-  --color-border-600: #21252b;
-  --color-border-700: #1e2227;
-  --color-border-800: #1a1e23;
-  --color-border-900: #161a1f;
+  /* Error dark */
+  --color-danger-50: #ffc7ca;
+  --color-danger-100: #ff9ea2;
+  --color-danger-200: #ff767c;
+  --color-danger-300: #ff4e56;
+  --color-danger-400: #ff2f39;
+  --color-danger-500: #e06c75;
+  --color-danger-600: #c25761;
+  --color-danger-700: #a7444e;
+  --color-danger-800: #8a343d;
+  --color-danger-900: #6b262d;
 
-  /* Background - темні фони (як в Atom One Dark) */
-  --color-back-50: #4b5563;
-  --color-back-100: #3c414a;
-  --color-back-200: #353a42;
-  --color-back-300: #2f333a;
-  --color-back-400: #292d35;
-  --color-back-500: #21252b; /* Atom One Dark background */
-  --color-back-600: #1e2227;
-  --color-back-700: #1a1e23;
-  --color-back-800: #161a1f;
-  --color-back-900: #0f1419;
+  /* Warning dark */
+  --color-warning-50: #fff4c2;
+  --color-warning-100: #ffe890;
+  --color-warning-200: #ffdb5e;
+  --color-warning-300: #ffcf2d;
+  --color-warning-400: #ffc400;
+  --color-warning-500: #e5c07b;
+  --color-warning-600: #c3a25d;
+  --color-warning-700: #a28547;
+  --color-warning-800: #816935;
+  --color-warning-900: #63502a;
 
-  /* Support - допоміжні сірі кольори */
-  --color-support-50: #f9fafb;
-  --color-support-100: #f3f4f6;
-  --color-support-200: #e5e7eb;
-  --color-support-300: #d1d5db;
-  --color-support-400: #9ca3af;
-  --color-support-500: #6b7280;
-  --color-support-600: #4b5563;
-  --color-support-700: #528bff; /* Atom One Dark comment color */
-  --color-support-800: #1f2937;
-  --color-support-900: #111827;
+  /* Border dark */
+  --color-border-50: #abb2bf;
+  --color-border-100: #9ba2b0;
+  --color-border-200: #8b92a0;
+  --color-border-300: #7c8391;
+  --color-border-400: #6d7583;
+  --color-border-500: #5c6370;
+  --color-border-600: #4d545f;
+  --color-border-700: #3f454f;
+  --color-border-800: #333841;
+  --color-border-900: #272b32;
 
-  /* Головні кольори тексту */
-  --color-dark: #abb2bf; /* Світлий текст для темної теми */
-  --color-light: #21252b; /* Темний фон для темної теми */
+  /* Background dark */
+  --color-back-50: #e6e8eb;
+  --color-back-100: #cfd3d9;
+  --color-back-200: #b8bdc6;
+  --color-back-300: #9fa6b3;
+  --color-back-400: #868ea0;
+  --color-back-500: #282c34;
+  --color-back-600: #21252b;
+  --color-back-700: #1c1f24;
+  --color-back-800: #181a1f;
+  --color-back-900: #121417;
+}
+
+@layer utilities {
+  .text-h1 {
+    /* font-family: var(--font-sans) */
+    font-size: var(--text-h1);
+    line-height: var(--leading-h1);
+    font-weight: var(--weight-h1);
+  }
+
+  .text-h2 {
+    font-size: var(--text-h2);
+    line-height: var(--leading-h2);
+    font-weight: var(--weight-h2);
+  }
+
+  .text-h3 {
+    font-size: var(--text-h3);
+    line-height: var(--leading-h3);
+    font-weight: var(--weight-h3);
+  }
+
+  .text-h4 {
+    font-size: var(--text-h4);
+    line-height: var(--leading-h4);
+    font-weight: var(--weight-h4);
+  }
+
+  .text-h5 {
+    font-size: var(--text-h5);
+    line-height: var(--leading-h5);
+    font-weight: var(--weight-h5);
+  }
+
+  .text-h6 {
+    font-size: var(--text-h6);
+    line-height: var(--leading-h6);
+    font-weight: var(--weight-h6);
+  }
+
+  .text-p1 {
+    font-size: var(--text-p1);
+    line-height: var(--leading-p1);
+  }
+
+  .text-2 {
+    font-size: var(--text-2);
+    line-height: var(--leading-2);
+  }
+
+  .text-3 {
+    font-size: var(--text-3);
+    line-height: var(--leading-3);
+  }
 }
 
 :root {
@@ -238,74 +341,17 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Базові переходи для HTML елемента (фон сторінки) */
-html {
-  transition: background-color 300ms ease-in-out;
+* {
+  transition: all 200ms ease-in-out;
 }
 
-/* Переходи для компонентів з кольорами теми */
-body,
-[class*='bg-light'],
-[class*='bg-back'],
-[class*='bg-border'],
-[class*='text-dark'],
-[class*='text-secondary'],
-[class*='text-primary'],
-[class*='text-danger'],
-[class*='text-success'],
-[class*='text-warning'],
-[class*='border-border'],
-[class*='border-primary'],
-[class*='fill-secondary'],
-[class*='fill-primary'] {
-  transition:
-    background-color 300ms ease-in-out,
-    border-color 300ms ease-in-out,
-    color 300ms ease-in-out,
-    fill 300ms ease-in-out;
-}
-
-/* Швидші переходи для інтерактивних елементів */
-button,
-[role='button'],
-a:hover,
-.cursor-pointer {
-  transition:
-    background-color 200ms ease-in-out,
-    border-color 200ms ease-in-out,
-    color 200ms ease-in-out,
-    transform 150ms ease-in-out,
-    box-shadow 200ms ease-in-out;
-}
-
-/* Оптимізація для елементів з частими змінами */
-[data-theme] {
-  will-change: background-color, color;
-}
-
-/* Переключувач теми потребує плавної анімації */
-.theme-toggler {
-  will-change: background-color;
-  transition: background-color 300ms ease-in-out;
-} /* Виключаємо transition під час швидких змін або ініціалізації */
-.no-transition,
-.no-transition * {
-  transition: none !important;
-}
-
-/* Utility клас для тимчасового відключення переходів */
-.disable-transitions {
-  transition: none !important;
-}
-
-/* Враховуємо prefers-reduced-motion */
-@media (prefers-reduced-motion: reduce) {
-  html,
-  body,
-  [class*='bg-'],
-  [class*='text-'],
-  [class*='border-'],
-  button {
-    transition: none !important;
-  }
+/* Remove default browser focus outline for form controls.
+  If you want to preserve keyboard accessibility, consider replacing
+  this with a custom :focus-visible style (e.g. ring) instead. */
+input:focus,
+textarea:focus,
+select:focus,
+button:focus {
+  outline: none !important;
+  box-shadow: none !important;
 }

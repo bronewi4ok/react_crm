@@ -1,6 +1,6 @@
 import { useFormatDate } from '@/shared/hooks/useFormatDate'
-import { Button } from '@/shared/ui/button'
-import { Icon } from '@/shared/ui/icon'
+import { Button } from '@/shared/ui/baseUI/button'
+import { Icon } from '@/shared/ui/baseUI/icon'
 import clsx from 'clsx'
 import { type ProjectCardProps } from '../model/types'
 

@@ -3,10 +3,10 @@ import {
   ProjectsSortBar,
   useProjectsQueryParams,
 } from '@/features/projectsSortBar'
-import { Button } from '@/shared/ui/button'
+import { Button } from '@/shared/ui/baseUI/button'
 import { EmptyFallback } from '@/shared/ui/emptyFallback'
 import { ErrorFallback } from '@/shared/ui/errorFallback'
-import { Pagination } from '@/shared/ui/pagination'
+import { Pagination } from '@/shared/ui/baseUI/pagination'
 import noProjectsImg from './no_projects.svg'
 
 export function ProjectsWidget() {

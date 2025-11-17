@@ -1,4 +1,4 @@
-import { Button } from '@/shared/ui/button'
+import { Button } from '@/shared/ui/baseUI/button'
 
 function HomePage() {
   return (

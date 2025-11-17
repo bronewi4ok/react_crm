@@ -1,5 +1,5 @@
 import { authRoutes } from '@/shared/config/router'
-import { Button } from '@/shared/ui/button'
+import { Button } from '@/shared/ui/baseUI/button'
 import { useNavigate } from 'react-router-dom'
 import { useLogout } from '../model/useLogout'
 
