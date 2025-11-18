@@ -1,6 +1,10 @@
 import { logout, setCredentials } from '@/features/auth/api/authSlice'
 import { apiRoutes } from '@/shared/config/router'
-import type { accessTokenType, AuthResponse, RootState } from '@/shared/types'
+import type {
+  AccessTokenTypes,
+  AuthResponseTypes,
+  RootState,
+} from '@/shared/types'
 import { refreshMutex } from '@/shared/utils/refreshMutex'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
@@ -9,7 +13,7 @@ const baseQuery = fetchBaseQuery({
   credentials: 'include',
   prepareHeaders: (headers, { getState }) => {
     const state = getState() as RootState
-    const token: accessTokenType = state.auth.accessToken
+    const token: AccessTokenTypes = state.auth.accessToken
 
     if (token) headers.set('Authorization', `Bearer ${token}`)
     return headers
@@ -39,7 +43,7 @@ const baseQueryWithReauth = async (
           extraOptions,
         )
         if (refreshResult.data) {
-          api.dispatch(setCredentials(refreshResult.data as AuthResponse))
+          api.dispatch(setCredentials(refreshResult.data as AuthResponseTypes))
           // Retry original request with new token
           result = await baseQuery(args, api, extraOptions)
         } else {
