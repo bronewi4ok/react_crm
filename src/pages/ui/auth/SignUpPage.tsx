@@ -1,6 +1,6 @@
 import { SignupForm } from '@/features/auth/signup'
 import { GoogleAuthButton } from '@/features/authGoogle'
-import signupImage from '@/shared/assets/images/signup.svg'
+import signupImage from '@/shared/assets/images/auth/signup.svg'
 import { AuthForm } from '@/shared/ui/formUI/authForm'
 
 function SignUpPage() {

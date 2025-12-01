@@ -1,4 +1,4 @@
-import recoverImage from '@/shared/assets/images/recover.svg'
+import recoverImage from '@/shared/assets/images/auth/recover.svg'
 import { AuthForm } from '@/shared/ui/formUI/authForm'
 
 function LoginPage() {

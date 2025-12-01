@@ -1,22 +1,20 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import { loginSchema } from './validation'
+import {
+  recoverConfirmSchema,
+  type RecoverConfirmFormTypes,
+} from './validation'
 
-export type LoginFormTypes = {
-
-  password: string
-}
-const defaultValues: LoginFormTypes = {
-  email: '',
-  password: '',
-  rememberMe: false,
+const defaultValues: RecoverConfirmFormTypes = {
+  newPassword: '',
+  confirmNewPassword: '',
 }
 
-export const useLoginRegister = () => {
-  return useForm<LoginFormTypes>({
+export const useRecoverConfirmRegister = () => {
+  return useForm<RecoverConfirmFormTypes>({
     mode: 'onSubmit',
     reValidateMode: 'onSubmit',
-    resolver: zodResolver(loginSchema),
+    resolver: zodResolver(recoverConfirmSchema),
     defaultValues,
   })
 }

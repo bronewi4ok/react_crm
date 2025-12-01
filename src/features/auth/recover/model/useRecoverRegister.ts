@@ -1,8 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import { recoverSchema } from './validation'
+import { type RecoverFormTypes, recoverSchema } from './validation'
 
-export type RecoverFormTypes = { email: string }
 const defaultValues: RecoverFormTypes = { email: '' }
 
 export const useRecoverRegister = () => {

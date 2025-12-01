@@ -21,7 +21,7 @@ export const authRoutes = {
   },
 
   recoverSent: {
-    path: 'recover/confirm',
+    path: 'recover/sent',
     navPath: '/auth/recover/sent',
     component: () => import('@/pages/ui/auth/RecoverSentPage'),
     meta: { title: 'Recover request', isInMenu: false, requireAuth: false },

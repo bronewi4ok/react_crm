@@ -3,14 +3,17 @@ import { Button } from '@/shared/ui/baseUI/button'
 import { Input } from '@/shared/ui/formUI'
 import { FormItem } from '@/shared/ui/formUI/formItem'
 import { type SubmitHandler } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 
 import { useRecoverConfirm } from '../model/useRecoverConfirm'
-import { type LoginFormTypes } from '../model/validation'
+import { useRecoverConfirmRegister } from '../model/useRecoverConfirmRegister'
+import type { RecoverConfirmFormTypes } from '../model/validation'
 
-export function LoginForm() {
+export function RecoverConfirmForm() {
   const { recoverConfirm, isLoading, error } = useRecoverConfirm()
   const navigate = useNavigate()
+  const [searchParams] = useSearchParams()
+  const token = searchParams.get('token') ?? ''
 
   const {
     register,
@@ -18,9 +21,17 @@ export function LoginForm() {
     formState: { errors, isSubmitting },
   } = useRecoverConfirmRegister()
 
-  const onSubmit: SubmitHandler<LoginFormTypes> = async (data) => {
-    const result = await recoverConfirm(data)
-    if (result.user) navigate(mainRoutes.home.navPath)
+  const onSubmit: SubmitHandler<RecoverConfirmFormTypes> = async (data) => {
+    if (!token) return
+
+    const payload = {
+      token,
+      newPassword: data.newPassword,
+      confirmNewPassword: data.confirmNewPassword,
+    }
+
+    const result = await recoverConfirm(payload)
+    if (result.success) navigate(mainRoutes.home.navPath)
   }
 
   return (
@@ -29,15 +40,28 @@ export function LoginForm() {
       onSubmit={handleSubmit(onSubmit)}
       className="grid grid-cols-12 gap-4">
       <FormItem
-        error={errors.password?.message}
+        error={errors.newPassword?.message}
         className="col-span-12"
         title="Password">
         <Input
           type="password"
           placeholder="Start typing…"
           icon="common-lock"
-          error={errors.password?.message}
-          {...register('password')}
+          error={errors.newPassword?.message}
+          {...register('newPassword')}
+        />
+      </FormItem>
+
+      <FormItem
+        error={errors.confirmNewPassword?.message}
+        className="col-span-12"
+        title="Password">
+        <Input
+          type="password"
+          placeholder="Start typing…"
+          icon="common-lock"
+          error={errors.confirmNewPassword?.message}
+          {...register('confirmNewPassword')}
         />
       </FormItem>
 
@@ -46,6 +70,13 @@ export function LoginForm() {
         type="submit"
         disabled={isLoading || isSubmitting}>
         Confirm
+      </Button>
+
+      <Button
+        className="col-span-6 bg-primary-500 text-white"
+        to={mainRoutes.home.navPath}
+        disabled={isLoading || isSubmitting}>
+        Home
       </Button>
 
       {error && (

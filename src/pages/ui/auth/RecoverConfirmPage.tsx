@@ -1,6 +1,6 @@
 import { RecoverForm } from '@/features/auth'
-import { GoogleAuthButton } from '@/features/authGoogle'
-import recoverImage from '@/shared/assets/images/recover.svg'
+// import { GoogleAuthButton } from '@/features/authGoogle'
+import recoverImage from '@/shared/assets/images/auth/recover.svg'
 import { AuthForm } from '@/shared/ui/formUI/authForm'
 
 function RecoverConfirmPage() {
@@ -10,7 +10,7 @@ function RecoverConfirmPage() {
       subtitle="Enter your details to proceed further"
       image={recoverImage}>
       <RecoverForm />
-      <GoogleAuthButton />
+      {/* <GoogleAuthButton /> */}
     </AuthForm>
   )
 }
