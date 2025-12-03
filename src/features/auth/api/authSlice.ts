@@ -1,4 +1,4 @@
-import type { AuthResponse, RootState, User } from '@/shared/types'
+import type { AuthResponseTypes, RootState, User } from '@/shared/types'
 import {
   createSlice,
   isAnyOf,
@@ -26,7 +26,7 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    setCredentials(state, action: PayloadAction<AuthResponse>) {
+    setCredentials(state, action: PayloadAction<AuthResponseTypes>) {
       state.user = action.payload.user
       state.accessToken = action.payload.accessToken
     },

@@ -3,7 +3,6 @@ import { MenuLink } from './MenuLink'
 import { SidebarLogo } from './SidebarLogo'
 
 export function MainMenu() {
-  
   return (
     <div>
       <SidebarLogo />

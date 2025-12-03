@@ -9,7 +9,7 @@ export function ProjectsList({ projects }: { projects: Project[] }) {
   return (
     <MainList
       items={projects}
-      getKey={(p) => p.id}
+      getKey={(project) => project.id}
       renderItem={(item) =>
         typeof item === 'string' ?
           <div className="p-3 text-xs text-support-700">Updating…</div>
@@ -17,7 +17,9 @@ export function ProjectsList({ projects }: { projects: Project[] }) {
             project={item}
             onClick={() =>
               navigate(
-                generatePath(mainRoutes.projectDetails.navPath, { id: item.id }),
+                generatePath(mainRoutes.projectDetails.navPath, {
+                  id: item.id,
+                }),
               )
             }
           />

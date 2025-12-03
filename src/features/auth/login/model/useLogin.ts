@@ -1,10 +1,10 @@
-import type { LoginCredentials } from '@/shared/types'
+import type { LoginCredentialsTypes } from '@/shared/types'
 import { useLoginMutation } from '../../api/authApi'
 
 export function useLogin() {
   const [loginMutation, { isLoading, error }] = useLoginMutation()
 
-  async function login(credentials: LoginCredentials) {
+  async function login(credentials: LoginCredentialsTypes) {
     const result = await loginMutation(credentials).unwrap()
     return result
   }

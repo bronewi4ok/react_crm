@@ -1,14 +1,16 @@
 import { baseApi } from '@/shared/api/baseApi'
 import { apiRoutes } from '@/shared/config/router'
 import type {
-  AuthResponse,
-  LoginCredentials,
-  SignupCredentials,
+  AuthResponseTypes,
+  LoginCredentialsTypes,
+  RecoverConfirmTypes,
+  RecoverTypes,
+  SignupCredentialsTypes,
 } from '@/shared/types'
 
 export const authApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
-    signup: build.mutation<AuthResponse, SignupCredentials>({
+    signup: build.mutation<AuthResponseTypes, SignupCredentialsTypes>({
       query: (credentials) => ({
         url: apiRoutes.auth.signup,
         method: 'POST',
@@ -16,7 +18,7 @@ export const authApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ['User'],
     }),
-    login: build.mutation<AuthResponse, LoginCredentials>({
+    login: build.mutation<AuthResponseTypes, LoginCredentialsTypes>({
       query: (credentials) => ({
         url: apiRoutes.auth.login,
         method: 'POST',
@@ -24,7 +26,7 @@ export const authApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ['User'],
     }),
-    googleLogin: build.mutation<AuthResponse, { token: string }>({
+    googleLogin: build.mutation<AuthResponseTypes, { token: string }>({
       query: ({ token }) => ({
         url: apiRoutes.auth.googleLogin,
         method: 'POST',
@@ -36,8 +38,22 @@ export const authApi = baseApi.injectEndpoints({
       query: () => ({ url: apiRoutes.auth.logout, method: 'POST' }),
       invalidatesTags: ['User', 'Project', 'Projects'],
     }),
-    refresh: build.mutation<AuthResponse, void>({
+    refresh: build.mutation<AuthResponseTypes, void>({
       query: () => ({ url: apiRoutes.auth.refresh, method: 'POST' }),
+    }),
+    recover: build.mutation<{ success: boolean }, RecoverTypes>({
+      query: (credentials) => ({
+        url: apiRoutes.auth.recoverRequest,
+        method: 'POST',
+        body: credentials,
+      }),
+    }),
+    recoverConfirm: build.mutation<{ success: boolean }, RecoverConfirmTypes>({
+      query: (credentials) => ({
+        url: apiRoutes.auth.recoverConfirm,
+        method: 'POST',
+        body: credentials,
+      }),
     }),
   }),
 })
@@ -48,4 +64,6 @@ export const {
   useRefreshMutation,
   useSignupMutation,
   useGoogleLoginMutation,
+  useRecoverMutation,
+  useRecoverConfirmMutation,
 } = authApi

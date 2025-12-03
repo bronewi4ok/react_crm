@@ -5,7 +5,7 @@ export function Wrap({ children, className }: WrapTypes) {
   return (
     <div
       className={clsx(
-        'min-h-dvh w-dvw bg-back-500 text-dark break-all',
+        'min-h-dvh w-full bg-back-500 text-dark break-all',
         className,
       )}>
       {children}

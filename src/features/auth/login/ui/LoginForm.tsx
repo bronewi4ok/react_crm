@@ -15,7 +15,7 @@ export function LoginForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors, isSubmitting, isValid },
   } = useLoginRegister()
 
   const onSubmit: SubmitHandler<LoginFormTypes> = async (data) => {
@@ -68,7 +68,7 @@ export function LoginForm() {
       <Button
         className="col-span-6 bg-primary-500 text-white"
         type="submit"
-        disabled={isLoading || isSubmitting}>
+        disabled={isLoading || isSubmitting || !isValid}>
         Sign in
       </Button>
 
