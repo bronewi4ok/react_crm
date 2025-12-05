@@ -52,6 +52,18 @@ export const mainRoutes = {
     },
   },
 
+  taskDetails: {
+    path: 'tasks/:id',
+    navPath: '/tasks/:id',
+    component: () => import('@/pages/ui/TasksDetailsPage'),
+    meta: {
+      title: 'Tasks Details',
+      isInMenu: false,
+      requireAuth: true,
+      icon: 'menu-tasks',
+      roles: [ROLES.ADMIN, ROLES.MANAGER, ROLES.USER],
+    },
+  },
   contacts: {
     path: 'contacts',
     navPath: '/contacts',
@@ -98,6 +110,5 @@ export const mainRoutes = {
     meta: { title: 'Not found', isInMenu: false, requireAuth: false },
   },
 } as const
-
 
 // generatePath(mainRoutes.projectDetails.navPath, { id: item.id })

@@ -1,4 +1,4 @@
-import { ProjectsWidget } from '@/widgets/projectsWidget'
+import { ProjectsWidget } from '@/widgets/ProjectsWidget'
 
 const ProjectsPage = () => {
   return (

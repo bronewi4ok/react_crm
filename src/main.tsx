@@ -8,14 +8,14 @@ import 'virtual:svg-icons-register'
 import { AppInit } from './app/init/AppInit'
 import { router } from './app/router'
 import { store } from './app/store/store'
-import { Loading } from './shared/ui/baseUI/loading'
+import { Loader } from './shared/ui/baseUI/loader'
 
 createRoot(document.getElementById('root')!).render(
   <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
     <Provider store={store}>
       <AppInit />
 
-      <Suspense fallback={<Loading />}>
+      <Suspense fallback={<Loader />}>
         <RouterProvider router={router} />
       </Suspense>
     </Provider>

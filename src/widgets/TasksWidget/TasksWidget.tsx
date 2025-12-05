@@ -1,18 +1,18 @@
-import { ProjectsList, useGetProjectsQuery } from '@/entities/project'
+import { TasksList, useGetTasksQuery } from '@/entities/task'
 import {
-  ProjectsSortBar,
+  // ProjectsSortBar,
   useProjectsQueryParams,
 } from '@/features/projectsSortBar'
 import { Button } from '@/shared/ui/baseUI/button'
 import { Pagination } from '@/shared/ui/baseUI/pagination'
 import { EmptyFallback } from '@/shared/ui/emptyFallback'
 import { ErrorFallback } from '@/shared/ui/errorFallback'
-import noProjectsImg from './no_projects.svg'
+import noTasksImg from './no_tasks.svg'
 
-export function ProjectsWidget() {
+export function TasksWidget() {
   const { sortParams, setSortParams } = useProjectsQueryParams()
   const { data, isLoading, isError, isFetching, refetch } =
-    useGetProjectsQuery(sortParams)
+    useGetTasksQuery(sortParams)
 
   if (isError) {
     return (
@@ -34,7 +34,7 @@ export function ProjectsWidget() {
   if (!hasProjects) {
     return (
       <EmptyFallback
-        image={noProjectsImg}
+        image={noTasksImg}
         title="No projects found?"
         description="Create your first project to get started">
         <Button variant="primary">Add project</Button>
@@ -48,8 +48,8 @@ export function ProjectsWidget() {
 
   return (
     <>
-      <ProjectsSortBar />
-      <ProjectsList projects={projects} />
+      {/* <ProjectsSortBar /> */}
+      <TasksList tasks={projects} />
       {meta && meta.totalPages > 1 && (
         <Pagination
           currentPage={meta.page}
