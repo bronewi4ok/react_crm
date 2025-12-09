@@ -6,7 +6,6 @@ import {
 import { Button } from '@/shared/ui/baseUI/button'
 import { EmptyFallback } from '@/shared/ui/emptyFallback'
 import { ErrorFallback } from '@/shared/ui/errorFallback'
-import { Pagination } from '@/shared/ui/baseUI/pagination'
 import noProjectsImg from './no_projects.svg'
 
 export function ProjectsWidget() {
