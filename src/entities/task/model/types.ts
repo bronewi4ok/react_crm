@@ -1,5 +1,7 @@
 import type { ListQueryParams, ListResponse } from '@/shared/hooks'
-type TaskStatusTypes = 'done' | 'pending' | 'hold'
+import type { taskStatus } from './configs'
+
+export type TaskStatusTypes = (typeof taskStatus)[number]
 
 export type TaskTypes = {
   id: string
@@ -7,7 +9,7 @@ export type TaskTypes = {
   title: string
   description?: string
   subTasks: string[]
-  asigned?: string
+  assigned?: string
   taskers?: string
   createdAt?: string
   updatedAt?: string

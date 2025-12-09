@@ -1,8 +1,5 @@
 import { TasksList, useGetTasksQuery } from '@/entities/task'
-import {
-  // ProjectsSortBar,
-  useProjectsQueryParams,
-} from '@/features/projectsSortBar'
+import { TasksSortBar, useTasksQueryParams } from '@/features/tasksSortBar'
 import { Button } from '@/shared/ui/baseUI/button'
 import { Pagination } from '@/shared/ui/baseUI/pagination'
 import { EmptyFallback } from '@/shared/ui/emptyFallback'
@@ -10,7 +7,7 @@ import { ErrorFallback } from '@/shared/ui/errorFallback'
 import noTasksImg from './no_tasks.svg'
 
 export function TasksWidget() {
-  const { sortParams, setSortParams } = useProjectsQueryParams()
+  const { sortParams, setSortParams } = useTasksQueryParams()
   const { data, isLoading, isError, isFetching, refetch } =
     useGetTasksQuery(sortParams)
 
@@ -48,7 +45,7 @@ export function TasksWidget() {
 
   return (
     <>
-      {/* <ProjectsSortBar /> */}
+      <TasksSortBar />
       <TasksList tasks={projects} />
       {meta && meta.totalPages > 1 && (
         <Pagination
