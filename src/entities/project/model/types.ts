@@ -1,6 +1,6 @@
 import type { ListQueryParams, ListResponse } from '@/shared/hooks/useListQuery'
 
-export type Project = {
+export type ProjectTypes = {
   id: string
   name: string
   specialization: string
@@ -15,10 +15,10 @@ export type Project = {
   updatedAt?: string
 }
 
-export type ProjectsListResponse = ListResponse<Project>
+export type ProjectsListResponse = ListResponse<ProjectTypes>
 
 export type ProjectCardProps = {
-  project: Project
+  project: ProjectTypes
   className?: string
   onClick?: () => void
 }
