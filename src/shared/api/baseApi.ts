@@ -1,10 +1,6 @@
 import { logout, setCredentials } from '@/features/auth/api/authSlice'
 import { apiRoutes } from '@/shared/config/router'
-import type {
-  AccessTokenTypes,
-  AuthResponseTypes,
-  RootState,
-} from '@/shared/types'
+import type { AccessTokenTypes, AuthResponseTypes, RootState } from '@/shared/types'
 import { refreshMutex } from '@/shared/utils/refreshMutex'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
@@ -28,6 +24,13 @@ const baseQueryWithReauth = async (
   let result = await baseQuery(args, api, extraOptions)
 
   if (result.error?.status === 401) {
+    // If the failing request was the refresh endpoint itself, don't try to refresh again
+    const argsUrl = typeof args === 'string' ? args : (args as any)?.url
+    if (argsUrl === apiRoutes.auth.refresh) {
+      api.dispatch(logout())
+      return { error: { status: 401, data: 'Unauthorized' } }
+    }
+
     if (refreshMutex.isLocked()) {
       // Wait for other refresh to complete
       await refreshMutex.waitForUnlock()

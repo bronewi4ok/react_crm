@@ -24,9 +24,7 @@ export type ListResponse<TItem, TSortKey extends string = string> = {
   meta: ListMeta<TSortKey>
 }
 
-export function useListQuery<TSortKey extends string = string>(
-  defaultPer: number = 20,
-) {
+export function useListQuery<TSortKey extends string = string>(defaultPer: number = 20) {
   const [searchParams, setSearchParams] = useSearchParams()
 
   // Читаємо параметри з URL
@@ -48,11 +46,8 @@ export function useListQuery<TSortKey extends string = string>(
     const params = new URLSearchParams(searchParams)
 
     Object.entries(newParams).forEach(([key, value]) => {
-      if (value === undefined || value === null) {
-        params.delete(key)
-      } else {
-        params.set(key, String(value))
-      }
+      if (value === undefined || value === null) params.delete(key)
+      else params.set(key, String(value))
     })
 
     setSearchParams(params)
