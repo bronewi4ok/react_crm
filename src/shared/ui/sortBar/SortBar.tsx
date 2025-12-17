@@ -1,30 +1,12 @@
 import clsx from 'clsx'
 import { Icon } from '../baseUI/icon'
-import type { SortBarTypes, SortOrderTypes } from './types'
+import type { SortBarTypes } from './types'
 
-export function SortBar<T extends string>({
-  options,
-  value,
-  onSort,
-  className,
-}: SortBarTypes<T>) {
-  const handleSortClick = (field: T) => {
-    const currentField = value.field
-    const currentOrder = value.order
-    let newOrder: SortOrderTypes = 'asc'
-
-    if (currentField === field) {
-      newOrder = currentOrder === 'asc' ? 'desc' : 'asc'
-    }
-    onSort(field, newOrder)
-  }
+export function SortBar<T extends string>({ options, value, onSort, className }: SortBarTypes<T>) {
+  const handleSortClick = (field: T) => onSort(field)
 
   return (
-    <div
-      className={clsx(
-        'flex items-center gap-4 px-6.5 py-4 bg-back-50',
-        className,
-      )}>
+    <div className={clsx('flex items-center gap-4 px-6.5 py-4 bg-back-50', className)}>
       {options.map((option) => (
         <button
           key={option.key}
@@ -32,9 +14,7 @@ export function SortBar<T extends string>({
           onClick={() => handleSortClick(option.key)}
           className={clsx(
             'flex items-center gap-6.5 cursor-pointer',
-            value.field === option.key ?
-              'text-danger-500'
-            : 'text-secondary-500',
+            value.field === option.key ? 'text-danger-500' : 'text-secondary-500',
             option.column,
           )}>
           {option?.icon && (

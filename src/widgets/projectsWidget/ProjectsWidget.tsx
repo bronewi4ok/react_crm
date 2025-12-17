@@ -1,8 +1,7 @@
 import { ProjectsList, useGetProjectsQuery } from '@/entities/project'
-import {
-  ProjectsSortBar,
-  useProjectsQueryParams,
-} from '@/features/projectsSortBar'
+import { ProjectsSortBar } from '@/features/projectsSortBar'
+import { projectsSortSchema } from '@/features/projectsSortBar/'
+import { useQueryParams } from '@/shared/hooks/useQueryParams'
 import { Button } from '@/shared/ui/baseUI/button'
 import { Pagination } from '@/shared/ui/baseUI/pagination'
 import { EmptyFallback } from '@/shared/ui/emptyFallback'
@@ -10,9 +9,8 @@ import { ErrorFallback } from '@/shared/ui/errorFallback'
 import noProjectsImg from './no_projects.svg'
 
 export function ProjectsWidget() {
-  const { sortParams, setSortParams } = useProjectsQueryParams()
-  const { data, isLoading, isError, isFetching, refetch } =
-    useGetProjectsQuery(sortParams)
+  const [params, setParams] = useQueryParams(projectsSortSchema)
+  const { data, isLoading, isError, isFetching, refetch } = useGetProjectsQuery(params)
 
   if (isError) {
     return (
@@ -43,7 +41,7 @@ export function ProjectsWidget() {
   }
 
   const handlePageChange = (page: number) => {
-    setSortParams({ page })
+    setParams({ page })
   }
 
   return (
