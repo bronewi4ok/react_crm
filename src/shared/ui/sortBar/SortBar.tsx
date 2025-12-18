@@ -1,3 +1,4 @@
+import { SORT_ORDER } from '@/shared/model/sort'
 import clsx from 'clsx'
 import { Icon } from '../baseUI/icon'
 import type { SortBarTypes } from './types'
@@ -14,13 +15,23 @@ export function SortBar<T extends string>({ options, value, onSort, className }:
           onClick={() => handleSortClick(option.key)}
           className={clsx(
             'flex items-center gap-6.5 cursor-pointer',
-            value.field === option.key ? 'text-danger-500' : 'text-secondary-500',
+            value.field === option.key ?
+              value.order === SORT_ORDER.ASC ?
+                'text-success-700'
+              : 'text-danger-500'
+            : 'text-secondary-500',
             option.column,
           )}>
           {option?.icon && (
             <Icon
               className="fill-current"
-              name={option.icon}
+              name={
+                value.field === option.key ?
+                  value.order === SORT_ORDER.DESC ?
+                    option.icon.desc
+                  : option.icon.asc
+                : option.icon.asc
+              }
               size="sm"
             />
           )}

@@ -1,8 +1,9 @@
 import { useSearchParams } from 'react-router-dom'
+import { SORT_ORDER, type SortOrderTypes } from '../model/sort'
 
 export type ListQueryParams<TSortKey extends string = string> = {
   sort?: TSortKey
-  order?: 'asc' | 'desc'
+  order?: SortOrderTypes
   page?: number
   per?: number
   q?: string
@@ -15,7 +16,7 @@ export type ListMeta<TSortKey extends string = string> = {
   totalPages: number
   sorted: boolean
   sort: TSortKey | string
-  order: 'asc' | 'desc'
+  order: SortOrderTypes
   q: string | null
 }
 
@@ -30,9 +31,9 @@ export function useListQuery<TSortKey extends string = string>(defaultPer: numbe
   // Читаємо параметри з URL
   const sort = (searchParams.get('sort') as TSortKey) || undefined
   const dirParam = searchParams.get('order')
-  const order: 'asc' | 'desc' | undefined =
-    dirParam === 'desc' ? 'desc'
-    : dirParam === 'asc' ? 'asc'
+  const order: SortOrderTypes | undefined =
+    dirParam === SORT_ORDER.ASC ? SORT_ORDER.DESC
+    : dirParam === SORT_ORDER.ASC ? SORT_ORDER.ASC
     : undefined
 
   const page = Number(searchParams.get('page') || '1')

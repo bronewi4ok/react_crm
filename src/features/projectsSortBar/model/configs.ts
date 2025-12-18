@@ -1,7 +1,32 @@
 export const projectsSortConfigs = [
-  { key: 'name', label: 'Name', icon: 'common-sortName', column: 'flex-2' },
-  { key: 'tasks', label: 'Tasks', icon: 'common-sortNumber', column: 'flex-1' },
-  { key: 'budget', label: 'Budget', icon: 'common-sortNumber', column: 'flex-1' },
-  { key: 'dueDate', label: 'Due date', icon: 'common-sortNumber', column: 'flex-1' },
-  { key: 'members', label: 'Members', icon: 'common-sortName', column: 'flex-1' },
+  {
+    key: 'name',
+    label: 'Name',
+    column: 'flex-2',
+    icon: { asc: 'common-sortNameAsc', desc: 'common-sortNameDesc' },
+  },
+  {
+    key: 'tasks',
+    label: 'Tasks',
+    column: 'flex-1',
+    icon: { asc: 'common-sortNumbAsc', desc: 'common-sortNumbDesc' },
+  },
+  {
+    key: 'budget',
+    label: 'Budget',
+    column: 'flex-1',
+    icon: { asc: 'common-sortNumbAsc', desc: 'common-sortNumbDesc' },
+  },
+  {
+    key: 'dueDate',
+    label: 'Due date',
+    column: 'flex-1',
+    icon: { asc: 'common-sortNumbAsc', desc: 'common-sortNumbDesc' },
+  },
+  {
+    key: 'members',
+    label: 'Members',
+    column: 'flex-1',
+    icon: { asc: 'common-sortNameAsc', desc: 'common-sortNameDesc' },
+  },
 ] as const

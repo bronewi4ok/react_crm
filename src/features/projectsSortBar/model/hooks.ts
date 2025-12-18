@@ -1,4 +1,5 @@
 import { useQueryParams } from '@/shared/hooks/useQueryParams'
+import { SORT_ORDER } from '@/shared/model/sort'
 import { z } from 'zod'
 import { projectsSortSchema } from './validation'
 
@@ -11,8 +12,8 @@ export function useProjectsQueryParams() {
 
   const setSort = (field: SortField) =>
     setParams((prev) => {
-      if (prev.sort !== field) return { sort: field, order: 'asc', page: 1 }
-      if (prev.order === 'asc') return { order: 'desc', page: 1 }
+      if (prev.sort !== field) return { sort: field, order: SORT_ORDER.ASC, page: 1 }
+      if (prev.order === SORT_ORDER.ASC) return { order: SORT_ORDER.DESC, page: 1 }
       return { sort: undefined, order: undefined, page: 1 }
     })
 
