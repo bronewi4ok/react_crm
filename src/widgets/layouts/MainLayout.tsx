@@ -1,7 +1,8 @@
 import { Wrap } from '@/shared/ui/wrap'
-import { Header } from '@/widgets/header'
-import { MainMenu } from '@/widgets/sidebar'
+
 import { Outlet } from 'react-router-dom'
+import { Header } from '../header'
+import { MainMenu } from '../sidebar'
 
 export function MainLayout() {
   return (
@@ -10,7 +11,7 @@ export function MainLayout() {
         <MainMenu />
       </aside>
 
-      <main className="flex-1 flex flex-col min-h-dvh bg-back-500">
+      <main className="flex-1 flex flex-col min-h-dvh ">
         <Header />
         <div className="flex-1 px-7 pb-7">
           <Outlet />

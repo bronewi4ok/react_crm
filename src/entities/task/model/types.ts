@@ -21,11 +21,6 @@ export type TaskTypes = {
 
 export type TasksListResponse = ListResponse<TaskTypes>
 
-export type TaskCardTypes = {
-  task: TaskTypes
-  className?: string
-  onClick?: () => void
-}
+export type TaskCardTypes = { task: TaskTypes; className?: string; onClick?: () => void }
 
-export type TasksQueryArgs<TSortKey extends string = string> =
-  ListQueryParams<TSortKey>
+export type TasksQueryArgs<TSortKey extends string = string> = ListQueryParams<TSortKey>

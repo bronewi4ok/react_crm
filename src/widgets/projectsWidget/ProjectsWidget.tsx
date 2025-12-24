@@ -27,7 +27,7 @@ export function ProjectsWidget() {
 
   const projects = data?.data ?? []
   const meta = data?.meta
-  const hasProjects = projects.length > 0
+  const hasProjects = projects?.length > 0
 
   if (!hasProjects) {
     return (

@@ -20,7 +20,7 @@ export function useQueryParams<Shape extends z.ZodRawShape, T extends z.ZodObjec
     const obj = Object.fromEntries(
       Array.from(new Set(searchParams.keys())).map((key) => {
         const vals = searchParams.getAll(key)
-        return [key, vals.length > 1 ? vals : vals[0]]
+        return [key, vals?.length > 1 ? vals : vals[0]]
       }),
     )
 

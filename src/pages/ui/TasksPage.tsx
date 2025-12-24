@@ -1,4 +1,4 @@
-import { TasksWidget } from '@/widgets/TasksWidget/TasksWidget'
+import { TasksWidget } from '@/widgets/tasksWidget/TasksWidget'
 
 function TasksPage() {
   return (
