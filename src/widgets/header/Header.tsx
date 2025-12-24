@@ -12,7 +12,7 @@ export const Header = ({ children }: AppHeaderProps) => {
   const user = useAppSelector(selectAuthUser)
 
   return (
-    <header className="flex items-center px-7 py-6 min-h-21 bg-back-500">
+    <header className="flex items-center px-7 py-6 min-h-21">
       <Button
         variant="support"
         className="mr-5"

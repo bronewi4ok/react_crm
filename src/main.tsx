@@ -1,4 +1,5 @@
-import '@/index.css'
+import '@/style.css'
+import { Theme } from '@radix-ui/themes'
 import { GoogleOAuthProvider } from '@react-oauth/google'
 import { Suspense } from 'react'
 import { createRoot } from 'react-dom/client'
@@ -13,11 +14,13 @@ import { Loader } from './shared/ui/baseUI/loader'
 createRoot(document.getElementById('root')!).render(
   <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
     <Provider store={store}>
-      <AppInit />
+      <Theme>
+        <AppInit />
 
-      <Suspense fallback={<Loader />}>
-        <RouterProvider router={router} />
-      </Suspense>
+        <Suspense fallback={<Loader />}>
+          <RouterProvider router={router} />
+        </Suspense>
+      </Theme>
     </Provider>
   </GoogleOAuthProvider>,
 )

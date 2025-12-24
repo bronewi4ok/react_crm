@@ -37,7 +37,7 @@ export const checkAuthLoader =
       }
 
       if (
-        allowedRoles.length > 0 &&
+        allowedRoles?.length > 0 &&
         (!user?.role || !allowedRoles.includes(user.role))
       ) {
         throw redirect(mainRoutes.notFound.navPath)

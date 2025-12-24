@@ -22,9 +22,7 @@ export function TaskCard({ task, className, onClick }: TaskCardTypes) {
 
         <div className="min-w-0 flex-1">
           <div className="font-medium truncate">{task.title}</div>
-          <div className="text-xs text-secondary-500 truncate">
-            {task.description}
-          </div>
+          <div className="text-xs text-secondary-500 truncate">{task.description}</div>
         </div>
 
         <div className="hidden md:flex items-center gap-8">

@@ -18,7 +18,7 @@ export function SortBar<T extends string>({ options, value, onSort, className }:
             value.field === option.key ?
               value.order === SORT_ORDER.ASC ?
                 'text-success-700'
-              : 'text-danger-500'
+              : 'text-danger-400'
             : 'text-secondary-500',
             option.column,
           )}>
