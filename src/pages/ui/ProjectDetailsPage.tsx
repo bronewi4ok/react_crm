@@ -1,47 +1,61 @@
 import { useGetProjectByIdQuery } from '@/entities/project'
+import { mainRoutes } from '@/shared/config/router'
 import { useFormatDate } from '@/shared/hooks/useFormatDate'
-import { useParams } from 'react-router-dom'
+import { Button } from '@/shared/ui/baseUI/button'
+import { Icon } from '@/shared/ui/baseUI/icon'
+import { useNavigate, useParams } from 'react-router-dom'
 
 function ProjectDetailsPage() {
   const { id } = useParams()
-  const {
-    data: project,
-    isLoading,
-    isError,
-  } = useGetProjectByIdQuery(id ?? '', { skip: !id })
+  const navigate = useNavigate()
+  const { data: project, isLoading, isError } = useGetProjectByIdQuery(id ?? '', { skip: !id })
 
-  const dueDate = useFormatDate(project?.plannedEndDate, { format: 'medium' })
+  const dueDate = useFormatDate(project?.endDate, { format: 'medium' })
+  const handleBack = () => {
+    if (window.history.length > 1) {
+      navigate(-1)
+      return
+    }
 
-  if (!id) {
-    return <div className="p-4 text-sm text-danger-700">No project id</div>
+    navigate(mainRoutes.projects.navPath, { replace: true })
   }
-  if (isLoading) {
-    return <div className="p-4 text-sm text-support-700">Loading…</div>
-  }
-  if (isError || !project) {
-    return <div className="p-4 text-sm text-danger-700">Project not found</div>
-  }
+
+  if (!id) return <div className="text-danger-700 p-4 text-sm">No project id</div>
+  if (isLoading) return <div className="text-support-700 p-4 text-sm">Loading…</div>
+  if (isError || !project)
+    return <div className="text-danger-700 p-4 text-sm">Project not found</div>
 
   return (
     <div className="bg-light rounded-2xl p-6">
-      <h1 className="text-2xl text-dark mb-4">{project.name}</h1>
-      <div className="text-sm text-secondary-700 mb-2">
+      <div className="mb-4 flex items-center gap-3">
+        <Button size="sm" variant="support" onClick={handleBack}>
+          <Icon size="lg" name="common-arrowLeft" />
+          Back
+        </Button>
+        <h1 className="text-dark text-2xl">{project.name}</h1>
+      </div>
+
+      <div className="text-secondary-700 mb-2 text-sm">
         Specialization: {project.specialization}
       </div>
+
       {project.description && (
-        <p className="text-sm text-secondary-700 mb-2">{project.description}</p>
+        <p className="text-secondary-700 mb-2 text-sm">{project.description}</p>
       )}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
+
+      <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
         <div>
-          <div className="text-xs text-secondary-500">Tasks</div>
+          <div className="text-secondary-500 text-xs">Tasks</div>
           <div className="font-medium">{project.tasks.length}</div>
         </div>
+
         <div>
-          <div className="text-xs text-secondary-500">Budget</div>
+          <div className="text-secondary-500 text-xs">Budget</div>
           <div className="font-medium">{project.budget ?? '—'}</div>
         </div>
+
         <div>
-          <div className="text-xs text-secondary-500">Due date</div>
+          <div className="text-secondary-500 text-xs">Due date</div>
           <div className="font-medium">{dueDate}</div>
         </div>
       </div>

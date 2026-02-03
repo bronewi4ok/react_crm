@@ -1,4 +1,4 @@
-import { SortBar } from '@/shared/ui/sortBar'
+import { SortBar } from '@/shared/ui/customUI/sortBar'
 import { projectsSortConfigs } from '../model/configs'
 import { useProjectsQueryParams } from '../model/hooks'
 import type { ProjectsSortTypes } from '../model/types'

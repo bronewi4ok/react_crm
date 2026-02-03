@@ -1,8 +1,8 @@
 import { useAppDispatch } from '@/app/store'
 import { useGoogleLoginMutation } from '@/features/auth/api/authApi'
 import { setCredentials } from '@/features/auth/api/authSlice'
-import { useNavigate } from 'react-router-dom'
 import { mainRoutes } from '@/shared/config/router'
+import { useNavigate } from 'react-router-dom'
 
 export const useHandleGoogleAuth = () => {
   const [googleLogin] = useGoogleLoginMutation()
@@ -10,9 +10,7 @@ export const useHandleGoogleAuth = () => {
   const navigate = useNavigate()
 
   return async (response: { credential?: string }) => {
-    if (!response.credential) {
-      return
-    }
+    if (!response.credential) return
 
     try {
       const res = await googleLogin({ token: response.credential }).unwrap()
@@ -41,7 +39,9 @@ export const useHandleGoogleAuth = () => {
 
       // Authentication error returned by backend (401, 403, etc.)
       if (err.status === 401) {
-        alert('Неавторизований: бекенд відхилив Google токен (401). Перевірте налаштування OAuth на бекенді.')
+        alert(
+          'Неавторизований: бекенд відхилив Google токен (401). Перевірте налаштування OAuth на бекенді.',
+        )
         return
       }
 

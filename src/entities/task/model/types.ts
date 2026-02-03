@@ -14,7 +14,7 @@ export type TaskTypes = {
   createdAt?: string
   updatedAt?: string
   startDate?: string
-  plannedEndDate?: string
+  endDate?: string
   status?: TaskStatusTypes
   priority?: string
 }

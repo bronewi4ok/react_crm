@@ -1,21 +1,22 @@
+import { store, useAppDispatch, useAppSelector } from '@/app/store'
 import { logout, useRefreshMutation } from '@/features/auth'
-import { refreshMutex } from '@/shared/utils/refreshMutex'
+import { applyTheme, getInitialTheme, setTheme } from '@/features/themeToggler'
+import { refreshMutex } from '@/shared/libs'
 import { useEffect } from 'react'
-import { useAppDispatch, useAppSelector } from '../store'
-import { store } from '../store/store'
 
 export function AppInit() {
   const [refresh] = useRefreshMutation()
   const dispatch = useAppDispatch()
-  const currentTheme = useAppSelector((state) => state.theme.current)
   const user = useAppSelector((state) => state.auth.user)
 
-  // Тема
+  // Ініціалізація теми
   useEffect(() => {
-    document.documentElement.dataset.theme = currentTheme
-  }, [currentTheme])
+    const theme = getInitialTheme()
+    dispatch(setTheme(theme))
+    applyTheme(theme)
+  }, [dispatch])
 
-  // Refresh при старті
+  // Ініціалізація авторизації
   useEffect(() => {
     if (user) return
     if (window.location.pathname.startsWith('/auth')) return

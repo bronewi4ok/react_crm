@@ -1,2 +1,10 @@
 import type { TaskStatusTypes } from '@/entities/task'
-export type TaskStatusFilterTypes = TaskStatusTypes | 'all'
+
+export type TasksFilterStatusTypes = TaskStatusTypes | 'all'
+
+export type TaskFilterParams<TSortKey extends string = string> = {
+  status?: TSortKey
+  page?: number
+  per?: number
+  q?: string
+}

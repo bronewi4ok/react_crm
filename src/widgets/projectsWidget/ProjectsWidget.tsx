@@ -3,33 +3,33 @@ import { ProjectsSortBar } from '@/features/projectsSortBar'
 import { projectsSortSchema } from '@/features/projectsSortBar/'
 import { useQueryParams } from '@/shared/hooks/useQueryParams'
 import { Button } from '@/shared/ui/baseUI/button'
+import { Loader } from '@/shared/ui/baseUI/loader'
+import { Overlay } from '@/shared/ui/baseUI/overlay'
 import { Pagination } from '@/shared/ui/baseUI/pagination'
-import { EmptyFallback } from '@/shared/ui/emptyFallback'
-import { ErrorFallback } from '@/shared/ui/errorFallback'
+import { EmptyFallback } from '@/shared/ui/customUI/emptyFallback'
+import { ErrorFallback } from '@/shared/ui/customUI/errorFallback'
 import noProjectsImg from './no_projects.svg'
 
-export function ProjectsWidget() {
+export const ProjectsWidget = () => {
   const [params, setParams] = useQueryParams(projectsSortSchema)
   const { data, isLoading, isError, isFetching, refetch } = useGetProjectsQuery(params)
-
-  if (isError) {
-    return (
-      <ErrorFallback
-        error={{ message: 'Failed to load projects' }}
-        onRetry={refetch}
-      />
-    )
-  }
-
-  if (isLoading) {
-    return <div className="p-4 text-support-700">Loading projects...</div>
-  }
-
   const projects = data?.data ?? []
   const meta = data?.meta
   const hasProjects = projects?.length > 0
 
-  if (!hasProjects) {
+  const handlePageChange = (page: number) => setParams({ page })
+
+  if (isError)
+    return <ErrorFallback error={{ message: 'Failed to load projects' }} onRetry={refetch} />
+
+  if (isLoading)
+    return (
+      <Overlay full className="bg-amber-500">
+        <Loader size="2xl" />
+      </Overlay>
+    )
+
+  if (!hasProjects && !isFetching) {
     return (
       <EmptyFallback
         image={noProjectsImg}
@@ -40,14 +40,16 @@ export function ProjectsWidget() {
     )
   }
 
-  const handlePageChange = (page: number) => {
-    setParams({ page })
-  }
-
   return (
     <>
       <ProjectsSortBar />
       <ProjectsList projects={projects} />
+      {isFetching && !isLoading && (
+        <Overlay full>
+          <Loader />
+        </Overlay>
+      )}
+
       {meta && meta.totalPages > 1 && (
         <Pagination
           currentPage={meta.page}

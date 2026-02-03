@@ -1,10 +1,5 @@
 import type { AuthResponseTypes, RootState, User } from '@/shared/types'
-import {
-  createSlice,
-  isAnyOf,
-  type PayloadAction,
-  type SerializedError,
-} from '@reduxjs/toolkit'
+import { createSlice, isAnyOf, type PayloadAction, type SerializedError } from '@reduxjs/toolkit'
 import { authApi } from './authApi'
 
 type AuthState = {
@@ -73,7 +68,6 @@ const authSlice = createSlice({
         isAnyOf(
           authApi.endpoints.login.matchRejected,
           authApi.endpoints.googleLogin.matchRejected,
-          authApi.endpoints.refresh.matchRejected,
           authApi.endpoints.logout.matchRejected,
           authApi.endpoints.signup.matchRejected,
         ),
@@ -84,6 +78,18 @@ const authSlice = createSlice({
           state.error = action.error
         },
       )
+    // .addMatcher(authApi.endpoints.refresh.matchRejected, (state, action) => {
+    //   const status =
+    //     (action as any)?.payload?.status ?? (action as any)?.error?.status
+
+    //   if (status === 401) {
+    //     state.user = null
+    //     state.accessToken = null
+    //   }
+
+    //   state.loading = false
+    //   state.error = action.error
+    // })
   },
 })
 

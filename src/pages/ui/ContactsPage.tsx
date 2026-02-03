@@ -1,8 +1,10 @@
-function ContactsPage() {
+import { Wrap } from '@/shared/ui/customUI/wrap'
+
+const ContactsPage = () => {
   return (
-    <div>
+    <Wrap>
       <h1>ContactsPage</h1>
-    </div>
+    </Wrap>
   )
 }
 

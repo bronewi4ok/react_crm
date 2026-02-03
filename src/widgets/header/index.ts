@@ -1,2 +1,2 @@
-export { Header } from './Header'
-export * from './types'
+export * from './model/types'
+export { Header } from './ui/Header'

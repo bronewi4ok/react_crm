@@ -128,17 +128,17 @@
   --color-warning-800: #92400e;
   --color-warning-900: #78350f;
 
-  /* Border */
-  --color-border-50: #f9f9fb;
-  --color-border-100: #f5f5f8;
-  --color-border-200: #f2f2f5;
-  --color-border-300: #eeeff3;
-  --color-border-400: #e9eaf1;
-  --color-border-500: #ececf2;
-  --color-border-600: #e0e1e9;
-  --color-border-700: #d2d3dc;
-  --color-border-800: #c3c5cf;
-  --color-border-900: #b1b4c0;
+  /* Frame */
+  --color-frame-50: #f9f9fb;
+  --color-frame-100: #f5f5f8;
+  --color-frame-200: #f2f2f5;
+  --color-frame-300: #eeeff3;
+  --color-frame-400: #e9eaf1;
+  --color-frame-500: #ececf2;
+  --color-frame-600: #e0e1e9;
+  --color-frame-700: #d2d3dc;
+  --color-frame-800: #c3c5cf;
+  --color-frame-900: #b1b4c0;
 
   /* Background  */
   --color-back-50: #fbfbfd;
@@ -174,17 +174,6 @@
   --color-primary-900: #f2f5ff;
 
   /* Secondary dark */
-  /* --color-secondary-50: #e6d8ff;
-  --color-secondary-100: #cbb7ff;
-  --color-secondary-200: #b498ff;
-  --color-secondary-300: #9a7aff;
-  --color-secondary-400: #8963ff;
-  --color-secondary-500: #c678dd;
-  --color-secondary-600: #a85fc3;
-  --color-secondary-700: #8d4da3;
-  --color-secondary-800: #713e84;
-  --color-secondary-900: #563066; */
-
   --color-secondary-50: #343445;
   --color-secondary-100: #4c4c61;
   --color-secondary-200: #676784;
@@ -257,19 +246,18 @@
   --color-warning-900: #63502a;
 
   /* Border dark */
-  --color-border-50: #abb2bf;
-  --color-border-100: #9ba2b0;
-  --color-border-200: #8b92a0;
-  --color-border-300: #7c8391;
-  --color-border-400: #6d7583;
-  --color-border-500: #5c6370;
-  --color-border-600: #4d545f;
-  --color-border-700: #3f454f;
-  --color-border-800: #333841;
-  --color-border-900: #272b32;
+  --color-frame-50: #272b32;
+  --color-frame-100: #333841;
+  --color-frame-200: #3f454f;
+  --color-frame-300: #4d545f;
+  --color-frame-400: #5c6370;
+  --color-frame-500: #6d7583;
+  --color-frame-600: #7c8391;
+  --color-frame-700: #8b92a0;
+  --color-frame-800: #9ba2b0;
+  --color-frame-900: #abb2bf;
 
   /* Background dark */
-
   --color-back-50: #121417;
   --color-back-100: #181a1f;
   --color-back-200: #1c1f24;
@@ -281,6 +269,29 @@
   --color-back-800: #cfd3d9;
   --color-back-900: #e6e8eb;
 }
+
+:root {
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.theme-transition,
+.theme-transition * {
+  transition: all 200ms ease-in-out;
+}
+
+/* Remove default browser focus outline for form controls.
+  If you want to preserve keyboard accessibility, consider replacing
+  this with a custom :focus-visible style (e.g. ring) instead. */
+/* input:focus,
+textarea:focus,
+select:focus,
+button:focus {
+  outline: none !important;
+  box-shadow: none !important;
+} */
 
 @layer utilities {
   .text-h1 {
@@ -325,35 +336,13 @@
     line-height: var(--leading-p1);
   }
 
-  .text-2 {
+  .text-p2 {
     font-size: var(--text-2);
     line-height: var(--leading-2);
   }
 
-  .text-3 {
+  .text-p3 {
     font-size: var(--text-3);
     line-height: var(--leading-3);
   }
-}
-
-:root {
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  transition: all 200ms ease-in-out;
-}
-
-/* Remove default browser focus outline for form controls.
-  If you want to preserve keyboard accessibility, consider replacing
-  this with a custom :focus-visible style (e.g. ring) instead. */
-input:focus,
-textarea:focus,
-select:focus,
-button:focus {
-  outline: none !important;
-  box-shadow: none !important;
 }

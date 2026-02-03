@@ -1,29 +1,19 @@
 import { ProjectCard, type ProjectTypes } from '@/entities/project'
 import { mainRoutes } from '@/shared/config/router'
-import { MainList } from '@/shared/ui/mainList'
-import { generatePath, useNavigate } from 'react-router-dom'
+import { MainList } from '@/shared/ui/customUI/mainList'
+import { generatePath } from 'react-router-dom'
 
-export function ProjectsList({ projects }: { projects: ProjectTypes[] }) {
-  const navigate = useNavigate()
-
+export const ProjectsList = ({ projects }: { projects: ProjectTypes[] }) => {
   return (
-    <MainList
-      items={projects}
-      getKey={(project) => project.id}
-      renderItem={(item) =>
-        typeof item === 'string' ?
-          <div className="p-3 text-xs text-support-700">Updating…</div>
-        : <ProjectCard
-            project={item}
-            onClick={() =>
-              navigate(
-                generatePath(mainRoutes.projectDetails.navPath, {
-                  id: item.id,
-                }),
-              )
-            }
+    <MainList>
+      {projects.map((project) => (
+        <MainList.Item key={project.id}>
+          <ProjectCard
+            project={project}
+            to={generatePath(mainRoutes.projectDetails.navPath, { id: project.id })}
           />
-      }
-    />
+        </MainList.Item>
+      ))}
+    </MainList>
   )
 }

@@ -6,12 +6,9 @@ export function SidebarLogo() {
   return (
     <Link
       to={mainRoutes.home.navPath}
-      className="flex items-center gap-6 font-bold p-6"
+      className="text-dark flex items-center gap-6 p-6 font-bold"
       aria-label="betaCRM logo">
-      <Icon
-        name="common-logo"
-        size="lg"
-      />
+      <Icon name="common-logo" size="lg" />
 
       <span>betaCRM</span>
     </Link>

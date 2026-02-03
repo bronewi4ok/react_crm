@@ -39,6 +39,7 @@ export function Pagination({
       {startPage > 1 && (
         <>
           <Button
+            square
             variant="support"
             size="sm"
             onClick={() => onPageChange(1)}
@@ -51,6 +52,7 @@ export function Pagination({
 
       {pages.map((page) => (
         <Button
+          square
           key={page}
           variant={page === currentPage ? 'primary' : 'support'}
           size="sm"
@@ -64,6 +66,7 @@ export function Pagination({
         <>
           {endPage < totalPages - 1 && <span className="px-2">...</span>}
           <Button
+            square
             variant="support"
             size="sm"
             onClick={() => onPageChange(totalPages)}

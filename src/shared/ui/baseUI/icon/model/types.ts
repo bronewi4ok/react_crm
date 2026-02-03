@@ -1,5 +1,5 @@
 import ids from 'virtual:svg-icons-names'
-import type { IconSize } from './config'
+import type { IconSize } from './configs'
 
 type IconNameTypes = (typeof ids)[number]
 type IconSizeKeyTypes = keyof typeof IconSize

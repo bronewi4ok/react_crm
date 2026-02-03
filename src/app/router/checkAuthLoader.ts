@@ -1,5 +1,5 @@
-import { store } from '@/app/store/store'
-import { authApi } from '@/features/auth/api/authApi'
+import { store } from '@/app/store'
+import { authApi } from '@/features/auth/'
 import { authRoutes, mainRoutes } from '@/shared/config/router'
 import type { RouteTypes } from '@/shared/types'
 import type { Mutex } from 'async-mutex'
@@ -36,10 +36,7 @@ export const checkAuthLoader =
         }
       }
 
-      if (
-        allowedRoles?.length > 0 &&
-        (!user?.role || !allowedRoles.includes(user.role))
-      ) {
+      if (allowedRoles?.length > 0 && (!user?.role || !allowedRoles.includes(user.role))) {
         throw redirect(mainRoutes.notFound.navPath)
       }
     }

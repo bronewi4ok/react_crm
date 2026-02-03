@@ -1,19 +1,15 @@
-import { checkAuthLoader } from '@/app/router/checkAuthLoader'
+﻿import { checkAuthLoader } from '@/app/router/checkAuthLoader'
 import {
   authRoutesList,
   mainRoutes,
   mainRoutesList,
 } from '@/shared/config/router/'
-import { Mutex } from 'async-mutex'
+import { refreshMutex } from '@/shared/libs/refreshMutex'
 import type { RouteObject } from 'react-router-dom'
 
-// Глобальний м'ютекс для запобігання конкурентним запитам оновлення
-const refreshMutex = new Mutex()
 
-// Лоадер для перевірки автентифікації та ролей користувача
 const authLoader = checkAuthLoader({ refreshMutex })
 
-// Роути для MainLayout
 export const mainRoutesChildren = mainRoutesList
   .filter(
     (route) =>
@@ -26,7 +22,6 @@ export const mainRoutesChildren = mainRoutesList
     lazy: async () => ({ Component: (await route.component()).default }),
   }))
 
-// Роути для AuthLayout
 export const authRoutesChildren: RouteObject[] = authRoutesList.map(
   (route) => ({
     path: route.path,

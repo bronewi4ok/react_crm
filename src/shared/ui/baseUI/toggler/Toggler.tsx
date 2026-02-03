@@ -1,23 +1,23 @@
 import clsx from 'clsx'
+import { Switch } from 'radix-ui'
 import type { TogglerTypes } from './types'
 
-function Toggler({ onClick, isActive }: TogglerTypes) {
+export function Toggler({ checked, onChange }: TogglerTypes) {
   return (
-    <button
-      onClick={onClick}
+    <Switch.Root
+      checked={checked}
+      onCheckedChange={onChange}
       className={clsx(
-        'theme-toggler inline-flex w-13 h-7 rounded-2xl relative p-1 cursor-pointer transition-all duration-300',
-        isActive ? 'bg-secondary-900' : 'bg-warning-400',
+        'theme-toggler relative inline-flex h-7 w-13 cursor-pointer rounded-2xl p-1',
+        'data-[state=checked]:bg-secondary-50',
+        'data-[state=unchecked]:bg-warning-400',
       )}>
-      <span
+      <Switch.Thumb
         className={clsx(
-          'block  size-5 rounded-full transition-all duration-300 ease-in-out absolute top-1',
-          isActive ?
-            'translate-x-6 bg-secondary-700'
-          : 'translate-x-0 bg-warning-300',
-        )}></span>
-    </button>
+          'absolute top-1 block size-5 rounded-full transition-transform duration-200 will-change-transform',
+          'data-[state=checked]:bg-secondary-700 data-[state=checked]:translate-x-6',
+          'data-[state=unchecked]:bg-warning-300 data-[state=unchecked]:translate-x-0',
+        )}></Switch.Thumb>
+    </Switch.Root>
   )
 }
-
-export default Toggler

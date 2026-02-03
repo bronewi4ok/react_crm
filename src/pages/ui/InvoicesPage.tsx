@@ -1,4 +1,4 @@
-export function InvoicesPage() {
+const InvoicesPage = () => {
   return (
     <div>
       <h1>InvoicesPage</h1>

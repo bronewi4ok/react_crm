@@ -1,40 +1,31 @@
-import { clsx } from 'clsx'
-import { Link } from 'react-router-dom'
-import { animationStyles, baseStyles, sizeStyles } from '../model/configs'
+import { cn } from '@/shared/libs'
+import { type ElementType } from 'react'
+import {
+  animationStyles,
+  baseStyles,
+  sizeSquareStyles,
+  sizeStyles,
+  variantStyles,
+} from '../model/configs'
 import type { ButtonTypes } from '../model/types'
 
-export function Button(props: ButtonTypes) {
-  const {
-    children,
-    size = 'md',
-    color = 'primary-500',
-    className,
-    ...rest
-  } = props
+export const Button = <E extends ElementType = 'button'>(props: ButtonTypes<E>) => {
+  const { children, square, size = 'md', variant = 'primary', className, as, ...rest } = props
 
-  const classes = clsx(
+  const classes = cn(
+    square ? sizeSquareStyles[size] : sizeStyles[size],
     baseStyles,
     animationStyles,
-    color,
-    sizeStyles[size],
+    variantStyles[variant],
+
     className,
   )
 
-  if ('to' in rest) {
-    return (
-      <Link
-        className={clsx(classes)}
-        {...rest}>
-        {children}
-      </Link>
-    )
-  }
+  const Component: ElementType = as || 'button'
 
   return (
-    <button
-      className={clsx(classes)}
-      {...rest}>
+    <Component className={classes} {...rest}>
       {children}
-    </button>
+    </Component>
   )
 }

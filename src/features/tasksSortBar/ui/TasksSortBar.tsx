@@ -1,4 +1,4 @@
-import { SortBar } from '@/shared/ui/sortBar'
+import { SortBar } from '@/shared/ui/customUI/sortBar'
 import { tasksSortConfigs } from '../model/configs'
 import { useTasksQueryParams } from '../model/hooks'
 import type { TasksSortTypes } from '../model/types'

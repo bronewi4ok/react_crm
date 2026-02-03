@@ -1,9 +1,9 @@
 import { mainRoutes } from '@/shared/config/router'
 import { Button } from '@/shared/ui/baseUI/button'
 import { Input } from '@/shared/ui/formUI'
-import { FormItem } from '@/shared/ui/formUI/formItem'
+import { Form } from '@/shared/ui/formUI/form'
 import { type SubmitHandler } from 'react-hook-form'
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 
 import { useRecoverConfirm } from '../model/useRecoverConfirm'
 import { useRecoverConfirmRegister } from '../model/useRecoverConfirmRegister'
@@ -34,56 +34,58 @@ export function RecoverConfirmForm() {
     if (result.success) navigate(mainRoutes.home.navPath)
   }
 
+  const isDisabled = isLoading || isSubmitting
+
   return (
-    <form
-      noValidate
-      onSubmit={handleSubmit(onSubmit)}
-      className="grid grid-cols-12 gap-4">
-      <FormItem
-        error={errors.newPassword?.message}
-        className="col-span-12"
-        title="Password">
-        <Input
-          type="password"
-          placeholder="Start typing…"
-          icon="common-lock"
-          error={errors.newPassword?.message}
-          {...register('newPassword')}
-        />
-      </FormItem>
+    <Form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-12 gap-4">
+      {/* PASSWORD */}
+      <Form.Field className="col-span-12">
+        <Input error={errors.newPassword?.message}>
+          <Input.Label>New password</Input.Label>
 
-      <FormItem
-        error={errors.confirmNewPassword?.message}
-        className="col-span-12"
-        title="Password">
-        <Input
-          type="password"
-          placeholder="Start typing…"
-          icon="common-lock"
-          error={errors.confirmNewPassword?.message}
-          {...register('confirmNewPassword')}
-        />
-      </FormItem>
+          <Input.Wrap>
+            <Input.Control
+              {...register('newPassword')}
+              type="password"
+              placeholder="Start typing…"
+              autoComplete="new-password"
+            />
+            <Input.Icon name="common-lock" />
+          </Input.Wrap>
+        </Input>
 
-      <Button
-        className="col-span-6 bg-primary-500 text-white"
-        type="submit"
-        disabled={isLoading || isSubmitting}>
+        <Form.Message message={errors.newPassword?.message} />
+      </Form.Field>
+
+      {/* CONFIRM PASSWORD */}
+      <Form.Field className="col-span-12">
+        <Input error={errors.confirmNewPassword?.message}>
+          <Input.Label>Confirm new password</Input.Label>
+
+          <Input.Wrap>
+            <Input.Control
+              {...register('newPassword')}
+              type="password"
+              placeholder="Start typing…"
+              autoComplete="new-password"
+            />
+            <Input.Icon name="common-lock" />
+          </Input.Wrap>
+        </Input>
+        <Form.Message message={errors.confirmNewPassword?.message} />
+      </Form.Field>
+
+      {/* SUBMIT */}
+      <Button className="col-span-6" variant="success" type="submit" disabled={isDisabled}>
         Confirm
       </Button>
 
-      <Button
-        className="col-span-6 bg-primary-500 text-white"
-        to={mainRoutes.home.navPath}
-        disabled={isLoading || isSubmitting}>
+      <Button className="col-span-6" variant="primary" as={Link} to={mainRoutes.home.navPath}>
         Home
       </Button>
 
-      {error && (
-        <div className="col-span-12 text-danger-500">
-          {'message' in error ? error.message : 'Невірний email або пароль'}
-        </div>
-      )}
-    </form>
+      {/* GLOBAL ERROR */}
+      <Form.Error error={error} className="col-span-12" title="Сталася невідома помилка" />
+    </Form>
   )
 }
