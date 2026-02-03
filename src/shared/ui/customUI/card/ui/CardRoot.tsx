@@ -8,7 +8,7 @@ export function CardRoot({ children, className, onClick }: CardTypes) {
       className={cn(
         'min-h-20 px-4 py-3 md:px-5 md:py-4',
         'border-frame-200 bg-light shadow-frame-50 rounded-xl border shadow-sm',
-        'relative flex items-center gap-3',
+        'flex items-center gap-3',
         'transition duration-200 hover:scale-101 hover:shadow-lg',
         onClick && 'cursor-pointer',
         className,

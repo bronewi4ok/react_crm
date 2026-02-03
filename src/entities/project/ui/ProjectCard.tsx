@@ -39,11 +39,11 @@ export function ProjectCard({ project, className, onClick, to }: ProjectCardProp
         </Card.Item>
       </Link>
 
-      <div className="z-20 flex items-center gap-3">
+      <Card.Controls className="flex items-center gap-3">
         <Button size="sm" square aria-label="More actions" variant="support">
           <Icon className="fill-secondary-500" size="sm" name="common-dots" />
         </Button>
-      </div>
+      </Card.Controls>
     </Card>
   )
 }
