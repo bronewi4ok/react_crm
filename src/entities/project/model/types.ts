@@ -4,18 +4,20 @@ import type { LinkProps } from 'react-router-dom'
 
 export type ProjectTypes = {
   id: string
-  name: string
-  specialization: string
+  name?: string
+  specialization?: string
   description?: string
   tasks: string[]
   budget?: number
-  clients: string[]
-  taskers: string[]
+  clients?: string[]
+  taskers?: string[]
   createdAt?: string
   finishedAt?: string
   updatedAt?: string
   startDate?: string
   endDate?: string
+  avatar?: string
+  abbreviation?: string
 }
 
 export type ProjectsListResponse = ListResponse<ProjectTypes>
