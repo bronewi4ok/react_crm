@@ -1,9 +1,9 @@
 import { TasksWidget } from '@/widgets/tasksWidget/TasksWidget'
 
-function TasksPage() {
+const TasksPage = () => {
   return (
-    <div className=" bg-light rounded-2xl">
-      <h1 className="text-dark text-2xl px-6.5 py-5">Projects</h1>
+    <div className="bg-light rounded-2xl">
+      <h1 className="text-dark px-6.5 py-5 text-2xl">Tasks</h1>
       <TasksWidget />
     </div>
   )

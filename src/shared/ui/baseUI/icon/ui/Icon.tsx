@@ -1,10 +1,10 @@
 import clsx from 'clsx'
-import { IconSize } from '../model/config'
+import { IconSize } from '../model/configs'
 import { type IconTypes } from '../model/types'
 
 export const Icon = ({ name, size = 'xs', className }: IconTypes) => {
   return (
-    <svg className={clsx(className, 'inline-flex', IconSize[size])}>
+    <svg className={clsx('inline-block shrink-0 fill-current', IconSize[size], className)}>
       <use href={`#${name}`} />
     </svg>
   )

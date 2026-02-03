@@ -1,18 +1,12 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import { signupSchema } from './validation'
-
-export type SignupFormTypes = {
-  name: string
-  email: string
-  password: string
-  terms: boolean
-}
+import { signupSchema, type SignupFormTypes } from './validation'
 
 const defaultValues: SignupFormTypes = {
   name: '',
   email: '',
   password: '',
+  confirmPassword: '',
   terms: false,
 }
 

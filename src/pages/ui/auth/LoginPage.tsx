@@ -5,7 +5,7 @@ import { authRoutes } from '@/shared/config/router'
 import { AuthForm } from '@/shared/ui/formUI/authForm'
 import { Link } from 'react-router-dom'
 
-function LoginPage() {
+const LoginPage = () => {
   return (
     <AuthForm
       title="Welcome to our CRM. Sign Up to getting started."
@@ -14,7 +14,7 @@ function LoginPage() {
       <LoginForm />
       <GoogleAuthButton />
       <Link
-        className="text-base text-secondary-500 hover:text-attention-500 transition-colors duration-200"
+        className="text-secondary-500 hover:text-attention-500 text-base transition-colors duration-200"
         to={authRoutes.recover.navPath}>
         Forgot password?
       </Link>

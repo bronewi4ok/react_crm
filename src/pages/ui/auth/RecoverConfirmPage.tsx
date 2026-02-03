@@ -3,7 +3,7 @@ import { RecoverForm } from '@/features/auth'
 import recoverImage from '@/shared/assets/images/auth/recover.svg'
 import { AuthForm } from '@/shared/ui/formUI/authForm'
 
-function RecoverConfirmPage() {
+const RecoverConfirmPage = () => {
   return (
     <AuthForm
       title="Lost your password? Enter your details to recover."

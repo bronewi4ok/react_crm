@@ -1,9 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import {
-  recoverConfirmSchema,
-  type RecoverConfirmFormTypes,
-} from './validation'
+import { recoverConfirmSchema, type RecoverConfirmFormTypes } from './validation'
 
 const defaultValues: RecoverConfirmFormTypes = {
   newPassword: '',

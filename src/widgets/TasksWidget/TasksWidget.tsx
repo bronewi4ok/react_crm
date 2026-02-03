@@ -4,8 +4,8 @@ import { tasksSortSchema } from '@/features/tasksSortBar/model/validation'
 import { useQueryParams } from '@/shared/hooks/useQueryParams'
 import { Button } from '@/shared/ui/baseUI/button'
 import { Pagination } from '@/shared/ui/baseUI/pagination'
-import { EmptyFallback } from '@/shared/ui/emptyFallback'
-import { ErrorFallback } from '@/shared/ui/errorFallback'
+import { EmptyFallback } from '@/shared/ui/customUI/emptyFallback'
+import { ErrorFallback } from '@/shared/ui/customUI/errorFallback'
 import noTasksImg from './no_tasks.svg'
 
 export function TasksWidget() {
@@ -13,16 +13,11 @@ export function TasksWidget() {
   const { data, isLoading, isError, isFetching, refetch } = useGetTasksQuery(params)
 
   if (isError) {
-    return (
-      <ErrorFallback
-        error={{ message: 'Failed to load projects' }}
-        onRetry={refetch}
-      />
-    )
+    return <ErrorFallback error={{ message: 'Failed to load projects' }} onRetry={refetch} />
   }
 
   if (isLoading) {
-    return <div className="p-4 text-support-700">Loading projects...</div>
+    return <div className="text-support-700 p-4">Loading projects...</div>
   }
 
   const tasks = data?.data ?? []

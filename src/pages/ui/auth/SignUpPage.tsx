@@ -1,9 +1,9 @@
-import { SignupForm } from '@/features/auth/signup'
+import { SignupForm } from '@/features/auth'
 import { GoogleAuthButton } from '@/features/authGoogle'
 import signupImage from '@/shared/assets/images/auth/signup.svg'
 import { AuthForm } from '@/shared/ui/formUI/authForm'
 
-function SignUpPage() {
+const SignUpPage = () => {
   return (
     <AuthForm
       title="Welcome to our CRM. Sign Up to getting started."
@@ -15,4 +15,5 @@ function SignUpPage() {
     </AuthForm>
   )
 }
+
 export default SignUpPage

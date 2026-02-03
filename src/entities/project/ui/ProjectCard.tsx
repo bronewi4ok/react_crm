@@ -1,61 +1,49 @@
 import { useFormatDate } from '@/shared/hooks/useFormatDate'
 import { Button } from '@/shared/ui/baseUI/button'
 import { Icon } from '@/shared/ui/baseUI/icon'
-import clsx from 'clsx'
+import { Card } from '@/shared/ui/customUI/card'
+import { Link } from 'react-router-dom'
 import { type ProjectCardProps } from '../model/types'
 
-export function ProjectCard({ project, className, onClick }: ProjectCardProps) {
-  const dueDate = useFormatDate(project.plannedEndDate, { format: 'short' })
+export function ProjectCard({ project, className, onClick, to }: ProjectCardProps) {
+  const dueDate = useFormatDate(project.endDate, { format: 'short' })
 
   return (
-    <article
-      onClick={onClick}
-      className={clsx(
-        'rounded-xl border border-border-300 bg-light px-4 py-3 md:px-5 md:py-4 shadow-sm hover:shadow transition-colors',
-        onClick && 'cursor-pointer',
-        className,
-      )}>
-      <div className="flex items-center gap-4">
-        <div className="hidden sm:flex size-10 items-center justify-center rounded-xl bg-back-100 text-secondary-500">
+    <Card onClick={onClick} className={className} to={to}>
+      <Link
+        to={to}
+        className="flex flex-1 items-center gap-3"
+        aria-label={`Open project ${project.name}`}>
+        <Card.Header>
           <span className="text-sm">●</span>
-        </div>
+        </Card.Header>
 
-        <div className="min-w-0 flex-1">
-          <div className="font-medium truncate">{project.name}</div>
-          <div className="text-xs text-secondary-500 truncate">
-            {project.specialization}
-          </div>
-        </div>
+        <Card.Item>
+          <Card.Title>{project.name}</Card.Title>
+          <Card.Text>{project.specialization}</Card.Text>
+        </Card.Item>
 
-        <div className="hidden md:flex items-center gap-8">
-          <div className="text-right">
-            <div className="font-medium">{project.tasks.length}</div>
-            <div className="text-xs text-secondary-500">Tasks</div>
-          </div>
+        <Card.Item>
+          <Card.Title>{project.tasks.length}</Card.Title>
+          <Card.Text>Tasks</Card.Text>
+        </Card.Item>
 
-          <div className="text-right">
-            <div className="font-medium">{project.budget}</div>
-            <div className="text-xs text-secondary-500">Budget</div>
-          </div>
+        <Card.Item>
+          <Card.Title>{project.budget}</Card.Title>
+          <Card.Text>Budget</Card.Text>
+        </Card.Item>
 
-          <div className="text-right">
-            <div className="font-medium">{dueDate}</div>
-            <div className="text-xs text-secondary-500">Due date</div>
-          </div>
-        </div>
+        <Card.Item>
+          <Card.Title>{dueDate}</Card.Title>
+          <Card.Text>Due date</Card.Text>
+        </Card.Item>
+      </Link>
 
-        <div className="flex items-center gap-3">
-          <Button
-            aria-label="More actions"
-            variant="support">
-            <Icon
-              className="fill-secondary-500"
-              size="sm"
-              name="common-dots"
-            />
-          </Button>
-        </div>
+      <div className="z-20 flex items-center gap-3">
+        <Button size="sm" square aria-label="More actions" variant="support">
+          <Icon className="fill-secondary-500" size="sm" name="common-dots" />
+        </Button>
       </div>
-    </article>
+    </Card>
   )
 }

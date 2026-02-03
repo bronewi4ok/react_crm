@@ -1,1 +1,1 @@
-export type TogglerTypes = { onClick: () => void; isActive: boolean }
+export type TogglerTypes = { onChange: (checked: boolean) => void; checked: boolean }

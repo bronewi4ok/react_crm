@@ -1,21 +1,22 @@
 import { authRoutes, mainRoutes } from '@/shared/config/router'
 import { Button } from '@/shared/ui/baseUI/button'
 import { Checkbox, Input } from '@/shared/ui/formUI'
-import { FormItem } from '@/shared/ui/formUI/formItem'
-import type { SubmitHandler } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
-import { useSignUp } from '../model/useSignup'
+import { Form } from '@/shared/ui/formUI/form'
+import { Controller, type SubmitHandler } from 'react-hook-form'
+import { Link, useNavigate } from 'react-router-dom'
+import { useSignup } from '../model/useSignup'
 import { useSignupRegister } from '../model/useSignupRegister'
 import type { SignupFormTypes } from '../model/validation'
 
 export function SignupForm() {
-  const { signup, isLoading, error } = useSignUp()
+  const { signup, isLoading, error } = useSignup()
   const navigate = useNavigate()
 
   const {
     register,
+    control,
     handleSubmit,
-    formState: { errors, isSubmitting, isValid },
+    formState: { errors, isSubmitting },
   } = useSignupRegister()
 
   const onSubmit: SubmitHandler<SignupFormTypes> = async (data) => {
@@ -23,80 +24,132 @@ export function SignupForm() {
     if (result.user) navigate(mainRoutes.home.navPath)
   }
 
+  const isDisabled = isLoading || isSubmitting
+
   return (
-    <form
-      noValidate
-      onSubmit={handleSubmit(onSubmit)}
-      className="grid grid-cols-12 gap-4">
-      <FormItem
-        error={errors.name?.message}
-        className="col-span-12"
-        title="Name">
-        <Input
-          type="text"
-          placeholder="Start typing…"
-          icon="common-user"
-          error={errors.name?.message}
-          {...register('name')}
-        />
-      </FormItem>
+    <Form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-12 gap-4">
+      {/* NAME */}
+      <Form.Field className="col-span-12">
+        <Input error={errors.name?.message}>
+          <Input.Label>Email</Input.Label>
 
-      <FormItem
-        error={errors.email?.message}
-        className="col-span-12"
-        title="Email">
-        <Input
-          type="email"
-          placeholder="Start typing…"
-          icon="common-envelop"
-          error={errors.email?.message}
-          {...register('email')}
-        />
-      </FormItem>
+          <Input.Wrap>
+            <Input.Control
+              {...register('name')}
+              type="text"
+              placeholder="Start typing…"
+              autoComplete="username"
+            />
+            <Input.Icon name="common-user" />
+          </Input.Wrap>
+        </Input>
 
-      <FormItem
-        error={errors.password?.message}
-        className="col-span-12"
-        title="Password">
-        <Input
-          type="password"
-          placeholder="Start typing…"
-          icon="common-lock"
-          error={errors.password?.message}
-          {...register('password')}
-        />
-      </FormItem>
+        <Form.Message message={errors.name?.message} />
+      </Form.Field>
 
-      <FormItem
-        error={errors.terms?.message}
-        className="col-span-12"
-        border={false}>
-        <Checkbox
-          title="I agree with terms & conditions"
-          className="col-span-12"
-          {...register('terms')}
-        />
-      </FormItem>
+      {/* EMAIL */}
+      <Form.Field className="col-span-12">
+        <Input error={errors.email?.message}>
+          <Input.Label>Email</Input.Label>
 
-      <Button
-        className="col-span-6 bg-primary-500 text-white"
-        type="submit"
-        disabled={isLoading || isSubmitting || !isValid}>
+          <Input.Wrap>
+            <Input.Control
+              {...register('email')}
+              type="email"
+              placeholder="Start typing…"
+              autoComplete="email"
+            />
+            <Input.Icon name="common-envelop" />
+          </Input.Wrap>
+        </Input>
+
+        <Form.Message message={errors.email?.message} />
+      </Form.Field>
+
+      {/* PASSWORD */}
+      <Form.Field className="col-span-12">
+        <Input error={errors.password?.message}>
+          <Input.Label>New password</Input.Label>
+
+          <Input.Wrap>
+            <Input.Control
+              {...register('password')}
+              type="password"
+              placeholder="Start typing…"
+              autoComplete="new-password"
+            />
+            <Input.Icon name="common-lock" />
+          </Input.Wrap>
+        </Input>
+
+        <Form.Message message={errors.password?.message} />
+      </Form.Field>
+
+      {/* CONFIRM PASSWORD */}
+      <Form.Field className="col-span-12">
+        <Input error={errors.confirmPassword?.message}>
+          <Input.Label>Confirm new password</Input.Label>
+
+          <Input.Wrap>
+            <Input.Control
+              {...register('confirmPassword')}
+              type="password"
+              placeholder="Start typing…"
+              autoComplete="new-password"
+            />
+            <Input.Icon name="common-lock" />
+          </Input.Wrap>
+        </Input>
+
+        <Form.Message message={errors.confirmPassword?.message} />
+      </Form.Field>
+
+      {/* TERMS */}
+      <Form.Field className="col-span-12">
+        <Controller
+          name="terms"
+          control={control}
+          render={({ field }) => (
+            <Checkbox
+              title="I agree with terms & conditions"
+              className="col-span-12"
+              checked={field.value}
+              onCheckedChange={field.onChange}
+            />
+          )}
+        />
+
+        <Form.Message message={errors.terms?.message} />
+      </Form.Field>
+
+      {/* SUBMIT */}
+      <Button as={Link} to={authRoutes.login.navPath} className="col-span-6" variant="primary">
+        Log in
+      </Button>
+
+      <Button className="col-span-6" disabled={isDisabled} variant="success" type="submit">
         Sign up
       </Button>
 
-      <Button
-        to={authRoutes.login.navPath}
-        className="col-span-6 bg-primary-100 text-primary-500"
-        disabled={isLoading || isSubmitting}>
-        Sign in
-      </Button>
-
-      {error && (
-        <div className="col-span-12 text-danger-500">
-          {'message' in error ? error.message : 'Помилка реєстрації'}
-        </div>
-      )}
-    </form>
+      {/* GLOBAL ERROR */}
+      <Form.Error error={error} className="col-span-12" title="Сталася невідома помилка" />
+    </Form>
   )
 }
+
+// import * as React from 'react'
+// import { unstable_PasswordToggleField as PasswordToggleField } from 'radix-ui'
+// import { EyeClosedIcon, EyeOpenIcon } from '@radix-ui/react-icons'
+
+// const PasswordToggleFieldDemo = () => (
+//   <PasswordToggleField.Root>
+//     <div className="bg-black-a2 flex h-[36px] flex-nowrap items-center justify-center gap-2 rounded-[4px] px-[0.75em] pr-[9px] text-white shadow-[0_0_0_1px_var(--black-a6)] focus-within:shadow-[0_0_0_2px_black] hover:shadow-[0_0_0_1px_black]">
+//       <PasswordToggleField.Input className="all-[unset] selection:bg-blackA6 box-border h-[18px] text-[15px] leading-[1] text-inherit selection:text-white" />
+//       <PasswordToggleField.Toggle className="all-[unset] focus-visible:outline-accent-9 box-border flex aspect-[1/1] h-[18px] items-center justify-center rounded-[0.5px] text-[15px] leading-[1] text-inherit focus-visible:outline-[2px] focus-visible:outline-offset-[2px]">
+//         <PasswordToggleField.Icon visible={<EyeOpenIcon />} hidden={<EyeClosedIcon />} />
+//       </PasswordToggleField.Toggle>
+//     </div>
+//   </PasswordToggleField.Root>
+// )
+
+// export default PasswordToggleFieldDemo
