@@ -123,8 +123,8 @@ export function SignupForm() {
       </Form.Field>
 
       {/* SUBMIT */}
-      <Button as={Link} to={authRoutes.login.navPath} className="col-span-6" variant="primary">
-        Log in
+      <Button className="col-span-6" variant="primary" asChild>
+        <Link to={authRoutes.login.navPath}>Log in</Link>
       </Button>
 
       <Button className="col-span-6" disabled={isDisabled} variant="success" type="submit">
@@ -136,20 +136,3 @@ export function SignupForm() {
     </Form>
   )
 }
-
-// import * as React from 'react'
-// import { unstable_PasswordToggleField as PasswordToggleField } from 'radix-ui'
-// import { EyeClosedIcon, EyeOpenIcon } from '@radix-ui/react-icons'
-
-// const PasswordToggleFieldDemo = () => (
-//   <PasswordToggleField.Root>
-//     <div className="bg-black-a2 flex h-[36px] flex-nowrap items-center justify-center gap-2 rounded-[4px] px-[0.75em] pr-[9px] text-white shadow-[0_0_0_1px_var(--black-a6)] focus-within:shadow-[0_0_0_2px_black] hover:shadow-[0_0_0_1px_black]">
-//       <PasswordToggleField.Input className="all-[unset] selection:bg-blackA6 box-border h-[18px] text-[15px] leading-[1] text-inherit selection:text-white" />
-//       <PasswordToggleField.Toggle className="all-[unset] focus-visible:outline-accent-9 box-border flex aspect-[1/1] h-[18px] items-center justify-center rounded-[0.5px] text-[15px] leading-[1] text-inherit focus-visible:outline-[2px] focus-visible:outline-offset-[2px]">
-//         <PasswordToggleField.Icon visible={<EyeOpenIcon />} hidden={<EyeClosedIcon />} />
-//       </PasswordToggleField.Toggle>
-//     </div>
-//   </PasswordToggleField.Root>
-// )
-
-// export default PasswordToggleFieldDemo

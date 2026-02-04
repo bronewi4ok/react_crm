@@ -1,19 +1,21 @@
+export const BUTTON_DEFAULT_ELEMENT = 'button' as const
+
 export const baseStyles =
-  'inline-flex items-center justify-center gap-2 font-bold cursor-pointer disabled:opacity-50 disabled:pointer-events-none'
+  'inline-flex items-center justify-center gap-2 font-bold cursor-pointer disabled:opacity-50 disabled:pointer-events-none overflow-hidden'
 
 export const animationStyles =
   'transition-all duration-200 ease-in-out hover:scale-105 active:scale-95'
 
 export const sizeStyles = {
-  sm: 'py-2 px-3 text-sm/6 rounded-md min-h-10',
-  md: 'py-2 px-3 text-base/6 rounded-lg min-h-12',
-  lg: 'py-3 px-4 text-lg/6 rounded-xl min-h-14',
+  sm: 'py-2 px-3 text-sm rounded-md min-h-10',
+  md: 'py-2 px-3 text-base rounded-lg min-h-12',
+  lg: 'py-3 px-4 text-lg rounded-xl min-h-14',
 } as const
 
 export const sizeSquareStyles = {
-  sm: 'p-2 text-sm/6 rounded-md h-10 min-w-10',
-  md: 'p-3 text-base/6 rounded-lg h-12 min-w-12',
-  lg: 'p-4 text-lg/6 rounded-xl h-14 min-w-14',
+  sm: 'p-2 text-sm rounded-md size-10 over',
+  md: 'p-2 text-base rounded-lg size-12',
+  lg: 'p-2 text-lg rounded-xl size-14',
 }
 
 export const variantStyles = {

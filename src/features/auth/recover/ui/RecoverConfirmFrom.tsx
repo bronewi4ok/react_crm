@@ -80,8 +80,8 @@ export function RecoverConfirmForm() {
         Confirm
       </Button>
 
-      <Button className="col-span-6" variant="primary" as={Link} to={mainRoutes.home.navPath}>
-        Home
+      <Button className="col-span-6" variant="primary" asChild>
+        <Link to={mainRoutes.home.navPath}>Home</Link>
       </Button>
 
       {/* GLOBAL ERROR */}
