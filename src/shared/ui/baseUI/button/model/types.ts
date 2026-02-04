@@ -1,14 +1,14 @@
-import type { ComponentPropsWithoutRef, ElementType } from 'react'
-import type { sizeStyles, variantStyles } from './configs'
+import type { ComponentPropsWithoutRef } from 'react'
+import type { BUTTON_DEFAULT_ELEMENT, sizeStyles, variantStyles } from './configs'
 
-export type ButtonVariantTypes = keyof typeof variantStyles
-export type ButtonSizeTypes = keyof typeof sizeStyles
-
-type ButtonBaseTypes = {
-  variant?: ButtonVariantTypes
-  size?: ButtonSizeTypes
+type ButtonVariantProps = keyof typeof variantStyles
+type ButtonSizeProps = keyof typeof sizeStyles
+type ButtonBaseComponentProps = typeof BUTTON_DEFAULT_ELEMENT
+type ButtonBaseProps = {
+  variant?: ButtonVariantProps
+  size?: ButtonSizeProps
   square?: boolean
+  asChild?: boolean
 }
 
-export type ButtonTypes<E extends ElementType> = { as?: E } & ComponentPropsWithoutRef<E> &
-  ButtonBaseTypes
+export type ButtonProps = ButtonBaseProps & ComponentPropsWithoutRef<ButtonBaseComponentProps>

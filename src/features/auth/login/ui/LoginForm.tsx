@@ -84,8 +84,8 @@ export function LoginForm() {
       </Form.Field>
 
       {/* Link */}
-      <Button as={Link} to={authRoutes.signup.navPath} className="col-span-6" variant="support">
-        Sign Up
+      <Button asChild className="col-span-6" variant="primary">
+        <Link to={authRoutes.signup.navPath}>Sign Up</Link>
       </Button>
 
       {/* SUBMIT */}

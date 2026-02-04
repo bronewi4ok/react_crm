@@ -1,19 +1,21 @@
 import { Button } from '@/shared/ui/baseUI/button'
+import { Loader } from '../loader'
 import type { PaginationTypes } from './types'
 
-export function Pagination({
-  currentPage,
-  totalPages,
-  onPageChange,
-  className,
-  isLoading = false,
-  isFetching = false,
-}: PaginationTypes) {
-  if (isLoading) return null
-  if (totalPages <= 1) return null
-
+export function Pagination(props: PaginationTypes) {
+  const {
+    currentPage,
+    totalPages,
+    onPageChange,
+    className,
+    isLoading = false,
+    isFetching = false,
+  } = props
   const pages = []
   const showPages = 3
+
+  if (isLoading) return <Loader />
+  if (totalPages <= 1) return null
 
   let startPage = Math.max(1, currentPage - Math.floor(showPages / 2))
   const endPage = Math.min(totalPages, startPage + showPages - 1)
