@@ -112,3 +112,18 @@ export const mainRoutes = {
 } as const
 
 // generatePath(mainRoutes.projectDetails.navPath, { id: item.id })
+
+// navPath: (id?: string) => generatePath(frontRoutes.ProductEditPage.path, { id }),
+// Виклик: navigate(frontRoutes.ProductEditPage.navPath())
+
+// 
+// function makeRoute<P extends Record<string, any>>(path: string) {
+//   return {
+//     path,
+//     navPath: (params: P) => generatePath(path, params),
+//   }
+// }
+
+// export const frontRoutes = {
+//   ProductEditPage: makeRoute<{ id?: string }>('/products/edit/:id?'),
+// }

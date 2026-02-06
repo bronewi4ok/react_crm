@@ -1,4 +1,4 @@
-import { cn } from '@/shared/libs'
+import { cn } from '@/shared/lib'
 import { SlotWrap } from '@/shared/ui/baseUI/slot'
 import {
   animationStyles,

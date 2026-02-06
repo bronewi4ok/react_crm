@@ -1,13 +1,18 @@
-import { ProjectsList, useGetProjectsQuery } from '@/entities/project'
+import { ProjectCard, useGetProjectsQuery } from '@/entities/project'
 import { ProjectsSortBar } from '@/features/projectsSortBar'
 import { projectsSortSchema } from '@/features/projectsSortBar/'
 import { useQueryParams } from '@/shared/hooks/useQueryParams'
 import { Button } from '@/shared/ui/baseUI/button'
 import { Loader } from '@/shared/ui/baseUI/loader'
 import { Overlay } from '@/shared/ui/baseUI/overlay'
+
+import { mainRoutes } from '@/shared/config/router'
+import { Icon } from '@/shared/ui/baseUI/icon'
 import { Pagination } from '@/shared/ui/baseUI/pagination'
 import { EmptyFallback } from '@/shared/ui/customUI/emptyFallback'
 import { ErrorFallback } from '@/shared/ui/customUI/errorFallback'
+import { MainList } from '@/shared/ui/customUI/mainList'
+import { generatePath } from 'react-router-dom'
 import noProjectsImg from './no_projects.svg'
 
 export const ProjectsWidget = () => {
@@ -43,7 +48,18 @@ export const ProjectsWidget = () => {
   return (
     <>
       <ProjectsSortBar />
-      <ProjectsList projects={projects} />
+
+      <MainList className="h-full flex-1">
+        {projects.map((project) => (
+          <MainList.Item key={project.id}>
+            <ProjectCard
+              project={project}
+              to={generatePath(mainRoutes.projectDetails.navPath, { id: project.id })}
+            />
+          </MainList.Item>
+        ))}
+      </MainList>
+
       {isFetching && !isLoading && (
         <Overlay full>
           <Loader />
@@ -55,10 +71,16 @@ export const ProjectsWidget = () => {
           currentPage={meta.page}
           totalPages={meta.totalPages}
           onPageChange={handlePageChange}
-          isLoading={isLoading}
-          isFetching={isFetching}
-          showStatus={true}
-        />
+          disabled={isFetching}>
+          <Pagination.Start>
+            <Icon size="md" name="common-arrowLeft" /> Prev
+          </Pagination.Start>
+          <Pagination.Pages />
+          <Pagination.End>
+            Next
+            <Icon size="md" name="common-arrowRight" />
+          </Pagination.End>
+        </Pagination>
       )}
     </>
   )

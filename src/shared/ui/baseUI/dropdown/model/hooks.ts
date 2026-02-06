@@ -11,7 +11,8 @@ export function useDropdownState() {
 
 export function useDropdownActions() {
   const ctx = useContext(DropdownActionsContext)
-  if (!ctx) throw new Error('useDropdownActions must be used inside DropdownActionsContext.Provider')
+  if (!ctx)
+    throw new Error('useDropdownActions must be used inside DropdownActionsContext.Provider')
   return ctx
 }
 

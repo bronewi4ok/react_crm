@@ -1,4 +1,4 @@
-import { cn } from '@/shared/libs'
+import { cn } from '@/shared/lib'
 import { Children } from 'react'
 import type { MainListLoaderTypes } from '../model/types'
 

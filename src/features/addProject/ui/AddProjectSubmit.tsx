@@ -1,4 +1,4 @@
-import { cn } from '@/shared/libs'
+import { cn } from '@/shared/lib'
 import { Button, type ButtonProps } from '@/shared/ui/baseUI/button'
 
 export type AddProjectSubmitTypes = ButtonProps<'button'>

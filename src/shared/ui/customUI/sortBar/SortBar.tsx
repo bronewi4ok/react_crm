@@ -1,4 +1,4 @@
-import { cn } from '@/shared/libs'
+import { cn } from '@/shared/lib'
 import { SORT_ORDER } from '@/shared/model/sort'
 import { Icon } from '@/shared/ui/baseUI/icon'
 import type { SortBarTypes } from './types'

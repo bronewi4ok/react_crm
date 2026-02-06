@@ -1,7 +1,7 @@
 import { store, useAppDispatch, useAppSelector } from '@/app/store'
 import { logout, useRefreshMutation } from '@/features/auth'
 import { applyTheme, getInitialTheme, setTheme } from '@/features/themeToggler'
-import { refreshMutex } from '@/shared/libs'
+import { refreshMutex } from '@/shared/lib'
 import { useEffect } from 'react'
 
 export function AppInit() {
