@@ -1,4 +1,4 @@
-import { cn } from '@/shared/libs'
+import { cn } from '@/shared/lib'
 import type { FormMessageTypes } from '../model/types'
 
 export function FormMessage({ message, className }: FormMessageTypes) {

@@ -1,4 +1,4 @@
-import { cn } from '@/shared/libs'
+import { cn } from '@/shared/lib'
 import { Avatar as RadixAvatar } from 'radix-ui'
 import { sizeStyles } from './configs'
 import type { AvatarProps } from './types'

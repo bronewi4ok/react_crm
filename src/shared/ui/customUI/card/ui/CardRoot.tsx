@@ -1,4 +1,4 @@
-import { cn } from '@/shared/libs'
+import { cn } from '@/shared/lib'
 import type { CardTypes } from '../model/types'
 
 export function CardRoot({ children, className, onClick }: CardTypes) {

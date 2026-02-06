@@ -1,4 +1,4 @@
-import { cn } from '@/shared/libs'
+import { cn } from '@/shared/lib'
 import { useInput } from '../model/hooks'
 import type { InputWrapAsTypes, InputWrapTypes } from '../model/types'
 

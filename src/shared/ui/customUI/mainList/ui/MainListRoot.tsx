@@ -1,4 +1,4 @@
-import { cn } from '@/shared/libs'
+import { cn } from '@/shared/lib'
 import type { MainListRootTypes } from '../model/types'
 
 export const MainListRoot = ({ children, className }: MainListRootTypes) => {

@@ -1,4 +1,4 @@
-import { cn } from '@/shared/libs'
+import { cn } from '@/shared/lib'
 import { Scroll } from '@/shared/ui/baseUI/scroll'
 import * as Dialog from '@radix-ui/react-dialog'
 import type { ModalContentTypes } from '../model/types'
