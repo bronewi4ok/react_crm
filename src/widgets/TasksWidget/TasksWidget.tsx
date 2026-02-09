@@ -9,6 +9,8 @@ import { EmptyFallback } from '@/shared/ui/customUI/emptyFallback'
 import { ErrorFallback } from '@/shared/ui/customUI/errorFallback'
 import { MainList } from '@/shared/ui/customUI/mainList'
 import noTasksImg from './no_tasks.svg'
+import { Overlay } from '@/shared/ui/baseUI/overlay'
+import { Loader } from '@/shared/ui/baseUI/loader'
 
 export function TasksWidget() {
   const [params, setParams] = useQueryParams(tasksSortSchema)
@@ -58,6 +60,7 @@ export function TasksWidget() {
 
       {meta && meta.totalPages > 1 && (
         <Pagination
+          className="relative"
           currentPage={meta.page}
           totalPages={meta.totalPages}
           onPageChange={handlePageChange}
@@ -65,11 +68,19 @@ export function TasksWidget() {
           <Pagination.Start>
             <Icon size="md" name="common-arrowLeft" /> Prev
           </Pagination.Start>
+
           <Pagination.Pages />
+
           <Pagination.End>
             Next
             <Icon size="md" name="common-arrowRight" />
           </Pagination.End>
+
+          {isFetching && !isLoading && (
+            <Overlay className="absolute h-full w-full">
+              <Loader />
+            </Overlay>
+          )}
         </Pagination>
       )}
     </>

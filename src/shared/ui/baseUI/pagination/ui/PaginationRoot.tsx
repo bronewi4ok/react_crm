@@ -11,6 +11,7 @@ export const PaginationRoot = (props: PaginationRootProps) => {
     totalPages,
     showPages = 3,
     onPageChange,
+    buildLink,
     disabled = false,
     ...rest
   } = props
@@ -20,7 +21,7 @@ export const PaginationRoot = (props: PaginationRootProps) => {
 
   return (
     <PaginationStateProvider value={{ ...state }}>
-      <PaginationActionProvider value={{ onPageChange }}>
+      <PaginationActionProvider value={{ onPageChange, buildLink }}>
         <div className={cn('flex items-center justify-center gap-2 p-4', className)} {...rest}>
           {children}
         </div>
