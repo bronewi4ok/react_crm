@@ -4,16 +4,16 @@ import { tasksSortSchema } from '@/features/tasksSortBar/model/validation'
 import { useQueryParams } from '@/shared/hooks/useQueryParams'
 import { Button } from '@/shared/ui/baseUI/button'
 import { Icon } from '@/shared/ui/baseUI/icon'
+import { Loader } from '@/shared/ui/baseUI/loader'
+import { Overlay } from '@/shared/ui/baseUI/overlay'
 import { Pagination } from '@/shared/ui/baseUI/pagination'
 import { EmptyFallback } from '@/shared/ui/customUI/emptyFallback'
 import { ErrorFallback } from '@/shared/ui/customUI/errorFallback'
 import { MainList } from '@/shared/ui/customUI/mainList'
 import noTasksImg from './no_tasks.svg'
-import { Overlay } from '@/shared/ui/baseUI/overlay'
-import { Loader } from '@/shared/ui/baseUI/loader'
 
 export function TasksWidget() {
-  const [params, setParams] = useQueryParams(tasksSortSchema)
+  const [params, , buildSearch] = useQueryParams(tasksSortSchema)
   const { data, isLoading, isError, isFetching, refetch } = useGetTasksQuery(params)
 
   if (isError) {
@@ -39,9 +39,7 @@ export function TasksWidget() {
     )
   }
 
-  const handlePageChange = (page: number) => {
-    setParams({ page })
-  }
+  const buildLink = (page: number) => buildSearch({ page })
 
   return (
     <>
@@ -63,7 +61,7 @@ export function TasksWidget() {
           className="relative"
           currentPage={meta.page}
           totalPages={meta.totalPages}
-          onPageChange={handlePageChange}
+          buildLink={buildLink}
           disabled={isFetching}>
           <Pagination.Start>
             <Icon size="md" name="common-arrowLeft" /> Prev

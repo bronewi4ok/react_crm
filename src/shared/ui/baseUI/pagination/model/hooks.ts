@@ -15,6 +15,5 @@ export const usePagination = () => {
     disabled: state.disabled,
 
     buildLink: action.buildLink,
-    onPageChange: action.onPageChange,
   }
 }

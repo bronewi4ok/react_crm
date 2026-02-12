@@ -3,7 +3,7 @@ import type { HTMLAttributes } from 'react'
 export type PaginationTypes = {
   currentPage: number
   totalPages: number
-  onPageChange: (page: number) => void
+  buildLink: (page: number) => string
   className?: string
   disabled?: boolean
 }
@@ -13,13 +13,7 @@ export type PaginationBaseProps = {
   totalPages: number
   showPages?: number
   disabled?: boolean
-  buildLink?: (page: number) => void
 }
-
-export type PaginationRootProps = {
-  onPageChange?: (page: number) => void
-} & PaginationBaseProps &
-  HTMLAttributes<HTMLElement>
 
 export type PaginationPrevProps = HTMLAttributes<HTMLElement>
 export type PaginationNextProps = HTMLAttributes<HTMLElement>
@@ -31,6 +25,9 @@ export type PaginationStateProps = {
 } & PaginationBaseProps
 
 export type PaginationActionProps = {
-  onPageChange?: (page: number) => void
-  buildLink?: (page: number) => void
+  buildLink: (page: number) => string
 }
+
+export type PaginationRootProps = PaginationActionProps &
+  PaginationBaseProps &
+  HTMLAttributes<HTMLElement>

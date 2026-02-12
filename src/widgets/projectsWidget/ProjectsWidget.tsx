@@ -15,13 +15,12 @@ import { generatePath } from 'react-router-dom'
 import noProjectsImg from './no_projects.svg'
 
 export const ProjectsWidget = () => {
-  const [params, buildSearch] = useQueryParams(projectsSortSchema)
+  const [params, , buildSearch] = useQueryParams(projectsSortSchema)
   const { data, isLoading, isError, isFetching, refetch } = useGetProjectsQuery(params)
   const projects = data?.data ?? []
   const meta = data?.meta
   const hasProjects = projects?.length > 0
 
-  // const handlePageChange = (page: number) => setParams({ page })
   const buildLink = (page: number) => buildSearch({ page })
 
   if (isError)

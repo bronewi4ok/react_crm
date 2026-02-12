@@ -32,9 +32,11 @@ export function useListQuery<TSortKey extends string = string>(defaultPer: numbe
   const sort = (searchParams.get('sort') as TSortKey) || undefined
   const dirParam = searchParams.get('order')
   const order: SortOrderTypes | undefined =
-    dirParam === SORT_ORDER.ASC ? SORT_ORDER.DESC
-    : dirParam === SORT_ORDER.ASC ? SORT_ORDER.ASC
-    : undefined
+    dirParam === SORT_ORDER.ASC
+      ? SORT_ORDER.DESC
+      : dirParam === SORT_ORDER.ASC
+        ? SORT_ORDER.ASC
+        : undefined
 
   const page = Number(searchParams.get('page') || '1')
   const per = Number(searchParams.get('per') || String(defaultPer))

@@ -1,30 +1,23 @@
 import { cn } from '@/shared/lib'
 
+import { Link } from 'react-router-dom'
 import { Button } from '../../button'
 import { usePagination } from '../model/hooks'
 import type { PaginationPrevProps } from '../model/types'
 
 export const PaginationPrev = ({ children, className }: PaginationPrevProps) => {
-  const { currentPage, prevPage, onPageChange, disabled } = usePagination()
-  // const location = useLocation()
+  const { currentPage, prevPage, buildLink, disabled } = usePagination()
+  const isDisabled = currentPage <= 1 || disabled
 
   return (
     <Button
-      className={cn(className)}
+      asChild
+      className={cn(className, isDisabled && 'pointer-events-none opacity-50')}
       variant="support"
-      size="sm"
-      onClick={() => onPageChange(prevPage)}
-      disabled={currentPage <= 1 || disabled}>
-      {children}
+      size="sm">
+      <Link aria-disabled={isDisabled} tabIndex={isDisabled ? -1 : 0} to={buildLink(prevPage)}>
+        {children}
+      </Link>
     </Button>
-
-    // <Button
-    //   asChild
-    //   className={cn(className)}
-    //   variant="support"
-    //   size="sm"
-    //   disabled={currentPage <= 1 || disabled}>
-    //   <Link to={`${location.pathname}${pageLink(prevPage)}`}>{children}</Link>
-    // </Button>
   )
 }
