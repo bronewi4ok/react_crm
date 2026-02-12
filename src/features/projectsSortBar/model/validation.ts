@@ -8,8 +8,8 @@ export const projectsSortSchema = z
   .object({
     sort: z.enum(sortParams).optional(),
     order: z.enum([SORT_ORDER.ASC, SORT_ORDER.DESC]).optional(),
-    page: z.coerce.number().default(1),
-    per: z.coerce.number().default(7),
+    page: z.coerce.number().int().min(1).catch(1),
+    per: z.coerce.number().int().min(1).catch(7),
     q: z.string().optional(),
   })
   .refine((data) => !data.order || !!data.sort, { message: 'order without sort is invalid' })

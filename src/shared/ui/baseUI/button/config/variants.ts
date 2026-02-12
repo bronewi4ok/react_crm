@@ -1,5 +1,3 @@
-export const BUTTON_DEFAULT_ELEMENT = 'button' as const
-
 export const baseStyles =
   'inline-flex items-center justify-center gap-2 font-bold cursor-pointer disabled:opacity-50 disabled:pointer-events-none overflow-hidden'
 
