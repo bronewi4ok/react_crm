@@ -2,36 +2,31 @@ export const authRoutes = {
   login: {
     path: 'login',
     navPath: '/auth/login',
-    component: () => import('@/pages/ui/auth/LoginPage'),
-    meta: { title: 'Login', isInMenu: false, requireAuth: false },
+    meta: { title: 'Login', isInMenu: false },
   },
 
   signup: {
     path: 'signup',
     navPath: '/auth/signup',
-    component: () => import('@/pages/ui/auth/SignUpPage'),
-    meta: { title: 'Sign Up', isInMenu: false, requireAuth: false },
+    meta: { title: 'Sign Up', isInMenu: false },
   },
 
   recover: {
     path: 'recover',
     navPath: '/auth/recover',
-    component: () => import('@/pages/ui/auth/RecoverPage'),
-    meta: { title: 'Recover request', isInMenu: false, requireAuth: false },
+    meta: { title: 'Recover request', isInMenu: false },
   },
 
   recoverSent: {
     path: 'recover/sent',
     navPath: '/auth/recover/sent',
-    component: () => import('@/pages/ui/auth/RecoverSentPage'),
-    meta: { title: 'Recover request', isInMenu: false, requireAuth: false },
+    meta: { title: 'Recover request', isInMenu: false },
   },
 
   recoverConfirm: {
     path: 'recover/confirm',
     navPath: '/auth/recover/confirm',
-    component: () => import('@/pages/ui/auth/RecoverConfirmPage'),
-    meta: { title: 'Recover request', isInMenu: false, requireAuth: false },
+    meta: { title: 'Recover request', isInMenu: false },
   },
 
   // notFound: { path: '*', loader: () => redirect('/auth/login') },

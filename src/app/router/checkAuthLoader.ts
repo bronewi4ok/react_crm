@@ -1,16 +1,15 @@
+import type { RouteAccessTypes } from '@/app/router/config/types'
 import { store } from '@/app/store'
 import { authApi } from '@/features/auth/'
 import { authRoutes, mainRoutes } from '@/shared/config/router'
-import type { RouteTypes } from '@/shared/types'
 import type { Mutex } from 'async-mutex'
 import { redirect } from 'react-router-dom'
 
 export const checkAuthLoader =
   ({ refreshMutex }: { refreshMutex: Mutex }) =>
-  async (route: RouteTypes) => {
-    const meta = route?.meta
-    const requireAuth = meta?.requireAuth
-    const allowedRoles = meta?.roles || []
+  async (access: RouteAccessTypes) => {
+    const requireAuth = access.requireAuth
+    const allowedRoles = access.roles || []
 
     let user = store.getState().auth.user
     const loaderData = { user, isAuthenticated: !!user }
