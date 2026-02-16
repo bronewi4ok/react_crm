@@ -1,7 +1,7 @@
 import { ProjectCard, useGetProjectsQuery } from '@/entities/project'
 import { ProjectsSortBar } from '@/features/projectsSortBar'
 import { projectsSortSchema } from '@/features/projectsSortBar/'
-import { mainRoutes } from '@/shared/config/router'
+import { frontRoutes } from '@/shared/config/routes'
 import { useQueryParams } from '@/shared/hooks/useQueryParams'
 import { Button } from '@/shared/ui/baseUI/button'
 import { Icon } from '@/shared/ui/baseUI/icon'
@@ -55,7 +55,7 @@ export const ProjectsWidget = () => {
           <MainList.Item key={project.id}>
             <ProjectCard
               project={project}
-              to={generatePath(mainRoutes.projectDetails.navPath, { id: project.id })}
+              to={generatePath(frontRoutes.main.ProjectDetailsPage.navPath, { id: project.id })}
             />
           </MainList.Item>
         ))}

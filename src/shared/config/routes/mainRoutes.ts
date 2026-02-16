@@ -1,10 +1,9 @@
 import { ROLES } from '../constants'
 
 export const mainRoutes = {
-  home: {
+  HomePage: {
     path: '',
     navPath: '/',
-    component: () => import('@/pages/ui/HomePage'),
     meta: {
       title: 'Dashboard',
       isInMenu: true,
@@ -13,10 +12,9 @@ export const mainRoutes = {
     },
   },
 
-  projects: {
+  ProjectsPage: {
     path: 'projects',
     navPath: '/projects',
-    component: () => import('@/pages/ui/ProjectsPage'),
     meta: {
       title: 'Projects',
       isInMenu: true,
@@ -26,10 +24,9 @@ export const mainRoutes = {
     },
   },
 
-  projectDetails: {
+  ProjectDetailsPage: {
     path: 'projects/:id',
     navPath: '/projects/:id',
-    component: () => import('@/pages/ui/ProjectDetailsPage'),
     meta: {
       title: 'Project Details',
       isInMenu: false,
@@ -39,10 +36,9 @@ export const mainRoutes = {
     },
   },
 
-  tasks: {
+  TasksPage: {
     path: 'tasks',
     navPath: '/tasks',
-    component: () => import('@/pages/ui/TasksPage'),
     meta: {
       title: 'Tasks',
       isInMenu: true,
@@ -52,10 +48,9 @@ export const mainRoutes = {
     },
   },
 
-  taskDetails: {
+  TasksDetailsPage: {
     path: 'tasks/:id',
     navPath: '/tasks/:id',
-    component: () => import('@/pages/ui/TasksDetailsPage'),
     meta: {
       title: 'Tasks Details',
       isInMenu: false,
@@ -64,10 +59,9 @@ export const mainRoutes = {
       roles: [ROLES.ADMIN, ROLES.MANAGER, ROLES.USER],
     },
   },
-  contacts: {
+  ContactsPage: {
     path: 'contacts',
     navPath: '/contacts',
-    component: () => import('@/pages/ui/ContactsPage'),
     meta: {
       title: 'Contacts',
       isInMenu: true,
@@ -77,10 +71,9 @@ export const mainRoutes = {
     },
   },
 
-  products: {
+  ProductsPage: {
     path: 'products',
     navPath: '/products',
-    component: () => import('@/pages/ui/ProductsPage'),
     meta: {
       title: 'Products',
       isInMenu: true,
@@ -90,10 +83,9 @@ export const mainRoutes = {
     },
   },
 
-  invoices: {
+  InvoicesPage: {
     path: 'invoices',
     navPath: '/invoices',
-    component: () => import('@/pages/ui/InvoicesPage'),
     meta: {
       title: 'Invoices',
       isInMenu: true,
@@ -103,27 +95,12 @@ export const mainRoutes = {
     },
   },
 
-  notFound: {
+  Page404: {
     path: '*',
     navPath: '*',
-    component: () => import('@/pages/ui/Page404'),
     meta: { title: 'Not found', isInMenu: false, requireAuth: false },
   },
 } as const
 
-// generatePath(mainRoutes.projectDetails.navPath, { id: item.id })
+// generatePath(mainRoutes.ProjectDetailsPage.navPath, { id: item.id })
 
-// navPath: (id?: string) => generatePath(frontRoutes.ProductEditPage.path, { id }),
-// Виклик: navigate(frontRoutes.ProductEditPage.navPath())
-
-// 
-// function makeRoute<P extends Record<string, any>>(path: string) {
-//   return {
-//     path,
-//     navPath: (params: P) => generatePath(path, params),
-//   }
-// }
-
-// export const frontRoutes = {
-//   ProductEditPage: makeRoute<{ id?: string }>('/products/edit/:id?'),
-// }

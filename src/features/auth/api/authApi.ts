@@ -1,5 +1,5 @@
 import { baseApi } from '@/shared/api/baseApi'
-import { apiRoutes } from '@/shared/config/router'
+import { apiRoutes } from '@/shared/config/routes'
 import type {
   AuthResponseTypes,
   LoginCredentialsTypes,

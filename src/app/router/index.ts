@@ -1,1 +1,2 @@
-export { router } from './router'
+export { router } from './model/router'
+export { AppRouter } from './ui/AppRouter'

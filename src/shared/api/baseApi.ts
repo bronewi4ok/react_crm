@@ -1,5 +1,5 @@
 import { logout, setCredentials } from '@/features/auth/api/authSlice'
-import { apiRoutes } from '@/shared/config/router'
+import { apiRoutes } from '@/shared/config/routes'
 import { refreshMutex } from '@/shared/lib/refreshMutex'
 import type { AccessTokenTypes, AuthResponseTypes, RootState } from '@/shared/types'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'

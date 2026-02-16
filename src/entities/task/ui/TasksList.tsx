@@ -1,4 +1,4 @@
-import { mainRoutes } from '@/shared/config/router'
+import { frontRoutes } from '@/shared/config/routes'
 import { MainList } from '@/shared/ui/customUI/mainList'
 import { generatePath, useNavigate } from 'react-router-dom'
 import type { TaskTypes } from '../model/types'
@@ -17,7 +17,9 @@ export function TasksList({ tasks }: { tasks: TaskTypes[] }) {
         ) : (
           <TaskCard
             task={item}
-            onClick={() => navigate(generatePath(mainRoutes.taskDetails.navPath, { id: item.id }))}
+            onClick={() =>
+              navigate(generatePath(frontRoutes.main.TasksDetailsPage.navPath, { id: item.id }))
+            }
           />
         )
       }
