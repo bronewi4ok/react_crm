@@ -1,6 +1,6 @@
-import { router } from '@/app/router'
 import { Suspense } from 'react'
 import { RouterProvider } from 'react-router-dom'
+import { router } from '../model/router'
 import { RouterLoader } from './RouterLoader'
 
 export const AppRouter = () => {

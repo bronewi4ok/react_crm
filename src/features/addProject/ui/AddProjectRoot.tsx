@@ -1,4 +1,4 @@
-import { mainRoutes } from '@/shared/config/router'
+import { frontRoutes } from '@/shared/config/routes'
 import { Input } from '@/shared/ui/formUI'
 import { MyDatePicker } from '@/shared/ui/formUI/dataPicker'
 import { Form } from '@/shared/ui/formUI/form'
@@ -25,7 +25,7 @@ export function AddProjectRoot({ children, className }: AddProjectRootTypes) {
 
   const onSubmit = async (data: addProjectTypes) => {
     const result = await addProject(data)
-    if (result.id) navigate(generatePath(mainRoutes.projectDetails.navPath, { id: result.id }))
+    if (result.id) navigate(generatePath(frontRoutes.main.ProjectDetailsPage.navPath, { id: result.id }))
   }
 
   const isDisabled = isLoading || isSubmitting

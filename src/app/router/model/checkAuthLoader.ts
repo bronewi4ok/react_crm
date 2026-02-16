@@ -1,18 +1,30 @@
-import type { RouteAccessTypes } from '@/app/router/config/types'
 import { store } from '@/app/store'
 import { authApi } from '@/features/auth/'
-import { authRoutes, mainRoutes } from '@/shared/config/router'
+import { frontRoutes } from '@/shared/config/routes'
+import type { RouteTypes } from '@/shared/types'
 import type { Mutex } from 'async-mutex'
-import { redirect } from 'react-router-dom'
+import { redirect, type LoaderFunctionArgs } from 'react-router-dom'
+
+type AuthUserTypes = ReturnType<typeof store.getState>['auth']['user']
+
+export type CheckAuthLoaderDataTypes = {
+  user: AuthUserTypes
+  isAuthenticated: boolean
+}
+
+export type CheckAuthRouteLoaderTypes = (
+  args: LoaderFunctionArgs,
+) => Promise<CheckAuthLoaderDataTypes>
 
 export const checkAuthLoader =
   ({ refreshMutex }: { refreshMutex: Mutex }) =>
-  async (access: RouteAccessTypes) => {
-    const requireAuth = access.requireAuth
-    const allowedRoles = access.roles || []
+  (route: RouteTypes): CheckAuthRouteLoaderTypes =>
+  async () => {
+    const requireAuth = route.meta.requireAuth
+    const allowedRoles = route.meta.roles || []
 
     let user = store.getState().auth.user
-    const loaderData = { user, isAuthenticated: !!user }
+    const loaderData: CheckAuthLoaderDataTypes = { user, isAuthenticated: !!user }
 
     if (requireAuth) {
       if (refreshMutex.isLocked()) {
@@ -27,7 +39,7 @@ export const checkAuthLoader =
         try {
           await store.dispatch(authApi.endpoints.refresh.initiate())
           user = store.getState().auth.user
-          if (!user) throw redirect(authRoutes.login.navPath)
+          if (!user) throw redirect(frontRoutes.auth.LoginPage.navPath)
           loaderData.user = user
           loaderData.isAuthenticated = !!user
         } finally {
@@ -36,7 +48,7 @@ export const checkAuthLoader =
       }
 
       if (allowedRoles?.length > 0 && (!user?.role || !allowedRoles.includes(user.role))) {
-        throw redirect(mainRoutes.notFound.navPath)
+        throw redirect(frontRoutes.main.Page404.navPath)
       }
     }
 

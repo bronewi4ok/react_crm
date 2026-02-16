@@ -1,103 +1,106 @@
+import { ROLES } from '../constants'
+
 export const mainRoutes = {
-  home: {
+  HomePage: {
     path: '',
     navPath: '/',
     meta: {
       title: 'Dashboard',
       isInMenu: true,
+      requireAuth: true,
       icon: 'common-dashboard',
     },
   },
 
-  projects: {
+  ProjectsPage: {
     path: 'projects',
     navPath: '/projects',
     meta: {
       title: 'Projects',
       isInMenu: true,
+      requireAuth: true,
       icon: 'common-projects',
+      roles: [ROLES.ADMIN, ROLES.MANAGER, ROLES.USER],
     },
   },
 
-  projectDetails: {
+  ProjectDetailsPage: {
     path: 'projects/:id',
     navPath: '/projects/:id',
     meta: {
       title: 'Project Details',
       isInMenu: false,
+      requireAuth: true,
       icon: 'common-projects',
+      roles: [ROLES.ADMIN, ROLES.MANAGER, ROLES.USER],
     },
   },
 
-  tasks: {
+  TasksPage: {
     path: 'tasks',
     navPath: '/tasks',
     meta: {
       title: 'Tasks',
       isInMenu: true,
+      requireAuth: true,
       icon: 'common-tasks',
+      roles: [ROLES.ADMIN, ROLES.MANAGER, ROLES.USER],
     },
   },
 
-  taskDetails: {
+  TasksDetailsPage: {
     path: 'tasks/:id',
     navPath: '/tasks/:id',
     meta: {
       title: 'Tasks Details',
       isInMenu: false,
+      requireAuth: true,
       icon: 'common-tasks',
+      roles: [ROLES.ADMIN, ROLES.MANAGER, ROLES.USER],
     },
   },
-  contacts: {
+  ContactsPage: {
     path: 'contacts',
     navPath: '/contacts',
     meta: {
       title: 'Contacts',
       isInMenu: true,
+      requireAuth: true,
       icon: 'common-contacts',
+      roles: [ROLES.ADMIN, ROLES.MANAGER, ROLES.USER],
     },
   },
 
-  products: {
+  ProductsPage: {
     path: 'products',
     navPath: '/products',
     meta: {
       title: 'Products',
       isInMenu: true,
+      requireAuth: true,
       icon: 'common-products',
+      roles: [ROLES.ADMIN, ROLES.MANAGER, ROLES.USER],
     },
   },
 
-  invoices: {
+  InvoicesPage: {
     path: 'invoices',
     navPath: '/invoices',
     meta: {
       title: 'Invoices',
       isInMenu: true,
+      requireAuth: true,
       icon: 'common-invoices',
+      roles: [ROLES.ADMIN, ROLES.MANAGER, ROLES.USER],
     },
   },
 
-  notFound: {
+  Page404: {
     path: '*',
     navPath: '*',
-    meta: { title: 'Not found', isInMenu: false },
+    meta: { title: 'Not found', isInMenu: false, requireAuth: false },
   },
 } as const
 
-// generatePath(mainRoutes.projectDetails.navPath, { id: item.id })
+// generatePath(mainRoutes.ProjectDetailsPage.navPath, { id: item.id })
 
-// navPath: (id?: string) => generatePath(frontRoutes.ProductEditPage.path, { id }),
-// Виклик: navigate(frontRoutes.ProductEditPage.navPath())
-
-// 
-// function makeRoute<P extends Record<string, any>>(path: string) {
-//   return {
-//     path,
-//     navPath: (params: P) => generatePath(path, params),
-//   }
-// }
-
-// export const frontRoutes = {
-//   ProductEditPage: makeRoute<{ id?: string }>('/products/edit/:id?'),
-// }

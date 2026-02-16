@@ -50,7 +50,7 @@ export function TasksWidget() {
           <MainList.Item key={task.id}>
             <TaskCard
               task={task}
-              // to={generatePath(mainRoutes.taskDetails.navPath, { id: tasks.id })}
+              // to={generatePath(frontRoutes.main.TasksDetailsPage.navPath, { id: tasks.id })}
             />
           </MainList.Item>
         ))}
@@ -84,3 +84,4 @@ export function TasksWidget() {
     </>
   )
 }
+

@@ -1,4 +1,4 @@
-import { authRoutes, mainRoutes } from '@/shared/config/router'
+import { frontRoutes } from '@/shared/config/routes'
 import { Button } from '@/shared/ui/baseUI/button'
 import { Checkbox, Input } from '@/shared/ui/formUI'
 import { Form } from '@/shared/ui/formUI/form'
@@ -21,7 +21,7 @@ export function LoginForm() {
 
   const onSubmit = async (data: LoginFormTypes) => {
     const result = await login(data)
-    if (result?.user) navigate(mainRoutes.home.navPath)
+    if (result?.user) navigate(frontRoutes.main.HomePage.navPath)
   }
   const isDisabled = isLoading || isSubmitting
 
@@ -85,7 +85,7 @@ export function LoginForm() {
 
       {/* Link */}
       <Button asChild className="col-span-6" variant="primary">
-        <Link to={authRoutes.signup.navPath}>Sign Up</Link>
+        <Link to={frontRoutes.auth.SignUpPage.navPath}>Sign Up</Link>
       </Button>
 
       {/* SUBMIT */}

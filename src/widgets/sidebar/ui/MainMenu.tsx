@@ -1,4 +1,4 @@
-import { menuRoutes } from '@/shared/config/router/'
+import { menuRoutes } from '../config/routes'
 import { MenuLink } from './MenuLink'
 import { SidebarLogo } from './SidebarLogo'
 
@@ -10,9 +10,7 @@ export function MainMenu() {
         <ul>
           {menuRoutes.map((route) => {
             return (
-              <li
-                key={route.path}
-                className="flex items-center gap-4 px-5 py-2">
+              <li key={route.path} className="flex items-center gap-4 px-5 py-2">
                 <MenuLink
                   path={route.path}
                   icon={route.meta.icon}

@@ -1,5 +1,5 @@
 import { useGetProjectByIdQuery } from '@/entities/project'
-import { mainRoutes } from '@/shared/config/router'
+import { frontRoutes } from '@/shared/config/routes'
 import { useFormatDate } from '@/shared/hooks/useFormatDate'
 import { Button } from '@/shared/ui/baseUI/button'
 import { Icon } from '@/shared/ui/baseUI/icon'
@@ -12,12 +12,8 @@ function ProjectDetailsPage() {
 
   const dueDate = useFormatDate(project?.endDate, { format: 'medium' })
   const handleBack = () => {
-    if (window.history.length > 1) {
-      navigate(-1)
-      return
-    }
-
-    navigate(mainRoutes.projects.navPath, { replace: true })
+    if (window.history?.state.idx > 0) return navigate(-1)
+    navigate(frontRoutes.main.ProjectsPage.navPath, { replace: true })
   }
 
   if (!id) return <div className="text-danger-700 p-4 text-sm">No project id</div>

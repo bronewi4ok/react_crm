@@ -5,6 +5,8 @@ export type RoleTypes = (typeof ROLES)[keyof typeof ROLES]
 export type RouteMetaTypes = {
   title: string
   isInMenu: boolean
+  requireAuth: boolean
+  roles?: ReadonlyArray<RoleTypes>
   icon?: string
 }
 

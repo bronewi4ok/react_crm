@@ -1,7 +1,7 @@
 import { useAppDispatch } from '@/app/store'
 import { useGoogleLoginMutation } from '@/features/auth/api/authApi'
 import { setCredentials } from '@/features/auth/api/authSlice'
-import { mainRoutes } from '@/shared/config/router'
+import { frontRoutes } from '@/shared/config/routes'
 import { useNavigate } from 'react-router-dom'
 
 export const useHandleGoogleAuth = () => {
@@ -18,7 +18,7 @@ export const useHandleGoogleAuth = () => {
 
       // If login successful, navigate to home (immediate redirect after social login)
       if (res?.user) {
-        navigate(mainRoutes.home.navPath)
+        navigate(frontRoutes.main.HomePage.navPath)
       }
     } catch (error: unknown) {
       const err = error as { status?: unknown; error?: unknown }
