@@ -1,25 +1,20 @@
-import { getPagesList, getRoutePath, type frontRouteTypes } from '@/app/router'
+import { menuRoutes } from '@/shared/config/router/'
 import { MenuLink } from './MenuLink'
 import { SidebarLogo } from './SidebarLogo'
 
-function MainMenu() {
-  const allowedRoutes = getPagesList().filter(
-    (route: frontRouteTypes) => route.meta.isInMenu,
-  )
-
+export function MainMenu() {
   return (
     <div>
       <SidebarLogo />
       <nav className="bg-light">
         <ul>
-          {allowedRoutes.map((route: frontRouteTypes) => {
-            const path = getRoutePath(route)
+          {menuRoutes.map((route) => {
             return (
               <li
-                key={path}
+                key={route.path}
                 className="flex items-center gap-4 px-5 py-2">
                 <MenuLink
-                  path={path}
+                  path={route.path}
                   icon={route.meta.icon}
                   title={route.meta.title}
                   className="w-full"
@@ -32,5 +27,3 @@ function MainMenu() {
     </div>
   )
 }
-
-export default MainMenu

@@ -1,9 +1,8 @@
 {
   "singleQuote": true,
   "jsxSingleQuote": false,
-  "printWidth": 80,
-  "proseWrap": "preserve",
-  "objectWrap": "collapse",
+  "printWidth": 100,
+  "proseWrap": "always",
   "singleAttributePerLine": false,
   "semi": true,
   "tabWidth": 2,
@@ -14,18 +13,11 @@
   "arrowParens": "always",
   "htmlWhitespaceSensitivity": "css",
   "endOfLine": "lf",
-  "experimentalTernaries": true,
   "quoteProps": "consistent",
-
+  "plugins": ["prettier-plugin-tailwindcss"],
+  "tailwindFunctions": ["clsx", "cva"],
   "overrides": [
-    {
-      "files": ["*.tsx", "*.ts"],
-      "options": { "semi": false, "singleAttributePerLine": true }
-    },
-
-    {
-      "files": ["*.html"],
-      "options": { "printWidth": 150, "singleAttributePerLine": false }
-    }
+    { "files": ["*.tsx", "*.ts"], "options": { "semi": false, "singleAttributePerLine": false } },
+    { "files": ["*.html"], "options": { "printWidth": 150, "singleAttributePerLine": false } }
   ]
 }
