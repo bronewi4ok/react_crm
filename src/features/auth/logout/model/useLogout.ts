@@ -1,4 +1,4 @@
-import { useAppDispatch } from '@/app/store'
+import { useAppDispatch } from '@/shared/hooks/store'
 import { useLogoutMutation } from '../../api/authApi'
 import { logout } from '../../api/authSlice'
 

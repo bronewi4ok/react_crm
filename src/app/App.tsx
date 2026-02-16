@@ -1,11 +1,9 @@
-import { AppBootstrap } from './init/AppBootstrap'
-import { AppProvider } from './provider/AppProvider'
+import { AppProvider } from './provider'
 import { AppRouter } from './router'
 
 export const App = () => {
   return (
     <AppProvider>
-      <AppBootstrap />
       <AppRouter />
     </AppProvider>
   )
