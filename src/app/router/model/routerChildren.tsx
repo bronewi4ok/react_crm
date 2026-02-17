@@ -14,8 +14,6 @@ const getImportByKey = (pageKey: string) => {
   return entry[1]
 }
 
-// ==
-
 // Видаляємо аргумент requireAuth, бо він більше не потрібен для вибору лоадера
 function makeRoute(route: RouteTypes, pageKey: string): RouteObject {
   const importPage = getImportByKey(pageKey)

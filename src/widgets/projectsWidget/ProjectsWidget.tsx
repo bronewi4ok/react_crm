@@ -11,16 +11,17 @@ import { Pagination } from '@/shared/ui/baseUI/pagination'
 import { EmptyFallback } from '@/shared/ui/customUI/emptyFallback'
 import { ErrorFallback } from '@/shared/ui/customUI/errorFallback'
 import { MainList } from '@/shared/ui/customUI/mainList'
+import * as Sentry from '@sentry/react'
+import { ErrorBoundary } from 'react-error-boundary'
 import { generatePath } from 'react-router-dom'
 import noProjectsImg from './no_projects.svg'
 
-export const ProjectsWidget = () => {
+const ProjectsWidgetContent = () => {
   const [params, , buildSearch] = useQueryParams(projectsSortSchema)
   const { data, isLoading, isError, isFetching, refetch } = useGetProjectsQuery(params)
   const projects = data?.data ?? []
   const meta = data?.meta
   const hasProjects = projects?.length > 0
-
   const buildLink = (page: number) => buildSearch({ page })
 
   if (isError)
@@ -88,5 +89,27 @@ export const ProjectsWidget = () => {
         </Pagination>
       )}
     </>
+  )
+}
+
+export const ProjectsWidget = () => {
+  return (
+    <ErrorBoundary
+      FallbackComponent={({ error, resetErrorBoundary }) => (
+        <ErrorFallback
+          error={{ message: error?.message }}
+          onRetry={resetErrorBoundary}
+          title="Projects widget crashed"
+        />
+      )}
+      onError={(error) => {
+        Sentry.withScope((scope) => {
+          scope.setTag('boundary', 'widget')
+          scope.setTag('widget', 'ProjectsWidget')
+          Sentry.captureException(error)
+        })
+      }}>
+      <ProjectsWidgetContent />
+    </ErrorBoundary>
   )
 }
