@@ -3,7 +3,7 @@ import { refreshMutex } from '@/shared/lib/refreshMutex'
 import type { RouteTypes } from '@/shared/types'
 import type { ComponentType } from 'react'
 import type { RouteObject } from 'react-router-dom'
-import { checkAuthLoader } from './checkAuthLoader'
+import { checkAuthLoader } from '../model/checkAuthLoader'
 
 const authLoader = checkAuthLoader({ refreshMutex })
 const pages = import.meta.glob<ComponentType>('/src/pages/**/*.tsx', { import: 'default' })
@@ -14,21 +14,26 @@ const getImportByKey = (pageKey: string) => {
   return entry[1]
 }
 
-function makeRoute(route: RouteTypes, pageKey: string, requireAuth = false): RouteObject {
+// ==
+
+// Видаляємо аргумент requireAuth, бо він більше не потрібен для вибору лоадера
+function makeRoute(route: RouteTypes, pageKey: string): RouteObject {
   const importPage = getImportByKey(pageKey)
 
   return {
     path: route.path,
     handle: { meta: route.meta },
-    loader: requireAuth ? authLoader(route) : undefined,
+    // Лоадер тепер призначається ЗАВЖДИ
+    loader: authLoader(route),
     lazy: async () => ({ Component: await importPage() }),
   }
 }
 
+// Оновлюємо мапінг (прибираємо передачу третього аргументу)
 export const mainRouterChildren: RouteObject[] = Object.entries(frontRoutes.main).map(
-  ([key, route]) => makeRoute(route, key, route.meta.requireAuth),
+  ([key, route]) => makeRoute(route, key),
 )
 
 export const authRouterChildren: RouteObject[] = Object.entries(frontRoutes.auth).map(
-  ([key, route]) => makeRoute(route, key, route.meta.requireAuth),
+  ([key, route]) => makeRoute(route, key),
 )

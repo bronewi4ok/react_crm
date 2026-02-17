@@ -1,5 +1,5 @@
 import { store } from '@/app/store'
-import { authApi } from '@/features/auth/'
+import { authApi } from '@/features/auth'
 import { frontRoutes } from '@/shared/config/routes'
 import type { RouteTypes } from '@/shared/types'
 import type { Mutex } from 'async-mutex'
@@ -12,45 +12,65 @@ export type CheckAuthLoaderDataTypes = {
   isAuthenticated: boolean
 }
 
-export type CheckAuthRouteLoaderTypes = (
-  args: LoaderFunctionArgs,
-) => Promise<CheckAuthLoaderDataTypes>
-
+/**
+ * Універсальний лоадер для перевірки авторизації та ролей.
+ * Замінює потребу в AuthInit, оскільки виконується ПЕРЕД рендером будь-якого роута.
+ */
 export const checkAuthLoader =
   ({ refreshMutex }: { refreshMutex: Mutex }) =>
-  (route: RouteTypes): CheckAuthRouteLoaderTypes =>
-  async () => {
-    const requireAuth = route.meta.requireAuth
-    const allowedRoles = route.meta.roles || []
+  (route: RouteTypes) =>
+  async ({ request }: LoaderFunctionArgs): Promise<CheckAuthLoaderDataTypes> => {
+    const { requireAuth, trySilentAuth = false, roles: allowedRoles = [] } = route.meta
+    const url = new URL(request.url)
+    const isAuthPage = url.pathname.startsWith('/auth')
+    const shouldTryRefresh = requireAuth || isAuthPage || trySilentAuth
 
+    // 1. ШВИДКА ПЕРЕВІРКА: Якщо юзер вже в Store і він на /auth — редирект на головну
     let user = store.getState().auth.user
-    const loaderData: CheckAuthLoaderDataTypes = { user, isAuthenticated: !!user }
+    if (user && isAuthPage) {
+      throw redirect(frontRoutes.main.HomePage.navPath)
+    }
 
-    if (requireAuth) {
+    // 2. Спроба Refresh (якщо юзера немає в Store)
+    if (!user && shouldTryRefresh) {
       if (refreshMutex.isLocked()) {
         await refreshMutex.waitForUnlock()
         user = store.getState().auth.user
-        loaderData.user = user
-        loaderData.isAuthenticated = !!user
+
+        if (user && isAuthPage) {
+          throw redirect(frontRoutes.main.HomePage.navPath)
+        }
       }
 
       if (!user) {
         const release = await refreshMutex.acquire()
         try {
-          await store.dispatch(authApi.endpoints.refresh.initiate())
+          await store.dispatch(authApi.endpoints.refresh.initiate()).unwrap()
           user = store.getState().auth.user
-          if (!user) throw redirect(frontRoutes.auth.LoginPage.navPath)
-          loaderData.user = user
-          loaderData.isAuthenticated = !!user
+
+          // ПІСЛЯ УСПІШНОГО РЕФРЕШУ: Якщо ми на сторінці логіну — редирект на головну
+          if (user && isAuthPage) {
+            throw redirect(frontRoutes.main.HomePage.navPath)
+          }
+        } catch (error) {
+          if (error instanceof Response) {
+            throw error
+          }
+
+          if (requireAuth) throw redirect(frontRoutes.auth.LoginPage.navPath)
         } finally {
           release()
         }
       }
+    }
 
-      if (allowedRoles?.length > 0 && (!user?.role || !allowedRoles.includes(user.role))) {
+    // 3. Перевірка доступу (захищені роути)
+    if (requireAuth) {
+      if (!user) throw redirect(frontRoutes.auth.LoginPage.navPath)
+      if (allowedRoles.length > 0 && (!user.role || !allowedRoles.includes(user.role))) {
         throw redirect(frontRoutes.main.Page404.navPath)
       }
     }
 
-    return loaderData
+    return { user, isAuthenticated: !!user }
   }

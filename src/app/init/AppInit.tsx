@@ -1,11 +1,11 @@
-import { AuthInit } from './auth/AuthInit'
+import { Outlet } from 'react-router-dom'
 import { ThemeInit } from './theme/ThemeInit'
 
-export const AppBootstrap = () => {
+export const AppInit = () => {
   return (
     <>
       <ThemeInit />
-      <AuthInit />
+      <Outlet />
     </>
   )
 }
