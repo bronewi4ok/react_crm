@@ -33,7 +33,7 @@ export const ProjectsWidget = () => {
           Sentry.captureException(error)
         })
       }}>
-      </
+      <ProjectsWidgetContent
         projects={projects}
         meta={meta}
         isLoading={isLoading}
