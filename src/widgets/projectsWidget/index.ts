@@ -1,1 +1,2 @@
-export { ProjectsWidget } from './ProjectsWidget'
+export * from './model/types'
+export { ProjectsWidget } from './ui/ProjectsWidget'

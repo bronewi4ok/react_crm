@@ -12,10 +12,6 @@ export type CheckAuthLoaderDataTypes = {
   isAuthenticated: boolean
 }
 
-/**
- * Універсальний лоадер для перевірки авторизації та ролей.
- * Замінює потребу в AuthInit, оскільки виконується ПЕРЕД рендером будь-якого роута.
- */
 export const checkAuthLoader =
   ({ refreshMutex }: { refreshMutex: Mutex }) =>
   (route: RouteTypes) =>

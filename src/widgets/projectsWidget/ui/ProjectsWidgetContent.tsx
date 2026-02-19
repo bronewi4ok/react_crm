@@ -1,8 +1,6 @@
-import { ProjectCard, useGetProjectsQuery } from '@/entities/project'
+import { ProjectCard } from '@/entities/project'
 import { ProjectsSortBar } from '@/features/projectsSortBar'
-import { projectsSortSchema } from '@/features/projectsSortBar/'
 import { frontRoutes } from '@/shared/config/routes'
-import { useQueryParams } from '@/shared/hooks/useQueryParams'
 import { Button } from '@/shared/ui/baseUI/button'
 import { Icon } from '@/shared/ui/baseUI/icon'
 import { Loader } from '@/shared/ui/baseUI/loader'
@@ -12,26 +10,31 @@ import { EmptyFallback } from '@/shared/ui/customUI/emptyFallback'
 import { ErrorFallback } from '@/shared/ui/customUI/errorFallback'
 import { MainList } from '@/shared/ui/customUI/mainList'
 import { generatePath } from 'react-router-dom'
+import type { ProjectsWidgetContentProps } from '../model/types'
 import noProjectsImg from './no_projects.svg'
 
-export const ProjectsWidget = () => {
-  const [params, , buildSearch] = useQueryParams(projectsSortSchema)
-  const { data, isLoading, isError, isFetching, refetch } = useGetProjectsQuery(params)
-  const projects = data?.data ?? []
-  const meta = data?.meta
-  const hasProjects = projects?.length > 0
+export const ProjectsWidgetContent = ({
+  projects,
+  meta,
+  isLoading,
+  isError,
+  isFetching,
+  refetch,
+  buildLink,
+}: ProjectsWidgetContentProps) => {
+  const hasProjects = projects.length > 0
 
-  const buildLink = (page: number) => buildSearch({ page })
-
-  if (isError)
+  if (isError) {
     return <ErrorFallback error={{ message: 'Failed to load projects' }} onRetry={refetch} />
+  }
 
-  if (isLoading)
+  if (isLoading) {
     return (
       <Overlay full className="bg-amber-500">
         <Loader size="2xl" />
       </Overlay>
     )
+  }
 
   if (!hasProjects && !isFetching) {
     return (
@@ -46,22 +49,24 @@ export const ProjectsWidget = () => {
 
   return (
     <>
-      {/* PROJECT SORTBAR */}
       <ProjectsSortBar />
 
-      {/* PROJECT LIST  */}
       <MainList className="h-full flex-1">
-        {projects.map((project) => (
-          <MainList.Item key={project.id}>
-            <ProjectCard
-              project={project}
-              to={generatePath(frontRoutes.main.ProjectDetailsPage.navPath, { id: project.id })}
-            />
-          </MainList.Item>
-        ))}
+        {projects.map(
+          (project) =>
+            project.id && (
+              <MainList.Item key={project.id}>
+                <ProjectCard
+                  project={project}
+                  to={generatePath(frontRoutes.main.ProjectDetailsPage.navPath, {
+                    id: project.id,
+                  })}
+                />
+              </MainList.Item>
+            ),
+        )}
       </MainList>
 
-      {/* PAGINATION */}
       {meta && meta.totalPages > 1 && (
         <Pagination
           className="relative"
@@ -76,8 +81,7 @@ export const ProjectsWidget = () => {
           <Pagination.Pages />
 
           <Pagination.End>
-            Next
-            <Icon size="md" name="common-arrowRight" />
+            Next <Icon size="md" name="common-arrowRight" />
           </Pagination.End>
 
           {isFetching && !isLoading && (
