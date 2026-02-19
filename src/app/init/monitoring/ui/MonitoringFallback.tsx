@@ -1,9 +1,6 @@
 import type { MonitoringFallbackPropsTypes } from '../model/types'
 
-export const MonitoringFallback = ({
-  error,
-  resetErrorBoundary,
-}: MonitoringFallbackPropsTypes) => {
+export const MonitoringFallback = ({ error, resetErrorBoundary }: MonitoringFallbackPropsTypes) => {
   const errorMessage = error instanceof Error ? error.message : String(error)
 
   return (
