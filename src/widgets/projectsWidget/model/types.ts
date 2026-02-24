@@ -4,7 +4,7 @@ import type {
   ProjectTypes,
   ProjectsListResponse,
 } from '@/entities/project'
-import { projectsSortSchema } from '@/features/projectsSortBar/'
+import { projectsSortSchema } from '@/features/project/projectsSortBar'
 import type { HTMLAttributes } from 'react'
 import type { z } from 'zod'
 

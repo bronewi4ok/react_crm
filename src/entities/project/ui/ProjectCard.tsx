@@ -1,4 +1,4 @@
-import { useFormatDate } from '@/shared/hooks/useFormatDate'
+import { useFormatDate } from '@/shared/hooks'
 import { Avatar } from '@/shared/ui/baseUI/avatar'
 import { Button } from '@/shared/ui/baseUI/button'
 import { Icon } from '@/shared/ui/baseUI/icon'
@@ -16,8 +16,7 @@ export function ProjectCard({ project, className, onClick, to }: ProjectCardProp
         className="flex flex-1 items-center gap-3"
         aria-label={`Open project ${project.name}`}>
         <Card.Header>
-          <Avatar src={project.avatar} size="2xl" />
-          {/* <Avatar src="/logo.svg" alt={project.name} /> */}
+          <Avatar src={project.avatar} size="2xl" alt={project.name} />
         </Card.Header>
 
         <Card.Item>

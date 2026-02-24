@@ -1,4 +1,4 @@
-import { AddProject } from '@/features/addProject'
+import { AddProject } from '@/features/project/addProject'
 import { Button } from '@/shared/ui/baseUI/button'
 import { Icon } from '@/shared/ui/baseUI/icon'
 
