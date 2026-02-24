@@ -6,7 +6,7 @@ import { tasksSortSchema } from './validation'
 type SortField = NonNullable<z.output<typeof tasksSortSchema>['sort']>
 
 export function useTasksQueryParams() {
-  const [params, setParams] = useQueryParams(tasksSortSchema)
+  const {params, setParams} = useQueryParams(tasksSortSchema)
   const sort = params.sort
   const order = params.order
 
