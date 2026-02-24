@@ -1,6 +1,17 @@
-import type { ProjectTypes, useGetProjectsQuery } from '@/entities/project'
+import type {
+  GetProjectsQueryTypes,
+  GetProjectsRefetchTypes,
+  ProjectTypes,
+  ProjectsListResponse,
+} from '@/entities/project'
+import { projectsSortSchema } from '@/features/projectsSortBar/'
+import type { HTMLAttributes } from 'react'
+import type { z } from 'zod'
 
-type RefetchTypes = ReturnType<typeof useGetProjectsQuery>['refetch']
+type RefetchTypes = GetProjectsRefetchTypes
+type ProjectsQueryResultTypes = GetProjectsQueryTypes
+type BuildSearchTypes = (updates: Partial<z.output<typeof projectsSortSchema>>) => string
+type ProjectsWidgetMetaTypes = ProjectsListResponse['meta']
 
 export type ProjectsWidgetContentProps = {
   projects: ProjectTypes[]
@@ -11,3 +22,33 @@ export type ProjectsWidgetContentProps = {
   refetch: RefetchTypes
   buildLink: (page: number) => string
 }
+
+export type ProjectsWidgetFallbackProps = {
+  title: string
+  text: string
+  image: string
+  onRetry?: () => void
+} & HTMLAttributes<HTMLElement>
+
+export type ProjectsWidgetEmptyFallbackProps = {
+  onRetry?: () => void
+} & HTMLAttributes<HTMLElement>
+
+export type ProjectsWidgetErrorFallbackProps = {
+  onRetry?: () => void
+} & HTMLAttributes<HTMLElement>
+
+export type ProjectsWidgetStateTypes = Pick<
+  ProjectsQueryResultTypes,
+  'isLoading' | 'isError' | 'isFetching'
+>
+
+export type ProjectsWidgetActionsTypes = {
+  refetch: ProjectsQueryResultTypes['refetch']
+  buildSearch: BuildSearchTypes
+}
+
+export type ProjectsWidgetDataTypes = {
+  projects: ProjectTypes[]
+  meta?: ProjectsWidgetMetaTypes
+} & ProjectsWidgetStateTypes

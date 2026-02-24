@@ -50,3 +50,6 @@ export const {
   useUpdateProjectMutation,
   useDeleteProjectMutation,
 } = projectApi
+
+export type GetProjectsQueryTypes = ReturnType<typeof useGetProjectsQuery>
+export type GetProjectsRefetchTypes = GetProjectsQueryTypes['refetch']

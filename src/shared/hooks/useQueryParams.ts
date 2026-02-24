@@ -66,5 +66,5 @@ export function useQueryParams<T extends z.ZodObject<Record<string, z.ZodTypeAny
     [params, schema, defaults],
   )
 
-  return [params, setParams, buildSearch] as const
+  return {params, setParams, buildSearch} as const
 }

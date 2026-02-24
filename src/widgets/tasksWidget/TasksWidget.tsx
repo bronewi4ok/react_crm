@@ -13,7 +13,7 @@ import { MainList } from '@/shared/ui/customUI/mainList'
 import noTasksImg from './no_tasks.svg'
 
 export function TasksWidget() {
-  const [params, , buildSearch] = useQueryParams(tasksSortSchema)
+  const {params, buildSearch} = useQueryParams(tasksSortSchema)
   const { data, isLoading, isError, isFetching, refetch } = useGetTasksQuery(params)
 
   if (isError) {
@@ -84,4 +84,3 @@ export function TasksWidget() {
     </>
   )
 }
-
