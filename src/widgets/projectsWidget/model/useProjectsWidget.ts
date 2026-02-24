@@ -1,5 +1,5 @@
 import { useGetProjectsQuery } from '@/entities/project'
-import { projectsSortSchema } from '@/features/projectsSortBar'
+import { projectsSortSchema } from '@/features/project/projectsSortBar'
 import { useQueryParams } from '@/shared/hooks/useQueryParams'
 import type { ProjectsWidgetActionsTypes, ProjectsWidgetDataTypes } from './types'
 

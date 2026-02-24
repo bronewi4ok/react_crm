@@ -1,4 +1,4 @@
-import { ProjectsSortBar } from '@/features/projectsSortBar'
+import { ProjectsSortBar } from '@/features/project/projectsSortBar'
 import { ProjectsWidgetContent } from './ProjectsWidgetContent'
 import { ProjectsWidgetList } from './ProjectsWidgetList'
 import { ProjectWidgetPagination } from './ProjectsWidgetPagination'
