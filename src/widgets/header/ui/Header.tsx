@@ -1,4 +1,4 @@
-import { useAppSelector } from '@/app/store'
+import { useAppSelector } from '@/shared/hooks/store'
 import { LogoutButton, selectAuthUser } from '@/features/auth'
 import { ThemeToggler } from '@/features/themeToggler'
 import { usePageMeta } from '@/pages/model/utils'

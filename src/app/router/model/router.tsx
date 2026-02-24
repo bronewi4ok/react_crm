@@ -1,3 +1,4 @@
+import { AppInit } from '@/app/init'
 import GlobalErrorPage from '@/pages/ui/main/GlobalErrorPage'
 import { AuthLayout, MainLayout } from '@/widgets/layouts'
 import { createBrowserRouter } from 'react-router-dom'
@@ -6,17 +7,21 @@ import { authRouterChildren, mainRouterChildren } from './routerChildren'
 
 export const router = createBrowserRouter([
   {
-    path: '/',
-    Component: MainLayout,
+    element: <AppInit />,
     errorElement: <GlobalErrorPage />,
-    hydrateFallbackElement: <RouterLoader />,
-    children: mainRouterChildren,
-  },
-  {
-    path: '/auth',
-    Component: AuthLayout,
-    errorElement: <GlobalErrorPage />,
-    hydrateFallbackElement: <RouterLoader />,
-    children: authRouterChildren,
+    children: [
+      {
+        path: '/',
+        Component: MainLayout,
+        hydrateFallbackElement: <RouterLoader />,
+        children: mainRouterChildren,
+      },
+      {
+        path: '/auth',
+        Component: AuthLayout,
+        hydrateFallbackElement: <RouterLoader />,
+        children: authRouterChildren,
+      },
+    ],
   },
 ])

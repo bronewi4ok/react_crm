@@ -9,8 +9,8 @@ function ProjectDetailsPage() {
   const { id } = useParams()
   const navigate = useNavigate()
   const { data: project, isLoading, isError } = useGetProjectByIdQuery(id ?? '', { skip: !id })
-
   const dueDate = useFormatDate(project?.endDate, { format: 'medium' })
+
   const handleBack = () => {
     if (window.history?.state.idx > 0) return navigate(-1)
     navigate(frontRoutes.main.ProjectsPage.navPath, { replace: true })

@@ -6,7 +6,7 @@ import { projectsSortSchema } from './validation'
 type SortField = NonNullable<z.output<typeof projectsSortSchema>['sort']>
 
 export function useProjectsQueryParams() {
-  const [params, setParams] = useQueryParams(projectsSortSchema)
+  const {params, setParams} = useQueryParams(projectsSortSchema)
   const sort = params.sort
   const order = params.order
 

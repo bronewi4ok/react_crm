@@ -6,6 +6,7 @@ export type RouteMetaTypes = {
   title: string
   isInMenu: boolean
   requireAuth: boolean
+  trySilentAuth?: boolean
   roles?: ReadonlyArray<RoleTypes>
   icon?: string
 }

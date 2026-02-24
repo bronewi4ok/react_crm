@@ -5,9 +5,6 @@ export const GoogleAuthButton = () => {
   const handleGoogleLogin = useHandleGoogleAuth()
 
   return (
-    <GoogleLogin
-      onSuccess={handleGoogleLogin}
-      onError={() => console.log('Google login failed')}
-    />
+    <GoogleLogin onSuccess={handleGoogleLogin} onError={() => console.log('Google login failed')} />
   )
 }

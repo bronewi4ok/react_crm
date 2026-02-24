@@ -12,7 +12,6 @@ type AuthState = {
 const initialState: AuthState = {
   user: null,
   accessToken: null,
-
   loading: true,
   error: null,
 }
@@ -28,10 +27,13 @@ const authSlice = createSlice({
     logout(state) {
       state.user = null
       state.accessToken = null
+      state.loading = false
+      state.error = null
     },
   },
   extraReducers: (builder) => {
     builder
+      // 1. Обробка стану завантаження для всіх ключових запитів
       .addMatcher(
         isAnyOf(
           authApi.endpoints.login.matchPending,
@@ -44,6 +46,7 @@ const authSlice = createSlice({
           state.error = null
         },
       )
+      // 2. Успішне виконання (Login, Signup, Refresh) — записуємо юзера
       .addMatcher(
         isAnyOf(
           authApi.endpoints.login.matchFulfilled,
@@ -58,18 +61,21 @@ const authSlice = createSlice({
           state.error = null
         },
       )
+      // 3. Успішний Logout
       .addMatcher(authApi.endpoints.logout.matchFulfilled, (state) => {
         state.user = null
         state.accessToken = null
         state.loading = false
         state.error = null
       })
+      // 4. Помилки: тепер сюди входить і refresh.matchRejected
       .addMatcher(
         isAnyOf(
           authApi.endpoints.login.matchRejected,
           authApi.endpoints.googleLogin.matchRejected,
           authApi.endpoints.logout.matchRejected,
           authApi.endpoints.signup.matchRejected,
+          authApi.endpoints.refresh.matchRejected, // Додано сюди
         ),
         (state, action) => {
           state.user = null
@@ -78,18 +84,6 @@ const authSlice = createSlice({
           state.error = action.error
         },
       )
-    // .addMatcher(authApi.endpoints.refresh.matchRejected, (state, action) => {
-    //   const status =
-    //     (action as any)?.payload?.status ?? (action as any)?.error?.status
-
-    //   if (status === 401) {
-    //     state.user = null
-    //     state.accessToken = null
-    //   }
-
-    //   state.loading = false
-    //   state.error = action.error
-    // })
   },
 })
 

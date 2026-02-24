@@ -1,1 +1,5 @@
-export { ProjectsWidget } from './ProjectsWidget'
+export { default as NoProjectsImg } from './assets/no_projects.svg'
+export * from './model/types'
+export { useProjectsWidget } from './model/useProjectsWidget'
+export { useProjectsWidgetContext } from './model/useProjectsWidgetContext'
+export { ProjectsWidget } from './ui/ProjectsWidget'

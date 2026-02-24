@@ -1,4 +1,4 @@
-import { useAppDispatch, useAppSelector } from '@/app/store'
+import { useAppDispatch, useAppSelector } from '@/shared/hooks/store'
 import { Toggler } from '@/shared/ui/baseUI/toggler/Toggler'
 import { toggleTheme } from '../model/slice'
 
