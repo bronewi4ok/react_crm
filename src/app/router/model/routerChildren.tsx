@@ -14,20 +14,17 @@ const getImportByKey = (pageKey: string) => {
   return entry[1]
 }
 
-// Видаляємо аргумент requireAuth, бо він більше не потрібен для вибору лоадера
 function makeRoute(route: RouteTypes, pageKey: string): RouteObject {
   const importPage = getImportByKey(pageKey)
 
   return {
     path: route.path,
     handle: { meta: route.meta },
-    // Лоадер тепер призначається ЗАВЖДИ
     loader: authLoader(route),
     lazy: async () => ({ Component: await importPage() }),
   }
 }
 
-// Оновлюємо мапінг (прибираємо передачу третього аргументу)
 export const mainRouterChildren: RouteObject[] = Object.entries(frontRoutes.main).map(
   ([key, route]) => makeRoute(route, key),
 )

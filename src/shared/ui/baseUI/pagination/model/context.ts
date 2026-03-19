@@ -1,4 +1,4 @@
-import { createSafeContext } from '@/shared/lib'
+import { createSafeContext } from '@/shared/hooks'
 import type { PaginationActionProps, PaginationStateProps } from './types'
 
 export const [usePaginationState, PaginationStateProvider] =

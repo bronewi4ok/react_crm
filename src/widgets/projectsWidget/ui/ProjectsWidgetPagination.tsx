@@ -6,14 +6,18 @@ import { useProjectsWidgetContext } from '../model/useProjectsWidgetContext'
 
 export const ProjectWidgetPagination = () => {
   const { meta, buildLink, isFetching, isLoading } = useProjectsWidgetContext()
+  const currentPage = Number(meta?.page)
+  const totalPages = Number(meta?.totalPages)
+  const canPaginate =
+    Number.isFinite(currentPage) && Number.isFinite(totalPages) && totalPages > 1
 
   return (
     <>
-      {meta && meta.totalPages > 1 && (
+      {canPaginate && (
         <Pagination
           className="relative"
-          currentPage={meta.page}
-          totalPages={meta.totalPages}
+          currentPage={currentPage}
+          totalPages={totalPages}
           buildLink={buildLink}
           disabled={isFetching}>
           <Pagination.Start>

@@ -1,21 +1,14 @@
-import { useQueryParams } from '@/shared/hooks/useQueryParams'
-import { SORT_ORDER } from '@/shared/model/sort'
-import { z } from 'zod'
-import { projectsSortSchema } from './validation'
+import { useQueryParams } from '@/shared/hooks'
+import { toggleSort } from '@/shared/lib/sort/toggleSort'
+import { projectsQueryKeys, projectsQuerySchema } from '../lib/schema'
+import type { ProjectsSortTypes } from './types'
+export { SORT_ORDER } from '@/shared/config/'
 
-type SortField = NonNullable<z.output<typeof projectsSortSchema>['sort']>
-
-export function useProjectsQueryParams() {
-  const {params, setParams} = useQueryParams(projectsSortSchema)
+export function useProjectsQuery() {
+  const { params, setParams, buildLink } = useQueryParams(projectsQuerySchema, projectsQueryKeys)
   const sort = params.sort
-  const order = params.order
+  const setSort = (field: ProjectsSortTypes) =>
+    setParams({ sort: toggleSort(sort, field), page: 1 })
 
-  const setSort = (field: SortField) =>
-    setParams((prev) => {
-      if (prev.sort !== field) return { sort: field, order: SORT_ORDER.ASC, page: 1 }
-      if (prev.order === SORT_ORDER.ASC) return { order: SORT_ORDER.DESC, page: 1 }
-      return { sort: undefined, order: undefined, page: 1 }
-    })
-
-  return { sort, order, setSort }
+  return { params, setParams, sort, setSort, buildLink }
 }

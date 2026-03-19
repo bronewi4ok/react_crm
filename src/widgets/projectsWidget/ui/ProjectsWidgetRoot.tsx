@@ -6,9 +6,7 @@ import { ProjectsWidgetActionProvider, ProjectsWidgetStateProvider } from '../mo
 import { useProjectsWidget } from '../model/useProjectsWidget'
 import { ProjectsWidgetFallback } from './ProjectsWidgetFallback'
 
-export type ProjectsWidgetRootProps = PropsWithChildren
-
-export const ProjectsWidgetRoot = ({ children }: ProjectsWidgetRootProps) => {
+export const ProjectsWidgetRoot = ({ children }: PropsWithChildren) => {
   const { state, actions } = useProjectsWidget()
 
   return (
@@ -31,10 +29,8 @@ export const ProjectsWidgetRoot = ({ children }: ProjectsWidgetRootProps) => {
           Sentry.captureException(error)
         })
       }}>
-      <ProjectsWidgetStateProvider value={{ ...state }}>
-        <ProjectsWidgetActionProvider value={{ ...actions }}>
-          {children}
-        </ProjectsWidgetActionProvider>
+      <ProjectsWidgetStateProvider value={state}>
+        <ProjectsWidgetActionProvider value={actions}>{children}</ProjectsWidgetActionProvider>
       </ProjectsWidgetStateProvider>
     </ErrorBoundary>
   )

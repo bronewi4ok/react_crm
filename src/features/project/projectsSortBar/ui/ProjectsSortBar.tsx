@@ -1,17 +1,22 @@
 import { SortBar } from '@/shared/ui/customUI/sortBar'
-import { projectsSortConfigs } from '../model/configs'
-import { useProjectsQueryParams } from '../model/hooks'
+import { PROJECTS_SORT_CONFIGS } from '../model/configs'
+import { useProjectsQuery } from '../model/hooks'
 import type { ProjectsSortTypes } from '../model/types'
 
 export function ProjectsSortBar() {
-  const { sort, setSort, order } = useProjectsQueryParams()
-  const handleSort = (field: ProjectsSortTypes) => setSort(field)
+  const { sort, setSort } = useProjectsQuery()
+
+  const handleSortChange = (field: string) => {
+    setSort(field as ProjectsSortTypes)
+  }
 
   return (
-    <SortBar<ProjectsSortTypes>
-      options={projectsSortConfigs}
-      value={{ field: sort ?? null, order: order ?? null }}
-      onSort={handleSort}
-    />
+    <SortBar value={sort} onValueChange={handleSortChange}>
+      {PROJECTS_SORT_CONFIGS.map((item) => (
+        <SortBar.Item key={item.field} field={item.field} icon={item.icon}>
+          {item.label}
+        </SortBar.Item>
+      ))}
+    </SortBar>
   )
 }

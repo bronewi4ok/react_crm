@@ -5,12 +5,12 @@ import type { TasksSortTypes } from '../model/types'
 
 export function TasksSortBar() {
   const { sort, setSort, order } = useTasksQueryParams()
-  const handleSort = (field: TasksSortTypes) => setSort(field)
+  const handleSort = (key: TasksSortTypes) => setSort(key)
 
   return (
     <SortBar<TasksSortTypes>
       options={tasksSortConfigs}
-      value={{ field: sort ?? null, order: order ?? null }}
+      value={{ key: sort ?? null, order: order ?? null }}
       onSort={handleSort}
     />
   )

@@ -1,4 +1,4 @@
-import { useAppDispatch } from '@/shared/hooks/store'
+import { useAppDispatch } from '@/app/store'
 import { useGoogleLoginMutation } from '@/features/auth/api/authApi'
 import { setCredentials } from '@/features/auth/api/authSlice'
 import { frontRoutes } from '@/shared/config/routes'

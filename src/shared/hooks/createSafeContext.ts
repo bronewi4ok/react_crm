@@ -5,9 +5,7 @@ export function createSafeContext<T>(name: string) {
 
   function useSafeContext() {
     const value = useContext(Context)
-    if (!value) {
-      throw new Error(`Component ${name} used outside of provider`)
-    }
+    if (value === null) throw new Error(`Component ${name} used outside of provider`)
     return value
   }
 
