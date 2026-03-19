@@ -5,6 +5,7 @@ export const projectApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     getProjects: build.query<ProjectsListResponse, ProjectsQueryArgs | void>({
       query: (args) => ({ url: 'projects', params: args ?? {} }),
+      
       providesTags: (result) =>
         result?.data?.length
           ? [

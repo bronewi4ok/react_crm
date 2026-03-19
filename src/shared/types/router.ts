@@ -1,4 +1,4 @@
-import type { ROLES } from '@/shared/config/constants'
+import type { ROLES } from '@/shared/config/roles'
 
 export type RoleTypes = (typeof ROLES)[keyof typeof ROLES]
 

@@ -1,4 +1,4 @@
-import { useAppDispatch } from '@/shared/hooks/store'
+import { useAppDispatch } from '@/app/store'
 import { applyTheme, getInitialTheme, setTheme } from '@/features/themeToggler'
 import { useEffect } from 'react'
 

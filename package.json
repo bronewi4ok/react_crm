@@ -25,6 +25,7 @@
     "@tailwindcss/vite": "^4.1.12",
     "async-mutex": "^0.5.0",
     "motion": "^12.23.26",
+    "nuqs": "^2.8.8",
     "radix-ui": "^1.4.3",
     "react": "^19.1.1",
     "react-day-picker": "^9.13.0",

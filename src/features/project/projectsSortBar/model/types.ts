@@ -1,5 +1,5 @@
-import type { SortOrderTypes } from '@/shared/model/sort'
-import { projectsSortConfigs } from './configs'
+import type { SortOrderTypes } from '@/shared/config'
+import { PROJECTS_SORT_CONFIGS } from './configs'
 
-export type ProjectsSortTypes = (typeof projectsSortConfigs)[number]['key']
+export type ProjectsSortTypes = (typeof PROJECTS_SORT_CONFIGS)[number]['field']
 export type ProjectSortOrderTypes = SortOrderTypes

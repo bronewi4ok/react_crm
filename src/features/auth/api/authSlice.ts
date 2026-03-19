@@ -75,7 +75,7 @@ const authSlice = createSlice({
           authApi.endpoints.googleLogin.matchRejected,
           authApi.endpoints.logout.matchRejected,
           authApi.endpoints.signup.matchRejected,
-          authApi.endpoints.refresh.matchRejected, // Додано сюди
+          authApi.endpoints.refresh.matchRejected,
         ),
         (state, action) => {
           state.user = null

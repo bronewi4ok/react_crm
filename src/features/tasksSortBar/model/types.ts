@@ -1,4 +1,4 @@
-import type { SortOrderTypes } from '@/shared/model/sort'
+import type { SortOrderTypes } from '@/shared/config'
 import { tasksSortConfigs } from './configs'
 
 export type TasksSortTypes = (typeof tasksSortConfigs)[number]['key']
