@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 import { type ProjectCardProps } from '../model/types'
 
 export function ProjectCard({ project, className, onClick, to }: ProjectCardProps) {
-  const dueDate = useFormatDate(project.endDate, { format: 'short' })
+  const endDate = useFormatDate(project.endDate, { format: 'short' })
 
   return (
     <Card onClick={onClick} className={className} to={to}>
@@ -35,7 +35,7 @@ export function ProjectCard({ project, className, onClick, to }: ProjectCardProp
         </Card.Item>
 
         <Card.Item>
-          <Card.Title>{dueDate}</Card.Title>
+          <Card.Title>{endDate}</Card.Title>
           <Card.Text>Due date</Card.Text>
         </Card.Item>
       </Link>

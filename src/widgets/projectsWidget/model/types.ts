@@ -2,7 +2,7 @@ import type {
   GetProjectsQueryTypes,
   GetProjectsRefetchTypes,
   ProjectTypes,
-  ProjectsListResponse,
+  ProjectsResponseTypes,
 } from '@/entities/project'
 import { projectsQuerySchema } from '@/features/project/projectsSortBar'
 import type { HTMLAttributes } from 'react'
@@ -11,7 +11,7 @@ import type { z } from 'zod'
 type RefetchTypes = GetProjectsRefetchTypes
 type ProjectsQueryResultTypes = GetProjectsQueryTypes
 type BuildSearchTypes = (updates: Partial<z.output<typeof projectsQuerySchema>>) => string
-type ProjectsWidgetMetaTypes = ProjectsListResponse['meta']
+type ProjectsWidgetMetaTypes = ProjectsResponseTypes['meta']
 
 export type ProjectsWidgetContentProps = {
   projects: ProjectTypes[]

@@ -1,12 +1,12 @@
-import { useGetProjectsQuery, type ProjectsQueryArgs } from '@/entities/project'
+import { useGetProjectsQuery, type ProjectsQueryTypes } from '@/entities/project'
 import { useProjectsQuery } from '@/features/project/projectsSortBar'
 import type { ProjectsWidgetActionsTypes, ProjectsWidgetDataTypes } from './types'
 
 export const useProjectsWidget = () => {
   const { params, buildLink } = useProjectsQuery()
 
-  const apiParams: ProjectsQueryArgs = {
-    sort: params.sort?.key,
+  const apiParams: ProjectsQueryTypes = {
+    sort: params.sort?.field,
     order: params.sort?.order,
     page: params.page,
     per: params.perPage,
