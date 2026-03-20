@@ -20,7 +20,7 @@ export type ProjectTypes = {
   abbreviation?: string
 }
 
-export type ProjectsListResponse = QueryResponseTypes<ProjectTypes>
+export type ProjectsResponseTypes = QueryResponseTypes<ProjectTypes>
 
 export type ProjectCardProps = {
   project: ProjectTypes
@@ -28,4 +28,4 @@ export type ProjectCardProps = {
 } & HTMLAttributes<HTMLElement> &
   LinkProps
 
-export type ProjectsQueryArgs<T extends string = string> = QueryParamsTypes<T>
+export type ProjectsQueryTypes = QueryParamsTypes

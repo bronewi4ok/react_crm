@@ -18,7 +18,7 @@ export const PROJECTS_SORT_CONFIGS = [
     icon: { asc: 'common-sortNumbAsc', desc: 'common-sortNumbDesc' },
   },
   {
-    field: 'dueDate',
+    field: 'endDate',
     label: 'Due date',
     column: 'flex-1',
     icon: { asc: 'common-sortNumbAsc', desc: 'common-sortNumbDesc' },

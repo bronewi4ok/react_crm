@@ -9,7 +9,7 @@ function ProjectDetailsPage() {
   const { id } = useParams()
 
   const { data: project, isLoading, isError } = useGetProjectByIdQuery(id ?? '', { skip: !id })
-  const dueDate = useFormatDate(project?.endDate, { format: 'medium' })
+  const endDate = useFormatDate(project?.endDate, { format: 'medium' })
   const handleBack = useBackNavigation()
 
   if (!id) return <div className="text-danger-700 p-4 text-sm">No project id</div>
@@ -48,7 +48,7 @@ function ProjectDetailsPage() {
 
         <div>
           <div className="text-secondary-500 text-xs">Due date</div>
-          <div className="font-medium">{dueDate}</div>
+          <div className="font-medium">{endDate}</div>
         </div>
       </div>
     </div>

@@ -1,11 +1,11 @@
 import { baseApi } from '@/shared/api/baseApi'
-import type { ProjectTypes, ProjectsListResponse, ProjectsQueryArgs } from '../model/types'
+import type { ProjectTypes, ProjectsQueryTypes, ProjectsResponseTypes } from '../model/types'
 
 export const projectApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
-    getProjects: build.query<ProjectsListResponse, ProjectsQueryArgs | void>({
+    getProjects: build.query<ProjectsResponseTypes, ProjectsQueryTypes | void>({
       query: (args) => ({ url: 'projects', params: args ?? {} }),
-      
+
       providesTags: (result) =>
         result?.data?.length
           ? [
