@@ -1,6 +1,6 @@
 import type { ComponentPropsWithoutRef } from 'react'
-import type { BUTTON_DEFAULT_ELEMENT } from '../config/defaults'
-import type { sizeStyles, variantStyles } from '../config/variants'
+import type { BUTTON_DEFAULT_ELEMENT } from './defaults'
+import type { sizeStyles, variantStyles } from './variants'
 
 type ButtonVariantProps = keyof typeof variantStyles
 type ButtonSizeProps = keyof typeof sizeStyles

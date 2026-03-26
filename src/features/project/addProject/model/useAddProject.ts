@@ -1,13 +1,30 @@
 import { useCreateProjectMutation } from '@/entities/project'
-import type { AddProjectTypes } from './types'
+import { DEFAULT_FORM_VALUES } from '../config/defaultFormValues'
+import { useAddProjectForm } from './useAddProjectForm'
+import type { addProjectTypes } from './validation'
 
-export function useAddProject() {
-  const [AddProjectMutation, { isLoading, error }] = useCreateProjectMutation()
+export type AddProjectOnSuccessTypes = {
+  onSuccess?: (projectId: string) => void
+}
 
-  async function handleAddProject(credentials: AddProjectTypes) {
-    const result = await AddProjectMutation(credentials).unwrap()
-    return result
+export function useAddProject({ onSuccess }: AddProjectOnSuccessTypes) {
+  const [createProject, { isLoading, error: apiError }] = useCreateProjectMutation()
+
+  const form = useAddProjectForm(DEFAULT_FORM_VALUES satisfies addProjectTypes)
+  const isDisabled = isLoading || form.formState.isSubmitting
+
+  async function handleFormSubmit(credentials: addProjectTypes) {
+    try {
+      const result = await createProject(credentials).unwrap()
+
+      if (result?.id) {
+        onSuccess?.(result.id)
+        form.reset()
+      }
+    } catch (e) {
+      console.error('Failed to create project:', e)
+    }
   }
 
-  return { addProject: handleAddProject, isLoading, error }
+  return { form, onSubmit: form.handleSubmit(handleFormSubmit), isDisabled, apiError }
 }

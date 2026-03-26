@@ -1,7 +1,8 @@
+import type { RootState } from '@/app/store'
 import { logout, setCredentials } from '@/features/auth/api/authSlice'
 import { apiRoutes } from '@/shared/config/routes'
 import { refreshMutex } from '@/shared/lib/refreshMutex'
-import type { AccessTokenTypes, AuthResponseTypes, RootState } from '@/shared/types'
+import type { AccessTokenTypes, AuthResponseTypes,  } from '@/shared/types'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 const baseQuery = fetchBaseQuery({
