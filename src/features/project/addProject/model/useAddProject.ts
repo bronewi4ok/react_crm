@@ -9,7 +9,6 @@ export type AddProjectOnSuccessTypes = {
 
 export function useAddProject({ onSuccess }: AddProjectOnSuccessTypes) {
   const [createProject, { isLoading, error: apiError }] = useCreateProjectMutation()
-
   const form = useAddProjectForm(DEFAULT_FORM_VALUES satisfies addProjectTypes)
   const isDisabled = isLoading || form.formState.isSubmitting
 
