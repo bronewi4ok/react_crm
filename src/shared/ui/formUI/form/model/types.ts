@@ -6,7 +6,7 @@ import type { ComponentProps, HTMLAttributes } from 'react'
 export type FormRootTypes = ComponentProps<'form'>
 export type FormMessageTypes = { message?: string } & HTMLAttributes<HTMLElement>
 export type FormFieldTypes = HTMLAttributes<HTMLElement>
-export type FormSubmitTypes = ButtonProps<'button'>
+export type FormSubmitTypes = ButtonProps
 
 export type FromGlobalErrorTypes = {
   error: FetchBaseQueryError | SerializedError | undefined

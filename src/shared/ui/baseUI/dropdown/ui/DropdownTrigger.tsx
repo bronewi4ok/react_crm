@@ -3,7 +3,7 @@ import type { ReactNode } from 'react'
 
 export function DropdownTrigger({ children }: { children: ReactNode }) {
   return (
-    <DropdownMenu.Trigger asChild className="cursor-default select-none">
+    <DropdownMenu.Trigger asChild className="select-none">
       {children}
     </DropdownMenu.Trigger>
   )

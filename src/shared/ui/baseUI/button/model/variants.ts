@@ -1,6 +1,8 @@
 export const baseStyles =
   'inline-flex items-center justify-center gap-2 font-bold cursor-pointer disabled:opacity-50 disabled:pointer-events-none overflow-hidden'
 
+export const disabledStyles = 'disabled:opacity-70 disabled:cursor-not-allowed'
+
 export const animationStyles =
   'transition-all duration-200 ease-in-out hover:scale-105 active:scale-95'
 

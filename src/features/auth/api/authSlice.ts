@@ -1,4 +1,5 @@
-import type { AuthResponseTypes, RootState, User } from '@/shared/types'
+import type { RootState } from '@/app/store'
+import type { AuthResponseTypes, User } from '@/shared/types'
 import { createSlice, isAnyOf, type PayloadAction, type SerializedError } from '@reduxjs/toolkit'
 import { authApi } from './authApi'
 
