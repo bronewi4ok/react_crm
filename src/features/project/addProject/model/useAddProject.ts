@@ -1,4 +1,5 @@
 import { useCreateProjectMutation } from '@/entities/project'
+import { toast } from 'sonner'
 import { DEFAULT_FORM_VALUES } from '../config/defaultFormValues'
 import { useAddProjectForm } from './useAddProjectForm'
 import type { addProjectTypes } from './validation'
@@ -19,6 +20,7 @@ export function useAddProject({ onSuccess }: AddProjectOnSuccessTypes) {
       if (result?.id) {
         onSuccess?.(result.id)
         form.reset()
+        toast.success(`New Project ${result?.name}!`)
       }
     } catch (e) {
       console.error('Failed to create project:', e)
