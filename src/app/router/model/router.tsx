@@ -1,5 +1,5 @@
 import { AppInit } from '@/app/init'
-import GlobalErrorPage from '@/pages/ui/main/GlobalErrorPage'
+import GlobalErrorPage from '@/pages/ui/GlobalErrorPage'
 import { AuthLayout, MainLayout } from '@/widgets/layouts'
 import { createBrowserRouter } from 'react-router-dom'
 import { RouterLoader } from '../ui/RouterLoader'
