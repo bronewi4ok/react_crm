@@ -12,4 +12,8 @@ export const apiRoutes = {
     recoverConfirm: '/auth/recover/confirm',
     me: '/auth/me',
   },
+  projects: {
+    list: 'projects',
+    item: (id: string) => `projects/${id}`,
+  },
 } as const

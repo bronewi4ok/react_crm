@@ -36,7 +36,7 @@ export const authApi = baseApi.injectEndpoints({
     }),
     logout: build.mutation<{ success: boolean }, void>({
       query: () => ({ url: apiRoutes.auth.logout, method: 'POST' }),
-      invalidatesTags: ['User', 'Project', 'Projects'],
+      invalidatesTags: ['User', 'Projects'],
     }),
     refresh: build.mutation<AuthResponseTypes, void>({
       query: () => ({ url: apiRoutes.auth.refresh, method: 'POST' }),

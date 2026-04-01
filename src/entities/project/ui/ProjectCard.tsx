@@ -1,6 +1,8 @@
+import { DeleteProjectMenuItem } from '@/features/project/delete-project/ui/DeleteProjectIMenuItem'
 import { useFormatDate } from '@/shared/hooks'
 import { Avatar } from '@/shared/ui/baseUI/avatar'
 import { Button } from '@/shared/ui/baseUI/button'
+import { Dropdown } from '@/shared/ui/baseUI/dropdown'
 import { Icon } from '@/shared/ui/baseUI/icon'
 import { Card } from '@/shared/ui/customUI/card'
 import { Link } from 'react-router-dom'
@@ -41,9 +43,22 @@ export function ProjectCard({ project, className, onClick, to }: ProjectCardProp
       </Link>
 
       <Card.Controls className="flex items-center gap-3">
-        <Button size="sm" square aria-label="More actions" variant="support">
-          <Icon className="fill-secondary-500" size="sm" name="common-dots" />
-        </Button>
+        <Dropdown>
+          <Dropdown.Trigger>
+            <Button size="sm" square aria-label="More actions" variant="support">
+              <Icon className="fill-secondary-500" size="sm" name="common-dots" />
+            </Button>
+          </Dropdown.Trigger>
+
+          <Dropdown.Box>
+            <Dropdown.Item title="">
+              <DeleteProjectMenuItem projectId={project.id} />
+            </Dropdown.Item>
+            <Dropdown.Item title="">
+              <DeleteProjectMenuItem projectId={project.id} />
+            </Dropdown.Item>
+          </Dropdown.Box>
+        </Dropdown>
       </Card.Controls>
     </Card>
   )
