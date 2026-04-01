@@ -18,7 +18,7 @@ import {
 export const Button = (props: ButtonProps) => {
   const {
     children,
-    square,
+    square = false,
     size = BUTTON_DEFAULT_SIZE,
     variant = BUTTON_DEFAULT_VARIANT,
     className,

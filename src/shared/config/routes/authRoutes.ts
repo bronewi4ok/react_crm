@@ -28,6 +28,4 @@ export const authRoutes = {
     navPath: '/auth/recover/confirm',
     meta: { title: 'Recover request', isInMenu: false, requireAuth: false },
   },
-
-  // notFound: { path: '*', loader: () => redirect('/auth/login') },
 } as const

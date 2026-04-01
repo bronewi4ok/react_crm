@@ -2,8 +2,18 @@ import type { RootState } from '@/app/store'
 import { logout, setCredentials } from '@/features/auth/api/authSlice'
 import { apiRoutes } from '@/shared/config/routes'
 import { refreshMutex } from '@/shared/lib/refreshMutex'
-import type { AccessTokenTypes, AuthResponseTypes,  } from '@/shared/types'
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import type { AccessTokenTypes, AuthResponseTypes } from '@/shared/types'
+import {
+  createApi,
+  fetchBaseQuery,
+  type BaseQueryFn,
+  type FetchArgs,
+  type FetchBaseQueryError,
+} from '@reduxjs/toolkit/query/react'
+import { API_TAGS } from './config'
+
+type BaseQueryArgs = string | FetchArgs
+type AppBaseQuery = BaseQueryFn<BaseQueryArgs, unknown, FetchBaseQueryError>
 
 const baseQuery = fetchBaseQuery({
   baseUrl: apiRoutes.baseUrl,
@@ -17,55 +27,57 @@ const baseQuery = fetchBaseQuery({
   },
 })
 
-const baseQueryWithReauth = async (
-  args: Parameters<typeof baseQuery>[0],
-  api: Parameters<typeof baseQuery>[1],
-  extraOptions: Parameters<typeof baseQuery>[2],
-) => {
-  let result = await baseQuery(args, api, extraOptions)
+const refreshBaseQuery = fetchBaseQuery({
+  baseUrl: apiRoutes.baseUrl,
+  credentials: 'include',
+})
 
-  if (result.error?.status === 401) {
-    // If the failing request was the refresh endpoint itself, don't try to refresh again
-    const argsUrl = typeof args === 'string' ? args : (args as any)?.url
-    if (argsUrl === apiRoutes.auth.refresh) {
-      api.dispatch(logout())
-      return { error: { status: 401, data: 'Unauthorized' } }
-    }
+const unauthorizedError: FetchBaseQueryError = {
+  status: 401,
+  data: 'Unauthorized',
+}
 
-    if (refreshMutex.isLocked()) {
-      // Wait for other refresh to complete
-      await refreshMutex.waitForUnlock()
-      // After unlock, retry the original request with potentially new token
-      result = await baseQuery(args, api, extraOptions)
-    } else {
-      // Acquire mutex and perform refresh
-      const release = await refreshMutex.acquire()
-      try {
-        const refreshResult = await baseQuery(
-          { url: apiRoutes.auth.refresh, method: 'POST' },
-          api,
-          extraOptions,
-        )
-        if (refreshResult.data) {
-          api.dispatch(setCredentials(refreshResult.data as AuthResponseTypes))
-          // Retry original request with new token
-          result = await baseQuery(args, api, extraOptions)
-        } else {
-          api.dispatch(logout())
-          return { error: { status: 401, data: 'Unauthorized' } }
-        }
-      } finally {
-        release()
-      }
-    }
+const baseQueryWithReauth: AppBaseQuery = async (args, api, extraOptions) => {
+  await refreshMutex.waitForUnlock()
+  const result = await baseQuery(args, api, extraOptions)
+  if (result.error?.status !== 401) return result
+  const argsUrl = typeof args === 'string' ? args : args.url
+
+  if (argsUrl === apiRoutes.auth.refresh) {
+    api.dispatch(logout())
+    return { error: unauthorizedError }
   }
 
-  return result
+  if (refreshMutex.isLocked()) {
+    await refreshMutex.waitForUnlock()
+    return await baseQuery(args, api, extraOptions)
+  }
+
+  const release = await refreshMutex.acquire()
+
+  try {
+    const refreshResult = await refreshBaseQuery(
+      { url: apiRoutes.auth.refresh, method: 'POST' },
+      api,
+      extraOptions,
+    )
+
+    if (refreshResult.error) {
+      api.dispatch(logout())
+      return { error: unauthorizedError }
+    }
+
+    api.dispatch(setCredentials(refreshResult.data as AuthResponseTypes))
+
+    return await baseQuery(args, api, extraOptions)
+  } finally {
+    release()
+  }
 }
 
 export const baseApi = createApi({
   reducerPath: 'api',
   baseQuery: baseQueryWithReauth,
-  tagTypes: ['User', 'Users', 'Project', 'Projects', 'Task', 'Tasks'],
+  tagTypes: Object.values(API_TAGS),
   endpoints: () => ({}),
 })

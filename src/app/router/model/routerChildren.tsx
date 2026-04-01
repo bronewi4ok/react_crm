@@ -1,11 +1,9 @@
 import { frontRoutes } from '@/shared/config/routes'
-import { refreshMutex } from '@/shared/lib/refreshMutex'
 import type { RouteTypes } from '@/shared/types'
 import type { ComponentType } from 'react'
 import type { RouteObject } from 'react-router-dom'
 import { checkAuthLoader } from '../model/checkAuthLoader'
 
-const authLoader = checkAuthLoader({ refreshMutex })
 const pages = import.meta.glob<ComponentType>('/src/pages/**/*.tsx', { import: 'default' })
 
 const getImportByKey = (pageKey: string) => {
@@ -20,7 +18,7 @@ function makeRoute(route: RouteTypes, pageKey: string): RouteObject {
   return {
     path: route.path,
     handle: { meta: route.meta },
-    loader: authLoader(route),
+    loader: checkAuthLoader(route),
     lazy: async () => ({ Component: await importPage() }),
   }
 }
