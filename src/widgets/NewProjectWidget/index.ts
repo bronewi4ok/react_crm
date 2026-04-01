@@ -1,2 +1,1 @@
-export * from './model/types'
-export { NewProjectModal } from './ui/NewProjectModal'
+export { NewProjectModal } from './NewProjectModal'

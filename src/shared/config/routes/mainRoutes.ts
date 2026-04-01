@@ -1,4 +1,4 @@
-import { ROLES } from '../constants'
+import { ROLES } from '../roles'
 
 export const mainRoutes = {
   HomePage: {
@@ -103,4 +103,3 @@ export const mainRoutes = {
 } as const
 
 // generatePath(mainRoutes.ProjectDetailsPage.navPath, { id: item.id })
-

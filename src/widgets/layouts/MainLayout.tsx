@@ -7,7 +7,7 @@ import { MainMenu } from '../sidebar'
 export function MainLayout() {
   return (
     <Wrap className="flex flex-wrap items-stretch">
-      <aside className="felx-none bg-light">
+      <aside className="bg-light flex-none">
         <MainMenu />
       </aside>
 

@@ -1,4 +1,5 @@
-import type { AuthResponseTypes, RootState, User } from '@/shared/types'
+import type { RootState } from '@/app/store'
+import type { AuthResponseTypes, User } from '@/shared/types'
 import { createSlice, isAnyOf, type PayloadAction, type SerializedError } from '@reduxjs/toolkit'
 import { authApi } from './authApi'
 
@@ -75,7 +76,7 @@ const authSlice = createSlice({
           authApi.endpoints.googleLogin.matchRejected,
           authApi.endpoints.logout.matchRejected,
           authApi.endpoints.signup.matchRejected,
-          authApi.endpoints.refresh.matchRejected, // Додано сюди
+          authApi.endpoints.refresh.matchRejected,
         ),
         (state, action) => {
           state.user = null

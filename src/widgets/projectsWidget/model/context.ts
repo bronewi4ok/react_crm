@@ -1,4 +1,4 @@
-import { createSafeContext } from '@/shared/lib'
+import { createSafeContext } from '@/shared/hooks'
 import type { ProjectsWidgetActionsTypes, ProjectsWidgetDataTypes } from './types'
 
 export const [useProjectsWidgetState, ProjectsWidgetStateProvider] =

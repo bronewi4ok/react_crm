@@ -5,7 +5,7 @@ import clsx from 'clsx'
 import { type TaskCardTypes } from '../model/types'
 
 export function TaskCard({ task, className, onClick }: TaskCardTypes) {
-  // const dueDate = useFormatDate(task.endDate, { format: 'short' })
+  // const endDate = useFormatDate(task.endDate, { format: 'short' })
 
   return (
     <article

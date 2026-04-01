@@ -1,4 +1,4 @@
-import type { ListQueryParams, ListResponse } from '@/shared/hooks/useListQuery'
+import type { QueryParamsTypes, QueryResponseTypes } from '@/shared/types'
 import type { HTMLAttributes } from 'react'
 import type { LinkProps } from 'react-router-dom'
 
@@ -20,7 +20,7 @@ export type ProjectTypes = {
   abbreviation?: string
 }
 
-export type ProjectsListResponse = ListResponse<ProjectTypes>
+export type ProjectsResponseTypes = QueryResponseTypes<ProjectTypes>
 
 export type ProjectCardProps = {
   project: ProjectTypes
@@ -28,4 +28,4 @@ export type ProjectCardProps = {
 } & HTMLAttributes<HTMLElement> &
   LinkProps
 
-export type ProjectsQueryArgs<TSortKey extends string = string> = ListQueryParams<TSortKey>
+export type ProjectsQueryTypes = QueryParamsTypes

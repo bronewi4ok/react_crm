@@ -4,20 +4,21 @@ import {
   BUTTON_DEFAULT_ELEMENT,
   BUTTON_DEFAULT_SIZE,
   BUTTON_DEFAULT_VARIANT,
-} from '../config/defaults'
+} from '../model/defaults'
+import type { ButtonProps } from '../model/types'
 import {
   animationStyles,
   baseStyles,
+  disabledStyles,
   sizeSquareStyles,
   sizeStyles,
   variantStyles,
-} from '../config/variants'
-import type { ButtonProps } from '../model/types'
+} from '../model/variants'
 
 export const Button = (props: ButtonProps) => {
   const {
     children,
-    square,
+    square = false,
     size = BUTTON_DEFAULT_SIZE,
     variant = BUTTON_DEFAULT_VARIANT,
     className,
@@ -31,6 +32,7 @@ export const Button = (props: ButtonProps) => {
     animationStyles,
     variantStyles[variant],
     className,
+    disabledStyles,
   )
 
   return (
