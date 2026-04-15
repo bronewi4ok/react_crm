@@ -1,6 +1,6 @@
-import { Button, type ButtonProps } from '@/shared/ui/baseUI/button'
+import { Button, type ButtonProps } from '@ui/base/button'
 import { toast } from 'sonner'
-import { useDeleteProject } from '../model/useDeleteProject'
+import { useDeleteProject } from '../model/use-delete-project'
 
 type DeleteProjectButtonProps = {
   projectId: string
@@ -10,16 +10,28 @@ type DeleteProjectButtonProps = {
 
 export const DeleteProjectButton = (props: DeleteProjectButtonProps) => {
   const { projectId, projectName, onSuccess, children, ...rest } = props
-  const { deleteProject } = useDeleteProject()
+  const { deleteProject, isLoading } = useDeleteProject()
 
-  const handleRemoveProject = () => {
-    deleteProject(projectId)
-    toast.success(`Project ${projectName} was removed`, { className: 'bg-red' })
-    onSuccess?.()
+  const handleRemoveProject = async () => {
+    toast.promise(deleteProject(projectId), {
+      loading: 'Видалення проекту...',
+      success: () => {
+        onSuccess?.()
+        return `Проект ${projectName} успішно видалено`
+      },
+      error: (err) => {
+        return `Помилка: ${err?.data?.message || 'Не вдалося видалити проект'}`
+      },
+    })
   }
 
   return (
-    <Button variant="danger" size="sm" {...rest} onClick={() => handleRemoveProject()}>
+    <Button
+      variant="danger"
+      size="sm"
+      disabled={isLoading}
+      {...rest}
+      onClick={() => handleRemoveProject()}>
       {children}
     </Button>
   )

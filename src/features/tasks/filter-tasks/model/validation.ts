@@ -1,0 +1,13 @@
+import { tasksSortKeys } from '@features/tasks/sort-tasks'
+import { SORT_ORDER } from '@shared/query-state'
+import z from 'zod'
+
+export const tasksSortSchema = z
+  .object({
+    sort: z.enum(tasksSortKeys).optional(),
+    order: z.enum([SORT_ORDER.ASC, SORT_ORDER.DESC]).optional(),
+    page: z.coerce.number().default(1),
+    per: z.coerce.number().default(7),
+    q: z.string().optional(),
+  })
+  .refine((data) => !data.order || !!data.sort, { message: 'order without sort is invalid' })

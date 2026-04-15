@@ -1,2 +1,3 @@
 export * from './config'
-export { API_TAGS } from './config'
+export * from './base.api'
+export * from './api-routes'

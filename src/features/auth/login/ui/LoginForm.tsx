@@ -1,11 +1,12 @@
-import { frontRoutes } from '@/shared/config/routes'
-import { Button } from '@/shared/ui/baseUI/button'
-import { Checkbox, Input } from '@/shared/ui/formUI'
-import { Form } from '@/shared/ui/formUI/form'
+import { frontRoutes } from '@shared/routes'
+import { Button } from '@ui/base/button'
+import { Checkbox } from '@ui/controls/checkbox'
+import { Form } from '@ui/controls/form'
+import { Input } from '@ui/controls/input'
 import { Controller } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
-import { useLogin } from '../model/useLogin'
-import { useLoginRegister } from '../model/useLoginRegister'
+import { useLogin } from '../model/use-login'
+import { useLoginRegister } from '../model/use-login-register'
 import { type LoginFormTypes } from '../model/validation'
 
 export function LoginForm() {
@@ -39,7 +40,7 @@ export function LoginForm() {
               placeholder="Start typing…"
               autoComplete="email"
             />
-            <Input.Icon name="common-envelop" />
+            <Input.Icon name="envelop" />
           </Input.Wrap>
         </Input>
 
@@ -58,7 +59,7 @@ export function LoginForm() {
               placeholder="Start typing…"
               autoComplete="email"
             />
-            <Input.Icon name="common-lock" />
+            <Input.Icon name="lock" />
           </Input.Wrap>
         </Input>
 

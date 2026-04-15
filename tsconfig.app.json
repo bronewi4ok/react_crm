@@ -28,9 +28,17 @@
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
 
-    "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@app/*": ["./src/app/*"],
+      "@pages/*": ["./src/pages/*"],
+      "@widgets/*": ["./src/widgets/*"],
+      "@features/*": ["./src/features/*"],
+      "@entities/*": ["./src/entities/*"],
+      "@ui/custom/*": ["./src/shared/ui/custom/*"],
+      "@ui/base/*": ["./src/shared/ui/base/*"],
+      "@ui/controls/*": ["./src/shared/ui/controls/*"],
+      "@shared/*": ["./src/shared/*"],
+      "@/*": ["./src/*"]
     }
   },
   "include": ["src"]

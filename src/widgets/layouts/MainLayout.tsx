@@ -1,22 +1,19 @@
-import { Wrap } from '@/shared/ui/customUI/wrap'
-
+import { Header } from '@widgets/header'
 import { Outlet } from 'react-router-dom'
-import { Header } from '../header'
 import { MainMenu } from '../sidebar'
 
 export function MainLayout() {
   return (
-    <Wrap className="flex flex-wrap items-stretch">
-      <aside className="bg-light flex-none">
+    <div className="bg-back-200 text-dark relative flex min-h-dvh w-full flex-wrap items-start break-all">
+      <aside className="bg-light sticky top-0 row-span-2 flex h-dvh flex-none min-w-64 flex-col overflow-y-auto">
         <MainMenu />
       </aside>
 
-      <main className="flex min-h-dvh flex-1 flex-col">
+      <main className="flex min-h-dvh flex-1 flex-col px-7 pb-7">
         <Header />
-        <div className="flex-1 px-7 pb-7">
-          <Outlet />
-        </div>
+
+        <Outlet />
       </main>
-    </Wrap>
+    </div>
   )
 }

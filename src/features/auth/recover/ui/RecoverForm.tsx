@@ -1,11 +1,11 @@
-import { frontRoutes } from '@/shared/config/routes'
-import { Button } from '@/shared/ui/baseUI/button'
-import { Input } from '@/shared/ui/formUI'
-import { Form } from '@/shared/ui/formUI/form'
+import { frontRoutes } from '@shared/routes'
+import { Button } from '@ui/base/button'
+import { Form } from '@ui/controls/form'
+import { Input } from '@ui/controls/input'
 import { type SubmitHandler } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
-import { useRecover } from '../model/useRecover'
-import { useRecoverRegister } from '../model/useRecoverRegister'
+import { useRecover } from '../model/use-recover'
+import { useRecoverRegister } from '../model/use-recover-register'
 import type { RecoverFormTypes } from '../model/validation'
 
 export function RecoverForm() {
@@ -38,7 +38,7 @@ export function RecoverForm() {
               placeholder="Start typing…"
               autoComplete="email"
             />
-            <Input.Icon name="common-envelop" />
+            <Input.Icon name="envelop" />
           </Input.Wrap>
         </Input>
 

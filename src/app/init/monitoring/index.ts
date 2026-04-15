@@ -1,2 +1,2 @@
-export { initMonitoring } from './lib/initMonitoring'
-export { MonitoringFallback } from './ui/MonitoringFallback'
+export { initMonitoring } from './init-monitoring'
+export { MonitoringFallback } from './MonitoringFallback'

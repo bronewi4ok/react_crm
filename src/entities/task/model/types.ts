@@ -1,4 +1,4 @@
-import type { QueryParamsTypes, QueryResponseTypes } from '@/shared/types'
+import type { QueryParamsTypes, QueryResponseTypes } from '@shared/query-state'
 import type { taskStatus } from './configs'
 
 export type TaskStatusTypes = (typeof taskStatus)[number]
@@ -20,7 +20,5 @@ export type TaskTypes = {
 }
 
 export type TasksListResponse = QueryResponseTypes<TaskTypes>
-
 export type TaskCardTypes = { task: TaskTypes; className?: string; onClick?: () => void }
-
 export type TasksQueryArgs<TSortKey extends string = string> = QueryParamsTypes<TSortKey>

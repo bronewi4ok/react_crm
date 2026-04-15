@@ -1,6 +1,6 @@
-// import { useFormatDate } from '@/shared/hooks/useFormatDate'
-// import { Button } from '@/shared/ui/baseUI/button'
-// import { Icon } from '@/shared/ui/baseUI/icon'
+// import { useFormatDate } from '@shared/lib'
+// import { Button } from '@ui/base/button'
+// import { Icon } from '@ui/base/icon'
 import clsx from 'clsx'
 import { type TaskCardTypes } from '../model/types'
 
@@ -49,7 +49,7 @@ export function TaskCard({ task, className, onClick }: TaskCardTypes) {
             <Icon
               className="fill-secondary-500"
               size="sm"
-              name="common-dots"
+              name="dots"
             />
           </Button>
         </div> */}

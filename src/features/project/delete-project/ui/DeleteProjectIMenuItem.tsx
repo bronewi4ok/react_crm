@@ -1,8 +1,8 @@
-import { Button } from '@/shared/ui/baseUI/button'
-import { Icon } from '@/shared/ui/baseUI/icon'
+import { Button } from '@ui/base/button'
+import { Icon } from '@ui/base/icon'
 import type { ButtonProps } from 'react-day-picker'
 import { toast } from 'sonner'
-import { useDeleteProject } from '../model/useDeleteProject'
+import { useDeleteProject } from '../model/use-delete-project'
 
 type handleRemoveProjectProps = {
   projectId: string
@@ -22,7 +22,7 @@ export const DeleteProjectMenuItem = (props: handleRemoveProjectProps) => {
 
   return (
     <Button variant="danger" size="sm" square onClick={() => handleRemoveProject()} {...rest}>
-      <Icon name="common-trash" size="xs" />
+      <Icon name="trash" size="xs" />
     </Button>
   )
 }

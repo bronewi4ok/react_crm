@@ -1,4 +1,4 @@
-import type { QueryParamsTypes, QueryResponseTypes } from '@/shared/types'
+import type { QueryParamsTypes, QueryResponseTypes } from '@shared/query-state'
 import type { HTMLAttributes } from 'react'
 import type { LinkProps } from 'react-router-dom'
 
@@ -7,8 +7,8 @@ export type ProjectTypes = {
   name?: string
   specialization?: string
   description?: string
-  tasks: string[]
   budget?: number
+  tasks: string[]
   clients?: string[]
   taskers?: string[]
   createdAt?: string

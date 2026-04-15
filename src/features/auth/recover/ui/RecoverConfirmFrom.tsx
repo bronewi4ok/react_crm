@@ -1,12 +1,11 @@
-import { frontRoutes } from '@/shared/config/routes'
-import { Button } from '@/shared/ui/baseUI/button'
-import { Input } from '@/shared/ui/formUI'
-import { Form } from '@/shared/ui/formUI/form'
+import { frontRoutes } from '@shared/routes'
+import { Button } from '@ui/base/button'
+import { Form } from '@ui/controls/form'
+import { Input } from '@ui/controls/input'
 import { type SubmitHandler } from 'react-hook-form'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
-
-import { useRecoverConfirm } from '../model/useRecoverConfirm'
-import { useRecoverConfirmRegister } from '../model/useRecoverConfirmRegister'
+import { useRecoverConfirm } from '../model/use-recover-confirm'
+import { useRecoverConfirmRegister } from '../model/use-recover-confirm-register'
 import type { RecoverConfirmFormTypes } from '../model/validation'
 
 export function RecoverConfirmForm() {
@@ -50,7 +49,7 @@ export function RecoverConfirmForm() {
               placeholder="Start typing…"
               autoComplete="new-password"
             />
-            <Input.Icon name="common-lock" />
+            <Input.Icon name="lock" />
           </Input.Wrap>
         </Input>
 
@@ -69,7 +68,7 @@ export function RecoverConfirmForm() {
               placeholder="Start typing…"
               autoComplete="new-password"
             />
-            <Input.Icon name="common-lock" />
+            <Input.Icon name="lock" />
           </Input.Wrap>
         </Input>
         <Form.Message message={errors.confirmNewPassword?.message} />
