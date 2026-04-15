@@ -1,3 +1,7 @@
-export * from './api/api'
+export * from './api/create-project.api'
+export * from './api/delete-project.api'
+export * from './api/get-project-by-id.api'
+export * from './api/get-projects.api'
+export * from './api/update-project.api'
 export * from './model/types'
 export { ProjectCard } from './ui/ProjectCard'

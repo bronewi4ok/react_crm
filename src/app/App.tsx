@@ -1,8 +1,11 @@
+import '@/app/styles/styles.css'
 import * as Sentry from '@sentry/react'
 import { ErrorBoundary } from 'react-error-boundary'
 import { MonitoringFallback } from './init'
 import { AppProvider } from './provider'
 import { AppRouter } from './router'
+
+import 'virtual:svg-icons-register'
 
 export const App = () => {
   return (

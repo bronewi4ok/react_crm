@@ -1,5 +1,5 @@
-import { frontRoutes } from '@/shared/config/routes'
-import { MainList } from '@/shared/ui/customUI/mainList'
+import { frontRoutes } from '@shared/routes'
+import { MainList } from '@ui/custom/main-list'
 import { generatePath, useNavigate } from 'react-router-dom'
 import type { TaskTypes } from '../model/types'
 import { TaskCard } from './TaskCard'

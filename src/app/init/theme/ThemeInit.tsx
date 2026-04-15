@@ -1,14 +1,13 @@
-import { useAppDispatch } from '@/app/store'
-import { applyTheme, getInitialTheme, setTheme } from '@/features/themeToggler'
+import { getInitialTheme, setTheme } from '@features/toggle-theme'
 import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 
 export const ThemeInit = () => {
-  const dispatch = useAppDispatch()
+  const dispatch = useDispatch()
 
   useEffect(() => {
     const theme = getInitialTheme()
     dispatch(setTheme(theme))
-    applyTheme(theme)
   }, [dispatch])
 
   return null

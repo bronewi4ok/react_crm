@@ -1,4 +1,4 @@
-import { Wrap } from '@/shared/ui/customUI/wrap'
+import { Wrap } from '@ui/custom/wrap'
 import { Outlet } from 'react-router-dom'
 
 export function AuthLayout() {

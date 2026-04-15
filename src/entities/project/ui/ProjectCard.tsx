@@ -1,10 +1,10 @@
 import { DeleteProjectMenuItem } from '@/features/project/delete-project/ui/DeleteProjectIMenuItem'
-import { useFormatDate } from '@/shared/hooks'
-import { Avatar } from '@/shared/ui/baseUI/avatar'
-import { Button } from '@/shared/ui/baseUI/button'
-import { Dropdown } from '@/shared/ui/baseUI/dropdown'
-import { Icon } from '@/shared/ui/baseUI/icon'
-import { Card } from '@/shared/ui/customUI/card'
+import { useFormatDate } from '@shared/lib'
+import { Avatar } from '@ui/base/avatar'
+import { Button } from '@ui/base/button'
+import { Dropdown } from '@ui/base/dropdown'
+import { Icon } from '@ui/base/icon'
+import { Card } from '@ui/custom/card'
 import { Link } from 'react-router-dom'
 import { type ProjectCardProps } from '../model/types'
 
@@ -46,7 +46,7 @@ export function ProjectCard({ project, className, onClick, to }: ProjectCardProp
         <Dropdown>
           <Dropdown.Trigger>
             <Button size="sm" square aria-label="More actions" variant="support">
-              <Icon className="fill-secondary-500" size="sm" name="common-dots" />
+              <Icon className="fill-secondary-500" size="sm" name="dots" />
             </Button>
           </Dropdown.Trigger>
 
