@@ -1,5 +1,5 @@
 import { ThemeToggler } from '@features/toggle-theme'
-import { usePageMeta } from '@shared/lib'
+import { usePageMeta } from '@shared/routes'
 import { Button } from '@ui/base/button'
 import { Icon } from '@ui/base/icon'
 import type { ComponentPropsWithoutRef } from 'react'
