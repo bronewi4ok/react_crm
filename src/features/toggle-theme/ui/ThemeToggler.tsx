@@ -9,5 +9,11 @@ export function ThemeToggler() {
   const theme = useSelector(selectTheme)
   const dispatch = useDispatch()
 
-  return <Toggler checked={theme === THEME.DARK} onChange={() => dispatch(toggleTheme())} />
+  return (
+    <Toggler
+      checked={theme === THEME.DARK}
+      onChange={() => dispatch(toggleTheme())}
+      aria-label="toggle theme"
+    />
+  )
 }

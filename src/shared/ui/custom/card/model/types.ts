@@ -1,7 +1,6 @@
 import type { HTMLAttributes } from 'react'
-import type { LinkProps } from 'react-router-dom'
 
-export type CardTypes = HTMLAttributes<HTMLElement> & LinkProps
+export type CardTypes = HTMLAttributes<HTMLElement>
 export type CardHeaderTypes = HTMLAttributes<HTMLElement>
 export type CardItemTypes = HTMLAttributes<HTMLElement>
 export type CardTitleTypes = HTMLAttributes<HTMLElement>

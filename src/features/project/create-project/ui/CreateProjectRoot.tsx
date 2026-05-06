@@ -4,9 +4,12 @@ import type { HTMLAttributes } from 'react'
 import { CreateProjectsContextProvider } from '../model/context'
 import { useCreateProject, type CreateProjectOnSuccessTypes } from '../model/use-create-project'
 
-type CreateProjectRootProps = CreateProjectOnSuccessTypes & HTMLAttributes<HTMLElement>
+// ======================================
+type Props = CreateProjectOnSuccessTypes & HTMLAttributes<HTMLElement>
 
-export const CreateProjectRoot = ({ children, className, onSuccess }: CreateProjectRootProps) => {
+// ======================================
+export const CreateProjectRoot = (props: Props) => {
+  const { children, className, onSuccess } = props
   const { form, onSubmit, isDisabled, apiError } = useCreateProject({ onSuccess })
 
   const value = {

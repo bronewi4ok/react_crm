@@ -1,21 +1,23 @@
 import { CreateProject } from '@features/project/create-project'
-import { frontRoutes } from '@shared/routes'
+import { FRONT_ROUTES } from '@shared/routes'
 import { Button } from '@ui/base/button'
 import { Icon } from '@ui/base/icon'
 import { Modal } from '@ui/base/modal'
 import { generatePath, useNavigate } from 'react-router-dom'
 
-export type NewProjectModalTypes = {
+// ======================================
+type Props = {
   open?: boolean
   onOpenChange?: (v: boolean) => void
 }
 
-export function NewProjectModal({ open, onOpenChange }: NewProjectModalTypes) {
+// ======================================
+export function NewProjectModal({ open, onOpenChange }: Props) {
   const navigate = useNavigate()
 
   const handleSubmit = (projectId: string) => {
     onOpenChange?.(false)
-    navigate(generatePath(frontRoutes.main.ProjectDetailsPage.navPath, { id: projectId }))
+    navigate(generatePath(FRONT_ROUTES.main.ProjectDetailsPage.navPath, { id: projectId }))
   }
 
   return (

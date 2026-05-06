@@ -2,9 +2,10 @@ import clsx from 'clsx'
 import { Switch } from 'radix-ui'
 import type { TogglerTypes } from './types'
 
-export function Toggler({ checked, onChange }: TogglerTypes) {
+export function Toggler({ checked, onChange, ...rest }: TogglerTypes) {
   return (
     <Switch.Root
+      {...rest}
       checked={checked}
       onCheckedChange={onChange}
       className={clsx(

@@ -1,11 +1,11 @@
 import '@/app/styles/styles.css'
 import * as Sentry from '@sentry/react'
+import { NuqsAdapter } from 'nuqs/adapters/react-router/v7'
 import { ErrorBoundary } from 'react-error-boundary'
+import 'virtual:svg-icons-register'
 import { MonitoringFallback } from './init'
 import { AppProvider } from './provider'
 import { AppRouter } from './router'
-
-import 'virtual:svg-icons-register'
 
 export const App = () => {
   return (
@@ -21,7 +21,9 @@ export const App = () => {
 
           if (import.meta.env.DEV) console.error(error)
         }}>
-        <AppRouter />
+        <NuqsAdapter>
+          <AppRouter />
+        </NuqsAdapter>
       </ErrorBoundary>
     </AppProvider>
   )

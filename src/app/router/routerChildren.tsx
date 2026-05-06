@@ -1,4 +1,4 @@
-import { frontRoutes, type RouteTypes } from '@shared/routes'
+import { FRONT_ROUTES, type RouteTypes } from '@shared/routes'
 import type { ComponentType } from 'react'
 import type { RouteObject } from 'react-router-dom'
 import { checkAuthLoader } from './checkAuthLoader'
@@ -25,10 +25,10 @@ function makeRoute(route: RouteTypes, pageKey: string): RouteObject {
   }
 }
 
-export const mainRouterChildren: RouteObject[] = Object.entries(frontRoutes.main).map(
+export const mainRouterChildren: RouteObject[] = Object.entries(FRONT_ROUTES.main).map(
   ([key, route]) => makeRoute(route, key),
 )
 
-export const authRouterChildren: RouteObject[] = Object.entries(frontRoutes.auth).map(
+export const authRouterChildren: RouteObject[] = Object.entries(FRONT_ROUTES.auth).map(
   ([key, route]) => makeRoute(route, key),
 )

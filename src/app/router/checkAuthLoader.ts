@@ -1,6 +1,6 @@
 import { store } from '@/app/store'
 import { authApi } from '@entities/auth'
-import { frontRoutes, type RouteTypes } from '@shared/routes'
+import { FRONT_ROUTES, type RouteTypes } from '@shared/routes'
 import { redirect } from 'react-router-dom'
 
 export const checkAuthLoader = (route: RouteTypes) => async () => {
@@ -17,11 +17,11 @@ export const checkAuthLoader = (route: RouteTypes) => async () => {
     }
   }
 
-  if (user && isAuthPage) throw redirect(frontRoutes.main.HomePage.navPath)
-  if (requireAuth && !user) throw redirect(frontRoutes.auth.LoginPage.navPath)
+  if (user && isAuthPage) throw redirect(FRONT_ROUTES.main.HomePage.navPath)
+  if (requireAuth && !user) throw redirect(FRONT_ROUTES.auth.LoginPage.navPath)
   if (requireAuth && user && allowedRoles.length > 0) {
     const hasRole = allowedRoles.includes(user.role!)
-    if (!hasRole) throw redirect(frontRoutes.main.Page404.navPath)
+    if (!hasRole) throw redirect(FRONT_ROUTES.main.Page404.navPath)
   }
 
   return { user, isAuthenticated: !!user }

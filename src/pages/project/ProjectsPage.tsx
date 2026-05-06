@@ -1,7 +1,5 @@
 import { ProjectsList } from '@widgets/projects-list'
 
-const ProjectsPage = () => {
-  return <ProjectsList />
-}
+const ProjectsPage = () => <ProjectsList />
 
 export default ProjectsPage

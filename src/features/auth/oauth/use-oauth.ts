@@ -1,6 +1,6 @@
 import { useOAuthMutation } from '@entities/auth/api/auth.api'
 import { setCredentials } from '@entities/auth/api/auth.slice'
-import { frontRoutes } from '@shared/routes'
+import { FRONT_ROUTES } from '@shared/routes'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
@@ -17,7 +17,7 @@ export const useOAuth = () => {
       dispatch(setCredentials(res))
 
       if (res?.user) {
-        navigate(frontRoutes.main.HomePage.navPath)
+        navigate(FRONT_ROUTES.main.HomePage.navPath)
       }
     } catch (error: unknown) {
       const err = error as { status?: unknown; error?: unknown }

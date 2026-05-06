@@ -1,4 +1,4 @@
-import { frontRoutes } from '@shared/routes'
+import { FRONT_ROUTES } from '@shared/routes'
 import { Button } from '@ui/base/button'
 import { Form } from '@ui/controls/form'
 import { Input } from '@ui/controls/input'
@@ -20,7 +20,7 @@ export function RecoverForm() {
 
   const onSubmit: SubmitHandler<RecoverFormTypes> = async (data) => {
     const result = await recover(data)
-    if (result.success) navigate(frontRoutes.auth.RecoverSentPage.navPath)
+    if (result.success) navigate(FRONT_ROUTES.auth.RecoverSentPage.navPath)
   }
 
   const isDisabled = isLoading || isSubmitting
@@ -51,7 +51,7 @@ export function RecoverForm() {
       </Button>
 
       <Button className="col-span-6" variant="primary" asChild>
-        <Link to={frontRoutes.main.HomePage.navPath}>Home</Link>
+        <Link to={FRONT_ROUTES.main.HomePage.navPath}>Home</Link>
       </Button>
 
       {/* GLOBAL ERROR */}

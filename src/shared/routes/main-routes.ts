@@ -36,6 +36,18 @@ export const mainRoutes = {
     },
   },
 
+  ProjectUpdatePage: {
+    path: 'projects/:id/edit',
+    navPath: '/projects/:id/edit',
+    meta: {
+      title: 'Project Details',
+      isInMenu: false,
+      requireAuth: true,
+      icon: 'projects',
+      roles: [ROLES.ADMIN, ROLES.MANAGER, ROLES.USER],
+    },
+  },
+
   TasksPage: {
     path: 'tasks',
     navPath: '/tasks',

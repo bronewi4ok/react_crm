@@ -1,5 +1,16 @@
-export const baseStyles =
-  'inline-flex items-center justify-center gap-2 font-bold cursor-pointer disabled:opacity-50 disabled:pointer-events-none overflow-hidden'
+export const baseStyles = `
+  inline-flex
+  items-center
+  justify-center
+  gap-2
+  font-bold
+  cursor-pointer
+  disabled:opacity-50
+  disabled:pointer-events-none
+  overflow-hidden
+  min-w-fit
+  leading-none
+  `
 
 export const disabledStyles = 'disabled:opacity-70 disabled:cursor-not-allowed'
 
@@ -7,9 +18,9 @@ export const animationStyles =
   'transition-all duration-200 ease-in-out hover:scale-105 active:scale-95'
 
 export const sizeStyles = {
-  sm: 'py-2 px-3 text-sm rounded-md min-h-10',
-  md: 'py-2 px-3 text-base rounded-lg min-h-12',
-  lg: 'py-3 px-4 text-lg rounded-xl min-h-14',
+  sm: 'py-2 px-4 text-sm rounded-md min-h-10',
+  md: 'py-2 px-4 text-base rounded-lg min-h-12',
+  lg: 'py-2 px-4 text-lg rounded-xl min-h-14',
 } as const
 
 export const sizeSquareStyles = {

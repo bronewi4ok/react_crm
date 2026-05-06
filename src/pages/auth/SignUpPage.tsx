@@ -1,5 +1,5 @@
 import { AuthForm } from '@entities/auth'
-import { OAuthButton } from '@features/auth/oauth'
+// import { OAuthButton } from '@features/auth/oauth'
 import { SignupForm } from '@features/auth/signup'
 import signupImage from '@shared/assets/images/auth/signup.svg'
 
@@ -11,7 +11,7 @@ const SignUpPage = () => {
       image={signupImage}>
       <h1>Реєстрація</h1>
       <SignupForm />
-      <OAuthButton />
+      {/* <OAuthButton /> */}
     </AuthForm>
   )
 }
