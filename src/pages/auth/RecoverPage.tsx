@@ -1,5 +1,5 @@
 import { AuthForm } from '@entities/auth'
-import { OAuthButton } from '@features/auth/oauth'
+// import { OAuthButton } from '@features/auth/oauth'
 import { RecoverForm } from '@features/auth/recover'
 import recoverImage from '@shared/assets/images/auth/recover.svg'
 
@@ -10,7 +10,7 @@ const RecoverPage = () => {
       subtitle="Enter your details to proceed further"
       image={recoverImage}>
       <RecoverForm />
-      <OAuthButton />
+      {/* <OAuthButton /> */}
     </AuthForm>
   )
 }

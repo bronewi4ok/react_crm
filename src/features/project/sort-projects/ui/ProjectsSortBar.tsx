@@ -1,7 +1,8 @@
 import { SortBar } from '@ui/custom/sortbar'
 import { PROJECTS_SORT_CONFIGS } from '../model/configs'
-import { useProjectsQuery } from '../model/hooks'
+
 import type { ProjectsSortTypes } from '../model/types'
+import { useProjectsQuery } from '../model/use-projects-query'
 
 export function ProjectsSortBar() {
   const { sort, setSort } = useProjectsQuery()

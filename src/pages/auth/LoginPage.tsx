@@ -1,8 +1,8 @@
 import { AuthForm } from '@entities/auth'
 import { LoginForm } from '@features/auth/login'
-import { OAuthButton } from '@features/auth/oauth'
+// import { OAuthButton } from '@features/auth/oauth'
 import loginImage from '@shared/assets/images/auth/login.svg'
-import { frontRoutes } from '@shared/routes'
+import { FRONT_ROUTES } from '@shared/routes'
 
 import { Link } from 'react-router-dom'
 
@@ -13,10 +13,10 @@ const LoginPage = () => {
       subtitle="Enter your details to proceed further"
       image={loginImage}>
       <LoginForm />
-      <OAuthButton />
+      {/* <OAuthButton /> */}
       <Link
         className="text-secondary-500 hover:text-attention-500 text-base transition-colors duration-200"
-        to={frontRoutes.auth.RecoverPage.navPath}>
+        to={FRONT_ROUTES.auth.RecoverPage.navPath}>
         Forgot password?
       </Link>
     </AuthForm>

@@ -1,5 +1,5 @@
 export * from './model/configs'
-export * from './model/hooks'
+export * from './model/use-projects-query'
 export * from './model/schema'
 export * from './model/serializer'
 export * from './model/types'

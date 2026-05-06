@@ -23,13 +23,6 @@ export type ProjectsWidgetContentProps = {
   buildLink: (page: number) => string
 }
 
-export type ProjectsListFallbackProps = {
-  title: string
-  text: string
-  image: string
-  onRetry?: () => void
-} & HTMLAttributes<HTMLElement>
-
 export type ProjectsWidgetEmptyFallbackProps = {
   onRetry?: () => void
 } & HTMLAttributes<HTMLElement>

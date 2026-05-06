@@ -1,6 +1,7 @@
 import { cn } from '@shared/lib'
 import { SlotWrap } from '@ui/base/slot'
 
+import { BUTTON_DEFAULT_SIZE, BUTTON_DEFAULT_VARIANT } from '../model/configs'
 import type { ButtonProps } from '../model/types'
 import {
   animationStyles,
@@ -10,7 +11,6 @@ import {
   sizeStyles,
   variantStyles,
 } from '../model/variants'
-import { BUTTON_DEFAULT_SIZE, BUTTON_DEFAULT_VARIANT } from '../model/configs'
 
 export const Button = (props: ButtonProps) => {
   const {

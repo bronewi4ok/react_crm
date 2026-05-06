@@ -1,28 +1,32 @@
-import { useCreateProjectMutation } from '@entities/project'
+import { useCreateProjectMutation, type CreateProjectTypes } from '@entities/project'
 import { toast } from 'sonner'
-import { useCreateProjectForm } from './use-create-project-form'
-import type { CreateProjectTypes } from './validation'
+import { DEFAULT_FORM_VALUES, useCreateProjectForm } from './use-create-project-form'
 
+// ======================================
 export type CreateProjectOnSuccessTypes = { onSuccess?: (projectId: string) => void }
 
+// ======================================
 export function useCreateProject({ onSuccess }: CreateProjectOnSuccessTypes) {
   const [createProject, { isLoading, error: apiError }] = useCreateProjectMutation()
   const form = useCreateProjectForm()
   const isDisabled = isLoading || form.formState.isSubmitting
 
-  async function handleFormSubmit(credentials: CreateProjectTypes) {
+  async function handleFormSubmit(data: CreateProjectTypes) {
     try {
-      const result = await createProject(credentials).unwrap()
+      const result = await createProject(data).unwrap()
+      if (!result?.id) throw new Error('No ID returned from server')
 
-      if (result?.id) {
-        onSuccess?.(result.id)
-        form.reset()
-        toast.success(`New Project ${result?.name}!`)
-      }
-    } catch (e) {
-      console.error('Failed to create project:', e)
+      onSuccess?.(result.id)
+      toast.success(
+        result.name ? `Проєкт "${result.name}" успішно створено` : 'Проєкт успішно створено',
+      )
+      form.reset(DEFAULT_FORM_VALUES)
+    } catch (error) {
+      console.error('Failed to create project:', error)
     }
   }
 
-  return { form, onSubmit: form.handleSubmit(handleFormSubmit), isDisabled, apiError }
+  const onSubmit = form.handleSubmit(handleFormSubmit)
+
+  return { form, onSubmit, isDisabled, apiError }
 }

@@ -1,5 +1,5 @@
 import { API_ROUTES, API_TAGS, baseApi } from '@shared/api'
-import type { ProjectTypes } from '../model/types'
+import type { ProjectTypes } from '../model/schema'
 
 export const getProjectByIdApi = baseApi.injectEndpoints({
   endpoints: (build) => ({

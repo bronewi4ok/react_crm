@@ -1,4 +1,4 @@
-import { frontRoutes } from '@shared/routes'
+import { FRONT_ROUTES } from '@shared/routes'
 import { Button } from '@ui/base/button'
 import { Form } from '@ui/controls/form'
 import { Input } from '@ui/controls/input'
@@ -30,7 +30,7 @@ export function RecoverConfirmForm() {
     }
 
     const result = await recoverConfirm(payload)
-    if (result.success) navigate(frontRoutes.main.HomePage.navPath)
+    if (result.success) navigate(FRONT_ROUTES.main.HomePage.navPath)
   }
 
   const isDisabled = isLoading || isSubmitting
@@ -80,7 +80,7 @@ export function RecoverConfirmForm() {
       </Button>
 
       <Button className="col-span-6" variant="primary" asChild>
-        <Link to={frontRoutes.main.HomePage.navPath}>Home</Link>
+        <Link to={FRONT_ROUTES.main.HomePage.navPath}>Home</Link>
       </Button>
 
       {/* GLOBAL ERROR */}

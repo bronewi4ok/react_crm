@@ -1,20 +1,18 @@
-import { cn } from '@shared/lib'
-import { ErrorFallback } from '@ui/custom/error-fallback'
-import { NoProjectsImg, type ProjectsListFallbackProps } from '..'
+import { ProjectFallback } from '@entities/project/ui/ProjectFallback'
+import { Button } from '@ui/base/button'
+import type { FallbackProps } from 'react-error-boundary'
 
-export const ProjectsListFallback = ({ ...props }: ProjectsListFallbackProps) => {
-  const { className, children } = props
+// ======================================
+type Props = {
+  onRetry: () => unknown
+} & FallbackProps
 
-  return (
-    <div className={cn('flex h-full w-full items-center justify-center', className)}>
-      <ErrorFallback>
-        <ErrorFallback.Image src={NoProjectsImg} alt="Projects list is empty" />
-        <ErrorFallback.Title>No projects found?</ErrorFallback.Title>
-        <ErrorFallback.Description>
-          Create your first project to get started
-        </ErrorFallback.Description>
-        {children}
-      </ErrorFallback>
-    </div>
-  )
+// ======================================
+export const ProjectsListFallback = ({ resetErrorBoundary, onRetry }: Props) => {
+  const handleRetry = () => {
+    onRetry()
+    resetErrorBoundary()
+  }
+
+  return <ProjectFallback actions={<Button onClick={handleRetry}>Retry</Button>} />
 }

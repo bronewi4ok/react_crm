@@ -1,4 +1,4 @@
-import { frontRoutes } from '@shared/routes'
+import { FRONT_ROUTES } from '@shared/routes'
 import { Button } from '@ui/base/button'
 import { Checkbox } from '@ui/controls/checkbox'
 import { Form } from '@ui/controls/form'
@@ -22,7 +22,7 @@ export function LoginForm() {
 
   const onSubmit = async (data: LoginFormTypes) => {
     const result = await login(data)
-    if (result?.user) navigate(frontRoutes.main.HomePage.navPath)
+    if (result?.user) navigate(FRONT_ROUTES.main.HomePage.navPath)
   }
   const isDisabled = isLoading || isSubmitting
 
@@ -86,7 +86,7 @@ export function LoginForm() {
 
       {/* Link */}
       <Button asChild className="col-span-6" variant="primary">
-        <Link to={frontRoutes.auth.SignUpPage.navPath}>Sign Up</Link>
+        <Link to={FRONT_ROUTES.auth.SignUpPage.navPath}>Sign Up</Link>
       </Button>
 
       {/* SUBMIT */}
