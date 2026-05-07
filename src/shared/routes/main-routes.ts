@@ -48,6 +48,18 @@ export const mainRoutes = {
     },
   },
 
+  ProjectCreatePage: {
+    path: 'projects/create',
+    navPath: '/projects/create',
+    meta: {
+      title: 'Create New Project',
+      isInMenu: false,
+      requireAuth: true,
+      icon: 'projects',
+      roles: [ROLES.ADMIN, ROLES.MANAGER, ROLES.USER],
+    },
+  },
+
   TasksPage: {
     path: 'tasks',
     navPath: '/tasks',

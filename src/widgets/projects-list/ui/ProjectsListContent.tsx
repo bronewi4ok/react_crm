@@ -39,7 +39,7 @@ export const ProjectsListContent = ({ children }: { children: ReactNode }) => {
         text="Create your first project to get started"
         actions={
           <Button asChild onClick={() => refetch()} variant="primary">
-            <Link to={FRONT_ROUTES.main.ProjectUpdatePage.navPath}>Create Project</Link>
+            <Link to={FRONT_ROUTES.main.ProjectCreatePage.navPath}>Create Project</Link>
           </Button>
         }
       />
