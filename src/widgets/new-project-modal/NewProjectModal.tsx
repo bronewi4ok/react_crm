@@ -39,7 +39,7 @@ export function NewProjectModal({ open, onOpenChange }: Props) {
 
           <Modal.Footer className="justify-end gap-4">
             <Modal.Close>
-              <Button variant="support" className="flex-2">
+              <Button variant="support" type="button" className="flex-2">
                 Cancel
               </Button>
             </Modal.Close>

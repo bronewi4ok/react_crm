@@ -7,6 +7,7 @@ export const useProjectsList = () => {
 
   const { data, isLoading, isError, isFetching, refetch } = useGetProjectsQuery(apiParams)
   const projects = data?.data ?? []
+  // const projects: ProjectTypes[] = []
   const meta = data?.meta
 
   const state: ProjectsListDataTypes = { projects, meta, isLoading, isError, isFetching }
